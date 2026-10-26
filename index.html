@@ -1,0 +1,2388 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сабақ кестесі — Baiterek School of Science and Technology</title>
+<style>
+:root{--bg:#f3f5fa;--card:#fff;--ink:#1f2937;--muted:#6b7280;--line:#e3e7ef;--accent:#2563eb;--red:#ff1a1a}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;font:14px/1.35 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(120deg,#1e3a8a,#2563eb 60%,#0ea5e9);color:#fff;padding:16px 20px 12px}
+.hwrap{max-width:1800px;margin:0 auto;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+header h1{margin:0;font-size:23px;letter-spacing:.2px}
+header .sub{opacity:.92;margin-top:3px;font-size:14px}
+.hbtns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.hbtn{border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.12);color:#fff;border-radius:10px;padding:8px 12px;font:inherit;cursor:pointer}
+.hbtn:hover{background:rgba(255,255,255,.22)}
+.hbtn.bad{background:var(--red);border-color:#fff;animation:pulse 1s infinite}
+.hbtn.good{background:rgba(22,163,74,.85)}
+.hbtn.adm{background:#facc15;color:#1f2937;border-color:#facc15;font-weight:700}
+.sstate{font-size:12.5px;opacity:.95}
+nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:15}
+.nwrap{max-width:1800px;margin:0 auto;display:flex;gap:4px;padding:0 12px;overflow-x:auto}
+nav button{border:0;background:none;font:inherit;font-weight:600;color:var(--muted);padding:12px 14px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+nav button.on{color:var(--accent);border-bottom-color:var(--accent)}
+body:not(.admin) .admonly{display:none!important}
+body.static #loginBtn{display:none!important}
+body.parent nav button:not([data-tab="class"]):not([data-tab="clubs"]),body.parent #loginBtn,body.parent .pall{display:none!important}
+.plink{display:flex;gap:6px;align-items:center;margin:3px 0}
+.plink input{flex:1;font-size:12.5px;color:#334155;background:#f8fafc}
+main{max-width:1800px;margin:0 auto;padding:14px 16px}
+.bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px}
+.bar h2{margin:0 8px 0 0;font-size:18px}
+.hint{color:var(--muted);font-size:13px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 11px;font:inherit;cursor:pointer}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+select,input,textarea{font:inherit;border:1px solid #cfd6e3;border-radius:8px;padding:6px 8px;background:#fff;color:inherit;max-width:100%}
+input[type=color]{padding:2px;width:42px;height:32px}
+.tw{overflow:auto;max-height:78vh;background:var(--card);border-radius:14px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table.tt{border-collapse:separate;border-spacing:3px}
+.tt thead th{position:sticky;top:0;z-index:4;background:#e8eefb;color:#334155;font-weight:700;padding:7px 6px;border-radius:8px;text-align:center;white-space:nowrap}
+.tt thead th:first-child,.tt thead th.stk2{left:0;z-index:6}
+.tt thead th.stk2{left:41px}
+.tt td.day{position:sticky;left:0;z-index:3;background:#1e3a8a;color:#fff;font-weight:700;text-align:center;border-radius:8px;padding:6px 4px;letter-spacing:1px;width:38px;min-width:38px}
+.tt td.day span{writing-mode:vertical-rl;transform:rotate(180deg);display:inline-block}
+.tt td.num{position:sticky;left:41px;z-index:3;background:#e8eefb;text-align:center;font-weight:700;border-radius:8px;padding:3px 5px;white-space:nowrap;box-shadow:3px 0 0 var(--card)}
+.tt.cls td.num{left:0}
+.tt.cls{width:100%;table-layout:fixed}
+.tt.cls th:first-child{width:96px}
+.tt td.num small{display:block;font-weight:400;color:var(--muted);font-size:11px}
+.tt tr.dsep td{height:8px;padding:0;background:none}
+.cell{min-width:128px;height:60px;padding:0;border-radius:8px;vertical-align:top}
+body.admin .cell{cursor:pointer}
+.cell.empty{background:#fafbfd;border:1px dashed #d5dbe6;text-align:center;vertical-align:middle;color:#c1c8d4}
+.cell.over{outline:3px dashed var(--accent)}
+.cell.busy{background:repeating-linear-gradient(45deg,#eef1f5,#eef1f5 5px,#dfe4ec 5px,#dfe4ec 10px);border:1px dashed #b6bfcd}
+.cell.ok{outline:2px dashed #16a34a;outline-offset:-3px;background:#f0fdf4}
+.manual{background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:10px 12px;margin-bottom:10px}
+.manual .chip{display:inline-flex;gap:6px;align-items:center;margin:2px}
+.chip.brush{background:var(--c);color:var(--tc);border:2px solid transparent}
+.chip.brush.on{border-color:#111827;box-shadow:0 0 0 3px #facc15}
+.chip.brush small{opacity:.85}
+.chip.brush.full{opacity:.55}
+.help h3{margin:14px 0 4px;font-size:15px}
+.help ol{margin:4px 0;padding-left:22px}
+.help li{margin:2px 0}
+.lw{display:flex;gap:2px;height:100%;min-height:60px}
+.les{--c:#cbd5e1;flex:1;min-width:0;background:var(--c);color:var(--tc,#111827);border-radius:7px;padding:4px 6px;overflow:hidden}
+body.admin .cell:hover .les{filter:brightness(.95)}
+.les .sn{font-weight:700;font-size:12.5px;line-height:1.2}
+.les .gn,.les .tn,.les .rn{opacity:.88}
+.les .gn{font-size:10.5px}
+.les .tn{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.les .rn{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.les.split .sn{font-size:11.5px}
+.les.club{cursor:pointer}
+.les.conflict{background:var(--red)!important;color:#fff!important;outline:3px solid #ffd60a;outline-offset:-3px;animation:pulse .9s infinite}
+.les.ext{background:repeating-linear-gradient(135deg,#e2e8f0,#e2e8f0 6px,#cbd5e1 6px,#cbd5e1 12px);color:#1f2937}
+@keyframes pulse{50%{box-shadow:0 0 0 4px rgba(255,26,26,.35);filter:brightness(1.15)}}
+.tcell{min-width:150px;height:60px;vertical-align:top;padding:0;border-radius:8px}
+.tcell.free{background:#fafbfd;border:1px dashed #e1e6ee}
+.tcell .les{margin-bottom:2px}
+.tcell.mx{min-width:132px;width:132px}
+.tt th.pick{cursor:pointer;text-decoration:underline dotted;max-width:140px;white-space:normal;line-height:1.15}
+.tt th.pick:hover{background:#dbe5fb;color:var(--accent)}
+body.admin .tcell [data-k] .les{cursor:pointer}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;align-items:center}
+.lg{display:flex;gap:6px;align-items:center;background:#fff;border-radius:999px;padding:3px 10px 3px 4px;border:1px solid var(--line);font-size:12.5px}
+.lg i{width:15px;height:15px;border-radius:50%;background:var(--c);display:inline-block}
+.lg.red i{background:var(--red)}
+.info{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.pill{background:var(--c,#fff);color:var(--tc,#1f2937);border:1px solid var(--line);border-radius:8px;padding:5px 9px;font-size:13px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:14px}
+.card{background:var(--card);border-radius:14px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.06);min-width:0}
+.card.wide{grid-column:1/-1}
+.card h2{margin:0 0 12px;font-size:17px}
+.card label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
+.card label input,.card label select,.card label textarea{color:var(--ink)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.checks{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+.card label.chk{flex-direction:row;align-items:center;gap:8px;color:var(--ink);font-size:14px}
+.scroll{max-height:460px;overflow:auto;border:1px solid var(--line);border-radius:10px}
+.st{border-collapse:collapse;width:100%}
+.st th{position:sticky;top:0;background:#f8fafc;text-align:left;font-size:12px;color:var(--muted);font-weight:600;padding:6px 4px;z-index:1}
+.st td{padding:4px;vertical-align:middle;border-top:1px solid #f1f5f9}
+.st input.w{width:100%}
+.st td.miss{background:#fffbeb;color:#b45309;font-weight:700}
+.st td.ok{color:#15803d;font-weight:700}
+.tchips{display:flex;flex-wrap:wrap;gap:3px;align-items:center}
+.tchip{--c:#ccc;background:var(--c);color:var(--tc,#111);border-radius:999px;padding:2px 4px 2px 8px;font-size:12px;display:inline-flex;gap:4px;align-items:center}
+.tchip button{border:0;background:none;cursor:pointer;color:inherit;font-size:12px;padding:0 3px;opacity:.8}
+.tchips select{font-size:12px;padding:2px 4px;width:110px}
+.btn{border:1px solid #cfd6e3;background:#fff;border-radius:9px;padding:7px 13px;font:inherit;cursor:pointer;font-weight:600}
+.btn:hover{background:#f1f5f9}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:#1d4ed8}
+.btn.danger{color:#be123c;border-color:#fecdd3}
+.btn.sm{padding:4px 9px;font-size:13px}
+.x{border:0;background:#fff1f2;color:#be123c;border-radius:8px;width:28px;height:28px;cursor:pointer;font-weight:700}
+.dbtns{display:flex;flex-wrap:wrap;gap:8px}
+.dl{display:flex;flex-wrap:wrap;gap:6px;margin-left:auto}
+.pli{display:flex;gap:4px;align-items:center;margin-bottom:3px;flex-wrap:wrap}
+.pli select{width:230px}
+.ov{position:fixed;inset:0;background:rgba(15,23,42,.45);display:flex;align-items:center;justify-content:center;padding:16px;z-index:20}
+.md{background:#fff;border-radius:16px;padding:20px;width:min(560px,100%);max-height:92vh;overflow:auto;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.md h3{margin:0 0 12px;font-size:18px}
+.md h3 small{color:var(--muted);font-weight:400;font-size:13px;margin-left:6px}
+.md label{display:flex;flex-direction:column;gap:3px;font-size:12.5px;color:var(--muted);margin-bottom:8px}
+.md label select,.md label input{color:var(--ink);width:100%}
+.eb{border:1px solid var(--line);border-left:6px solid var(--c,#cbd5e1);border-radius:10px;padding:10px;margin-bottom:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.eb label{margin:0}
+.eb .full{grid-column:1/-1}
+.ebh{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:13px}
+.mbtns{display:flex;gap:8px;margin-top:12px;align-items:center;flex-wrap:wrap}
+.warn{background:#fff1f2;color:#9f1239;border:1px solid #fecdd3;border-radius:10px;padding:8px 10px;font-size:13px;margin-top:4px}
+.warn:empty{display:none}
+.clist{list-style:none;margin:0;padding:0}
+.clist li{padding:8px 10px;border-radius:8px;background:#fff1f2;margin-bottom:6px;border-left:4px solid var(--red);font-size:13px}
+.clist b{color:#9f1239}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#dc2626;color:#fff;padding:12px 18px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:30;max-width:min(600px,92vw);font-weight:600}
+.toast.okt{background:#0f766e}
+.pbar{height:10px;background:#e5e7eb;border-radius:99px;overflow:hidden;margin-top:8px}
+.pbar i{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}
+.ul{margin:6px 0 0;padding-left:18px;max-height:300px;overflow:auto;font-size:13px}
+.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.gcard{background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.07);overflow:hidden;display:flex;flex-direction:column}
+.gcard.bad{outline:3px solid var(--red)}
+.gh{padding:10px 12px;color:#fff}
+.gh b{font-size:15px}
+.gh .gm{font-size:12.5px;opacity:.92;margin-top:2px}
+.gb{padding:8px 12px 10px;font-size:13px;flex:1}
+.gb ol{margin:4px 0 0;padding-left:26px;columns:2;column-gap:16px}
+.gb li{break-inside:avoid;padding:1px 0}
+.gb li.bad{color:#fff;background:var(--red);border-radius:4px;padding:0 4px}
+.gb .kc{color:var(--muted);font-size:12px}
+.gf{display:flex;gap:6px;padding:0 12px 10px;flex-wrap:wrap}
+mark{background:#fde047;border-radius:3px}
+.sbox{position:relative;display:inline-flex;align-items:center;flex:1;max-width:460px;min-width:260px}
+.sbox::before{content:'🔍';position:absolute;left:11px;font-size:15px;pointer-events:none;opacity:.75}
+.sbox input{width:100%;padding:8px 10px 8px 36px;border-radius:999px;border-color:#94a3b8}
+.sbox input:focus{outline:2px solid var(--accent);border-color:var(--accent)}
+.kcard{background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.07);margin-bottom:12px;overflow:hidden;max-width:900px}
+.kcard .kh{background:#1e3a8a;color:#fff;padding:10px 14px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.kcard .kh b{font-size:17px}
+.kcard table{width:100%;border-collapse:collapse}
+.kcard th,.kcard td{padding:7px 10px;border-top:1px solid #eef2f7;text-align:left;font-size:13.5px}
+.kcard th{background:#f8fafc;color:var(--muted);font-weight:600;font-size:12px}
+.kcard .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.kcard tr.bad td{background:#fff1f2;color:#9f1239}
+.kt{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden}
+.kt th,.kt td{border:1px solid #e5e7eb;padding:6px 8px;text-align:left;vertical-align:top;font-size:13px}
+.kt th{background:#e8eefb}
+.kt .ev{display:block;border-radius:6px;padding:2px 6px;margin:2px 0;color:#fff;font-size:12px}
+.kt .ev.bad{background:var(--red)!important}
+.load{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:50;font-size:16px;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:18px}
+#pdfHost{position:fixed;left:-20000px;top:0}
+@media (max-width:600px){header h1{font-size:18px}.grid2{grid-template-columns:1fr}main{padding:10px}.cards{grid-template-columns:1fr}.gb ol{columns:1}}
+@media print{
+  @page{size:landscape;margin:7mm}
+  nav,.hbtns,.bar .chip,.bar select,.bar .btn,.dl,.hint,footer,.toast,.legend,.gf{display:none!important}
+  body{background:#fff}
+  header{background:none;color:#000;padding:0 0 4px}
+  .tw{box-shadow:none;max-height:none;overflow:visible}
+  .les,.tt td.day,.tt th,.tt td.num,.gh,.kt .ev{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .les{animation:none}
+}
+</style>
+</head>
+<body>
+<div class="load" id="loadScr" hidden>Кесте жүктелуде…</div>
+<header>
+  <div class="hwrap">
+    <div>
+      <h1 id="schoolName"></h1>
+      <div class="sub" id="schoolSub"></div>
+    </div>
+    <div class="hbtns">
+      <span class="sstate admonly" id="saveState"></span>
+      <button class="hbtn admonly" id="confBtn"></button>
+      <button class="hbtn admonly" id="soundBtn" title="Дыбыстық ескерту"></button>
+      <button class="hbtn" id="langBtn" title="Тілді ауыстыру / Сменить язык"></button>
+      <button class="hbtn" id="printBtn" onclick="window.print()">🖨 Басып шығару</button>
+      <button class="hbtn" id="loginBtn"></button>
+    </div>
+  </div>
+</header>
+<nav><div class="nwrap">
+  <button data-tab="all">📋 Жалпы кесте</button>
+  <button data-tab="class">🎒 Сынып кестесі</button>
+  <button data-tab="teacher">👩‍🏫 Мұғалім кестесі</button>
+  <button data-tab="room">🚪 Кабинет кестесі</button>
+  <button data-tab="clubs">🎨 Үйірмелер</button>
+  <button data-tab="subs">🔁 Ауыстыру</button>
+  <button data-tab="plan" class="admonly">📚 Оқу жоспары</button>
+  <button data-tab="settings" class="admonly">⚙️ Баптаулар</button>
+</div></nav>
+<main id="main"></main>
+<footer id="foot"></footer>
+<div class="ov" id="ov" hidden><div class="md" id="md"></div></div>
+<input type="file" id="fileIn" accept=".json,application/json" hidden>
+<div id="pdfHost"></div>
+<!-- Сайт іске қосылмаса — бос беттің орнына қатені және не істеу керегін көрсету -->
+<script>
+function bootFail(msg, line) {
+  var m = document.getElementById('main');
+  if (!m || m.getAttribute('data-ok')) return;
+  var ls = document.getElementById('loadScr'); if (ls) ls.hidden = true;   // «жүктелуде» жазуы қатені жасырмасын
+  msg = String(msg || 'белгісіз қате').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  m.innerHTML = '<div style="max-width:720px;margin:30px auto;background:#fff;border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.08)">' +
+    '<h2 style="margin-top:0">⚠ Сайт іске қосылмады</h2><p>Қате: <b>' + msg + '</b>' + (line ? ' (жол ' + line + ')' : '') + '</p>' +
+    '<p>Көбінесе бұл <b>index.html толық көшірілмегенде</b> болады. script.google.com → index.html → Ctrl+End: ең соңғы жол <b>&lt;/html&gt;</b> болуы керек. ' +
+    'Болмаса: компьютердегі index.html файлын Блокнотпен ашып → Ctrl+A → Ctrl+C → Google-да Ctrl+A → Delete → Ctrl+V → Ctrl+S → ' +
+    '«Развернуть → Управление развертываниями → ✏️ → Новая версия».</p><p style="color:#6b7280">Кесте деректері сақтаулы — ештеңе жоғалған жоқ.</p>' +
+    '<details open><summary><b>Диагностика (скриншотын жіберіңіз)</b></summary><pre style="white-space:pre-wrap;font-size:12px;background:#f8fafc;padding:8px;border-radius:8px">' +
+    String(diagScripts()).replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</pre></details></div>';
+}
+/* Браузерге келген әр бағдарлама бөлігін тексеру: бірінші функциясының аты және синтаксис қатесінің жолы */
+function diagScripts() {
+  var out = [], ss = document.scripts, n = 0;
+  for (var i = 0; i < ss.length; i++) {
+    var s = ss[i]; if (s.src || (s.type && s.type !== 'text/javascript')) continue;
+    var t = s.textContent || ''; if (t.indexOf('bootFail') >= 0 && t.indexOf('diagScripts') >= 0) continue;
+    n++;
+    var m = /function\s+(\w+)/.exec(t), name = m ? m[1] : '-', line = 'Бөлік ' + n + ': ' + t.length + ' таңба, бірінші функция: ' + name;
+    try { new Function(t); line += ' — OK'; }
+    catch (e) {
+      line += ' — ҚАТЕ: ' + e.message;
+      var ls = t.split('\n');
+      for (var k = 1; k <= ls.length; k++) {
+        try { new Function(ls.slice(0, k).join('\n')); }
+        catch (e2) {
+          if (e2.message === e.message && !/end of input/i.test(e2.message)) {
+            var bad = ls[k - 1], codes = [];
+            for (var c = 0; c < bad.length; c++) { var cc = bad.charCodeAt(c); if (cc > 126 || cc < 32) codes.push('U+' + cc.toString(16)); }
+            line += '\n    ' + k + '-жол: ' + bad.slice(0, 160) + (codes.length ? '\n    ерекше таңбалар: ' + codes.slice(0, 12).join(' ') : '');
+            break;
+          }
+        }
+      }
+    }
+    out.push(line);
+  }
+  out.push('readParams: ' + (typeof readParams) + ' · render: ' + (typeof render) + ' · start: ' + (typeof start));
+  return out.join('\n');
+}
+window.addEventListener('error', function (e) { bootFail(e.message + (e.error && e.error.stack ? ' — ' + String(e.error.stack).split('\n').slice(0, 3).join(' / ') : ''), e.lineno); });
+window.addEventListener('unhandledrejection', function (e) { bootFail('Promise: ' + (e.reason && (e.reason.stack || e.reason.message) || e.reason)); });
+/* Сервер ұзақ жауап бермесе — «жүктелуде» күйінде қалып қоймау */
+setTimeout(function () {
+  var ls = document.getElementById('loadScr');
+  if (ls && !ls.hidden) bootFail('сервер 20 секунд ішінде жауап бермеді. Бетті Ctrl+F5 арқылы жаңартып көріңіз; қайталанса — F12 → Console бетіндегі қызыл жолдың скриншотын жіберіңіз');
+}, 20000);
+/* Файлдың соңы қиылып қалса, браузер негізгі бағдарламаны мүлде іске қоспайды — оны осылай байқаймыз */
+document.addEventListener('DOMContentLoaded', function () {
+  setTimeout(function () { if (!window.__mainStarted) bootFail('сайттың негізгі бөлігі жүктелмеді — index.html толық көшірілмеген'); }, 1500);
+});
+</script>
+
+<!-- PDF жасау кітапханалары: jsPDF 2.5.1, html2canvas 1.4.1, JSZip 3.10.1 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<!-- Деректер бөлек блоктарда: сервер шаблоны өңделмесе де бағдарлама іске қосылып, түсінікті хабар көрсетеді -->
+<script type="application/json" id="dBuild">"static"</script>
+<script type="application/json" id="dInit">null</script>
+<script type="application/json" id="dClubs">{"payload":null}</script>
+<script type="application/json" id="dFix">null</script>
+<script>
+window.__mainStarted = true;
+/* Мектептің нақты кестесі: «Расписание по классам.pdf» (20.10.2026) + мұғалімдер кестесі */
+const readJ = id => { try { return JSON.parse(document.getElementById(id).textContent); } catch (e) { return undefined; } };
+/* Шаблон серверде өңделмесе (ескі Код.gs) — шаблон белгілері сол күйінде қалады */
+const RAW_OK = !['dBuild', 'dInit'].some(id => document.getElementById(id).textContent.slice(0, 80).includes('<' + '?'));
+/* BUILD: full — толық сайт (мұғалімдер), parent — бір сынып (ата-ана, деректер серверден сүзіліп келеді), denied — сілтеме жарамсыз */
+/* Ескі Код.gs (шаблонды өңдемейді): деректерді «full» тармағынан тікелей алып, толық сайт ретінде ашамыз */
+const rawFull = id => {
+  const t = document.getElementById(id).textContent, a = t.indexOf('{ ?' + '>'), b = t.indexOf('<' + '? } else');
+  if (a < 0 || b < 0) return undefined;
+  try { return JSON.parse(t.slice(a + 4, b)); } catch (e) { return undefined; }
+};
+const OLD_SERVER = !RAW_OK;
+const BUILD = RAW_OK ? readJ('dBuild') : 'full';
+/* static — Netlify-дағы жылдам сайт: деректер d/<кілт>.json файлдарынан алынады, өңдеу жоқ */
+const STATIC = BUILD === 'static';
+const INITIAL = RAW_OK ? readJ('dInit') : rawFull('dInit') || null;
+/* Үйірмелер: steep-cell-26a1.sabonmukh.workers.dev/primary (Google кестесі) */
+const CLUBS_RAW = ((RAW_OK ? readJ('dClubs') : rawFull('dClubs')) || {}).payload || null;
+/* Мектептің түзетулеріндегі оқушылар аттары — тек толық (мұғалімдер) бетінде болады */
+const FIXDATA = RAW_OK ? readJ('dFix') : rawFull('dFix') || null;
+/* Мұғалімдер мен ата-аналар сайты (GitHub Pages) және оның деректері (Google Apps Script, ?api=1) */
+const SITE_URL = 'https://school262026.github.io/sabak-kestesi';
+const DATA_API = 'https://script.google.com/macros/s/AKfycbwG2IocU_CguLiGm4iAQ9GDCtT5fLSE2E7CCybIsRp9R14eZPDGbpAk9wHdZBLfUs0r6A/exec';
+const CLUB_API = 'https://script.google.com/macros/s/AKfycbxgc-KkefkOMECXI9UNxrTUOoki_KlbFs2JErxzAcRhwjSqMiL4VDX46Mj6fbulk00/exec';
+const DEFAULT_PW_HASH = '';
+
+const DAYS_KZ = ['Дүйсенбі','Сейсенбі','Сәрсенбі','Бейсенбі','Жұма','Сенбі'];
+const DAYS_RU = ['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'];
+/* Қазақ сыныптары — қалғандары орыс сыныптары */
+const KZ_CLASSES = ['K5', '1A', '1B', '2A', '2B', '3A', '4A', '4B'];
+/* Пәндердің орысша атаулары (атауы бірдей пәндер мұнда жоқ) */
+const SUBJ_RU = { 'Қазақ тілі': 'Казахский язык', 'Ағылшын тілі': 'Английский язык', 'Орыс тілі': 'Русский язык', 'Орыс тілі(қосымша)': 'Русский язык (доп.)',
+  'Көркем әдебиет': 'Худ. литература', 'Жапсыру': 'Аппликация', 'ДШ': 'Физ-ра', 'Жүзу/Плавание': 'Плавание', 'Серуендеу': 'Прогулка',
+  'Түскі ас/Обед': 'Обед', 'ҮЖО': 'ВДЗ', 'Тіл дамыту': 'Развитие речи', 'Сауат ашу': 'Основы грамоты', 'ЦСР': 'Цифровая грамотность',
+  'Мүсіндеу': 'Лепка', 'Құрастыру': 'Конструирование', 'Бей. өнері': 'ИЗО', 'Серуендеу/Прогулка': 'Прогулка',
+  'Түскі ас/Обед/Прогулка/Серуендеу': 'Обед / Прогулка', 'Әліппе': 'Букварь', 'Жаратылыстану': 'Естествознание',
+  'Жаратылыстану кеңес сабақ': 'Естествознание консультация', 'Дүниетану': 'Познание мира', 'Еңбекке баулу': 'Трудовое обучение',
+  'Сынып сағаты': 'Классный час', 'Әдебиеттік оқу': 'Литературное чтение', 'ӘО консультация сабақ': 'Лит. чтение консультация',
+  'Қаржылық сауаттылық': 'Фин грамотность', 'Каз яз': 'Казахский язык' };
+/* Екі тілде жазылған атаулардың қазақша бөлігі */
+const SUBJ_KZ = { 'Жүзу/Плавание': 'Жүзу', 'Түскі ас/Обед': 'Түскі ас', 'Серуендеу/Прогулка': 'Серуендеу', 'Түскі ас/Обед/Прогулка/Серуендеу': 'Түскі ас / Серуендеу' };
+/* Беттің тілі: қазақ сыныбының беті — қазақша, орыс сыныбының беті — орысша */
+let UI = 'kz';
+const T = (kz, ru) => UI === 'ru' ? ru : kz;
+/* Көрушінің өзі таңдаған тілі (ҚАЗ | РУС батырмасы) — осы браузерде есте сақталады */
+let PICK = ''; try { PICK = localStorage.getItem('sabak-lang') || ''; } catch (e) {}
+if (PICK) UI = PICK;
+const gradeName = g => g ? T(g + '-сыныптар', g + ' классы') : T('Мектепалды', 'Предшкола');
+const DAYS_ALL = new Proxy(DAYS_KZ, { get: (a, i) => (UI === 'ru' ? DAYS_RU : DAYS_KZ)[i] ?? a[i] });
+const GRADE_NAMES = { 0: 'Мектепалды', 1: '1-сыныптар', 2: '2-сыныптар', 3: '3-сыныптар', 4: '4-сыныптар' };
+const CAT = { lang: ['Тілдер', '#2E7D32'], art: ['Шығармашылық', '#6A3D9A'], sci: ['Ғылым және логика', '#12556B'], sport: ['Спорт', '#E65100'] };
+const CAT_RU = { lang: 'Языки', art: 'Творчество', sci: 'Наука и логика', sport: 'Спорт' };
+const CLUB_COLOR = '#6A3D9A';
+const SUBTITLE = 'Сабақ кестесі / Расписание уроков 1–4 сынып / класс';
+const APP_VERSION = '22-нұсқа · 26.10.2026';
+const KEY = 'sabak-kestesi-baiterek-v2', HKEY = 'sabak-admin-hash';
+const SERVER = !!(window.google && google.script && google.script.run);
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid = () => Math.random().toString(36).slice(2, 9);
+/* Кабинеттің кілті: «каб. 213», «213 каб. 9», «044-Балет» → 213 / 044 (бір кабинет әр түрлі жазылса да бірдей саналады) */
+const nr = r => { const s = String(r || '').trim().toLowerCase().replace(/^каб\.?\s*/, ''); const m = /^(\d{3})(?!\d)/.exec(s); return m ? m[1] : s; };
+const clone = o => JSON.parse(JSON.stringify(o));
+
+let S, tab = 'all', gradeF = -1, curClass = null, curTeacher = null, curRoom = null, dragK = null, busy = false;
+let isAdmin = false, adminPw = '';
+let clubMode = 'groups', clubDay = -1, clubQ = '', clubCls = null;
+let C = { les: {}, list: [], clubIdx: {} }, prevConf = new Set();
+
+/* ---------- Көмекші функциялар ---------- */
+const nDays = () => S.opt.sat ? 6 : 5;
+const subj = id => S.subjects.find(s => s.id === id);
+const teacher = id => S.teachers.find(t => t.id === id);
+const cls = id => S.classes.find(c => c.id === id);
+const clsLang = id => cls(id)?.lang === 'ru' ? 'ru' : 'kz';
+/* Пәннің сол тілдегі атауы (орысшасы жазылмаса — негізгі атауы) */
+const sName = (s, lang = UI) => !s ? '?' : lang === 'ru' ? (s.ru || s.name) : s.name;
+/* Бір сыныптың бетін сол сыныптың тілінде салу */
+const inLang = (lang, fn) => { const old = UI; UI = lang; try { return fn(); } finally { UI = old; } };
+const timeStr = l => S.times[l] ? S.times[l][0] + '–' + S.times[l][1] : '';
+const homeroom = cid => S.teachers.find(t => t.cls === cid);
+const sortedClasses = () => [...S.classes].sort((a, b) => a.grade - b.grade || a.name.localeCompare(b.name));
+const sortedTeachers = () => [...S.teachers].sort((a, b) => a.name.localeCompare(b.name, 'kk'));
+const shared = () => new Set(String(S.sharedRooms || '').split(',').map(nr).filter(Boolean));
+const cellL = k => (S.sched[k] || []).filter(x => x.s);
+function textOn(hex) {
+  const n = parseInt(String(hex || '#cccccc').slice(1), 16), r = n >> 16 & 255, g = n >> 8 & 255, b = n & 255;
+  return (0.299 * r + 0.587 * g + 0.114 * b) / 255 > 0.55 ? '#111827' : '#ffffff';
+}
+const colStyle = c => `--c:${c};--tc:${textOn(c)}`;
+function short(n) {
+  const p = String(n || '').trim().split(/\s+/);
+  if (p.length >= 3 && p[p.length - 1].length > 2) return p[p.length - 1] + ' ' + p.slice(0, -1).map(x => x[0] + '.').join('');
+  return p.join(' ');
+}
+
+function roomList() {
+  const m = new Map(), add = r => { const k = nr(r); if (k && !m.has(k)) m.set(k, String(r).trim().replace(/^каб\.?\s*/i, '')); };
+  S.classes.forEach(c => add(c.room));
+  for (const k in S.sched) S.sched[k].forEach(x => add(x.r));
+  (S.clubs?.groups || []).forEach(g => add(g.room));
+  return [...m.entries()].sort((a, b) => a[1].localeCompare(b[1], 'kk', { numeric: true }));
+}
+const roomName = key => roomList().find(r => r[0] === key)?.[1] || key;
+
+/* ---------- Оқу жоспары ---------- */
+function buildPlan(cid) {
+  const D = nDays(), L = S.times.length, rows = new Map(); let max = 0;
+  for (let d = 0; d < D; d++) {
+    let n = 0;
+    for (let l = 0; l < L; l++) {
+      const arr = cellL(cid + '|' + d + '|' + l); if (!arr.length) continue; n++;
+      const bySub = {}; arr.forEach(x => (bySub[x.s] ??= []).push(x));
+      for (const s in bySub) {
+        const its = bySub[s].sort((a, b) => (a.g || '').localeCompare(b.g || ''));
+        const sig = s + '|' + its.map(x => x.t + '/' + (its.length > 1 ? x.g : '')).join(',');
+        const row = rows.get(sig) || { id: uid(), s, h: 0, items: its.map(x => ({ t: x.t, r: '', g: its.length > 1 ? x.g : '', rc: {} })) };
+        row.h++; its.forEach((x, i) => { const rc = row.items[i].rc; rc[x.r || ''] = (rc[x.r || ''] || 0) + 1; });
+        rows.set(sig, row);
+      }
+    }
+    max = Math.max(max, n);
+  }
+  const out = [...rows.values()].sort((a, b) => b.h - a.h);
+  out.forEach(r => r.items.forEach(it => { it.r = Object.keys(it.rc).sort((a, b) => it.rc[b] - it.rc[a])[0] || ''; delete it.rc; }));
+  return { max: max || L, rows: out };
+}
+const planOf = cid => S.plan[cid] ??= { max: S.times.length, rows: [] };
+
+/* ---------- Үйірмелер ---------- */
+const DAYMAP = { 'ПН': 0, 'ВТ': 1, 'СР': 2, 'ЧТ': 3, 'ПТ': 4, 'СБ': 5 };
+const LAT = { 'А': 'A', 'В': 'B', 'С': 'C', 'Е': 'E', 'Н': 'H', 'Д': 'D', 'Г': 'G', 'Ф': 'F' };
+const clubClassName = s => String(s).replace(/[«»"'\s]/g, '').replace(/[А-ЯЁ]/g, ch => LAT[ch] || ch).toUpperCase();
+const WHO = { 'все 1–4': '1–4 сыныптар', '1–2 классы': '1–2 сыныптар', '3–4 классы': '3–4 сыныптар' };
+const placeholderT = t => /НУЖЕН|уточн|педагог\s*\d|^Тренер/i.test(t || '');
+const kzn = s => String(s).toLowerCase().replace(/ё/g, 'е').replace(/[ұү]/g, 'у').replace(/қ/g, 'к').replace(/ә/g, 'а').replace(/ө/g, 'о')
+  .replace(/[іий]/g, 'и').replace(/ғ/g, 'г').replace(/ң/g, 'н').replace(/һ/g, 'х');
+function matchTeacher(name) {
+  if (!name || placeholderT(name)) return '';
+  const toks = kzn(name).replace(/\b(апай|агай)\b/g, '').split(/[\s.]+/).filter(t => t.length >= 3);
+  if (!toks.length) return '';
+  const hits = S.teachers.map(t => { const tt = kzn(t.name).split(/\s+/); return { t, n: toks.filter(x => tt.some(y => y.slice(0, 5) === x.slice(0, 5))).length }; })
+    .filter(h => h.n >= Math.min(2, toks.length));
+  const best = Math.max(0, ...hits.map(h => h.n)), top = hits.filter(h => h.n === best);
+  return top.length === 1 ? top[0].t.id : '';
+}
+const clubLabel = g => g.club + ' · ' + g.num + (g.who && g.who !== '1–4 сыныптар' && !/«|"/.test(g.num) ? ' (' + g.who + ')' : '');
+const cf = id => isAdmin ? C.les[id] : undefined;
+const clubColor = g => (CAT[g.cat] || ['', CLUB_COLOR])[1];
+function importClubs(raw, map) {
+  map = map || { 8: 9, 9: 10, 10: 11 };
+  const kid = s => { const [c, ...n] = String(s).split('|'); const cn = clubClassName(c); return { cls: cn, cid: S.classes.some(x => x.id === 'c' + cn) ? 'c' + cn : '', name: n.join(' ').replace(/\s+/g, ' ').trim() }; };
+  const kids = raw.kids.map(kid), noclub = (raw.noclub || []).map(kid);
+  const groups = raw.groups.map(g => ({ id: g.id, club: g.club, num: g.num, who: WHO[g.who] || g.who, cat: g.cat, ol: g.lesson, p: map[g.lesson] ?? 9,
+    days: g.days.map(d => DAYMAP[d]).filter(d => d !== undefined).sort(), room: String(g.room || '').trim(), teacher: g.teacher, tid: '', kids: g.m.slice(), ov: false }));
+  groups.forEach(g => g.tid = matchTeacher(g.teacher));
+  // Сейсенбі мен бейсенбідегі топтарды дүйсенбі/сәрсенбі/жұмаға ауыстыру (оқушылар, педагог, кабинет сәйкес келмейтіндей)
+  const report = [], fixed = groups.filter(g => !g.days.some(d => d === 1 || d === 3));
+  const clash = (g, days, p) => {
+    let sc = 0; const ks = new Set(g.kids);
+    for (const o of fixed) {
+      if (o.p !== p) continue; const sh = o.days.filter(d => days.includes(d)).length; if (!sh) continue;
+      sc += sh * (o.kids.filter(i => ks.has(i)).length * 10 + (!placeholderT(g.teacher) && o.teacher === g.teacher ? 50 : 0) + (nr(o.room) && nr(o.room) === nr(g.room) ? 50 : 0));
+    }
+    return sc;
+  };
+  for (const g of groups.filter(g => g.days.some(d => d === 1 || d === 3))) {
+    const n = Math.min(g.days.length, 3), from = g.days.map(d => DAYS_ALL[d]).join(', ');
+    const combos = n === 1 ? [[0], [2], [4]] : n === 2 ? [[0, 2], [0, 4], [2, 4]] : [[0, 2, 4]];
+    let best = null;
+    for (const p of [g.p, ...[9, 10, 11].filter(x => x !== g.p)]) for (const days of combos) {
+      const sc = clash(g, days, p) + (p === g.p ? 0 : 1);
+      if (!best || sc < best.sc) best = { sc, days, p };
+    }
+    g.days = best.days; g.p = best.p; g.ov = true; fixed.push(g);
+    report.push(`${clubLabel(g)}: ${from} → ${g.days.map(d => DAYS_ALL[d]).join(', ')}, ${g.p + 1}-сабақ`);
+  }
+  return { date: raw.date, map, kids, noclub, groups, report };
+}
+
+/* Мектептің түзетулері (25.10.2026):
+   – жаңа оқушы 2A сыныбына келді (2F-тегі жазбасы ауыстырылды); бір уақыттағы үйірмесі басқа топқа ауыстырылды
+   – 4G сыныбы жабылды: оқушылары 4E-ге көшті; 4G-де қайталанған жазба 4D-дағы жазбамен біріктірілді
+   Оқушылардың аттары FIXDATA ішінде (тек мұғалімдер бетіне жіберіледі) */
+function applyClubFixes(CL) {
+  if (!FIXDATA) return;
+  if (!(CL.fixV >= 1)) clubFixes1(CL);
+  if (CL.fixV < 2) clubFixes2(CL);
+  if (CL.fixV < 3) {   // 4G-ден келген тағы 4 оқушы — 3-ші үйірме
+    ensureThreeClubs(CL, FIXDATA.fix3, '4E');
+    CL.fixV = 3;
+  }
+  if (CL.fixV < 4) { ensureThreeClubs(CL, FIXDATA.fix4, '4E'); CL.fixV = 4; }
+  if (CL.fixV < 5) { CL.fixLog = optimizeClubs(CL); CL.fixV = 5; }
+}
+
+/* ---------- Үйірме қайшылықтарын түзету және әр оқушыны 3 үйірмеге толтыру ---------- */
+const kidGrade = k => { const m = /^(\d)/.exec(k.cls || ''); return m ? +m[1] : 0; };
+function groupFits(g, k) {
+  const gr = kidGrade(k); if (!gr) return false;
+  if (/«|"/.test(g.num)) return g.num.split(',').map(clubClassName).includes(k.cls);   // сыныптық Speaking club
+  if (/^1–2/.test(g.who)) return gr <= 2;
+  if (/^3–4/.test(g.who)) return gr >= 3;
+  return true;
+}
+function optimizeClubs(CL) {
+  const log = [], D = nDays(), sh = shared(), CAP = 26;
+  const slots = g => g.days.map(d => d + '|' + g.p);
+  const kidSlots = (i, except) => { const s = new Set(); CL.groups.forEach(g => { if (g !== except && g.kids.includes(i)) slots(g).forEach(x => s.add(x)); }); return s; };
+  const classBusy = (cid, sl) => { if (!cid) return false; const [d, p] = sl.split('|'); return cellL(cid + '|' + d + '|' + p).length > 0; };
+  const kidFree = (i, g, except) => { const ks = kidSlots(i, except), k = CL.kids[i]; return slots(g).every(s => !ks.has(s) && !classBusy(k.cid, s)); };
+  const tKey = g => g.tid || (placeholderT(g.teacher) ? '' : 'X:' + kzn(g.teacher));
+  const teacherBusy = (g, d, p, except) => {
+    const key = tKey(g); if (!key) return false;
+    if (CL.groups.some(o => o !== g && o !== except && tKey(o) === key && o.p === p && o.days.includes(d))) return true;
+    if (g.tid) { for (const k in S.sched) { const [, d2, l2] = k.split('|'); if (+d2 === d && +l2 === p && S.sched[k].some(x => x.s && x.t === g.tid)) return true; } }
+    return false;
+  };
+  const roomBusy = (room, d, p, g) => {
+    const r = nr(room); if (!r || sh.has(r)) return false;
+    if (CL.groups.some(o => o !== g && nr(o.room) === r && o.p === p && o.days.includes(d))) return true;
+    for (const k in S.sched) { const [, d2, l2] = k.split('|'); if (+d2 === d && +l2 === p && S.sched[k].some(x => x.s && nr(x.r) === r)) return true; }
+    return false;
+  };
+  const kidOverlap = (g, days, p) => g.kids.reduce((a, i) => { const ks = kidSlots(i, g); return a + days.filter(d => ks.has(d + '|' + p)).length; }, 0);
+  const lbl = g => clubLabel(g);
+  const dn = ds => ds.map(d => DAYS_ALL[d]).join(', ');
+
+  // 1) Сейсенбі/бейсенбіден ауыстырылған топтар: педагог пен кабинет бос уақыт, қажет болса мектеп спортзалы
+  const GYM = '126 - Спортзал';
+  for (const g of CL.groups.filter(x => x.ov && /Баскетбол|Тхэквондо|Пионербол/.test(x.club))) {
+    const n = g.days.length, combos = [];
+    const pick = (arr, k) => k === 0 ? [[]] : arr.flatMap((v, i) => pick(arr.slice(i + 1), k - 1).map(r => [v, ...r]));
+    for (let m = n; m >= 1; m--) pick([0, 2, 4].filter(d => d < D), m).forEach(c => combos.push(c));
+    let best = null;
+    for (const days of combos) for (const p of [9, 10, 11]) for (const room of [g.room, GYM]) {
+      const hard = days.filter(d => teacherBusy(g, d, p)).length * 1000 + days.filter(d => roomBusy(room, d, p, g)).length * 1000;
+      const sameClub = days.filter(d => CL.groups.some(o => o !== g && o.club === g.club && o.p === p && o.days.includes(d))).length;
+      const sc = hard + (n - days.length) * 300 + kidOverlap(g, days, p) * 5 + sameClub * 40 + (room !== g.room ? 1 : 0) + (p !== g.p ? 1 : 0);
+      if (!best || sc < best.sc) best = { sc, days, p, room };
+    }
+    if (best && (best.days.join() !== g.days.join() || best.p !== g.p || best.room !== g.room)) {
+      log.push(`${lbl(g)}: ${dn(g.days)} ${g.p + 1}-сабақ, ${g.room} → ${dn(best.days)} ${best.p + 1}-сабақ, ${best.room}` + (best.days.length < n ? ` (педагогтың бос уақыты тек ${dn(best.days)} — аптасына ${best.days.length} рет)` : ''));
+      g.days = best.days; g.p = best.p; g.room = best.room;
+    }
+  }
+  // 2) Кабинет қайшылығы (үйірме мен үйірме): аз оқушысы бар топқа бос кабинет
+  const allRooms = [...new Set(CL.groups.map(g => g.room).filter(r => /^(каб\.?\s*)?\d{3}$/i.test(String(r).trim())))];
+  for (const g of [...CL.groups].sort((a, b) => a.kids.length - b.kids.length)) {
+    if (!g.days.some(d => roomBusy(g.room, d, g.p, g))) continue;
+    const free = allRooms.find(r => g.days.every(d => !roomBusy(r, d, g.p, g)));
+    if (free) { log.push(`${lbl(g)}: ${g.room} кабинеті бос емес → ${free}`); g.room = free; }
+  }
+  // 3) Педагогтың үйірмесі мен сабағы бір уақытта: сабақты сол сыныптың басқа сабағымен орын ауыстыру
+  for (const g of CL.groups.filter(x => x.tid)) for (const d of g.days) {
+    for (const k in S.sched) {
+      const [cid, d2, l2] = k.split('|'); if (+d2 !== d || +l2 !== g.p || !S.sched[k].some(x => x.s && x.t === g.tid)) continue;
+      computeConflicts(); const before = C.list.length; let done = false;
+      for (let l = 0; l < S.times.length && !done; l++) for (let dd = 0; dd < D && !done; dd++) {
+        const k2 = cid + '|' + dd + '|' + l; if (k2 === k || S.sched[k2]?.some(x => subj(x.s)?.fixed) || S.sched[k].some(x => subj(x.s)?.fixed)) continue;
+        const a = S.sched[k], b = S.sched[k2];
+        if (b) S.sched[k] = b; else delete S.sched[k]; S.sched[k2] = a;
+        computeConflicts();
+        if (C.list.length < before) { done = true; log.push(`${cls(cid).name}: ${DAYS_ALL[d]} ${g.p + 1}-сабақтағы «${subj(a[0].s)?.name}» ${DAYS_ALL[dd]} ${l + 1}-сабаққа ауыстырылды (${teacher(g.tid).name} сол уақытта «${lbl(g)}» үйірмесін жүргізеді)`); }
+        else { S.sched[k2] = b; if (!b) delete S.sched[k2]; S.sched[k] = a; }
+      }
+    }
+  }
+  // 4) Мектепке жазылмаған оқушыларды тізімге қосу
+  (CL.noclub || []).forEach(k => { if (!CL.kids.some(x => !x.gone && x.cls === k.cls && x.name === k.name)) CL.kids.push({ ...k }); });
+  if (CL.noclub?.length) log.push(`Үйірмеге жазылмаған ${CL.noclub.length} оқушы тізімге қосылды`);
+  CL.noclub = [];
+  // 4б) Сыныбы аты-жөнінің ішіне жазылып кеткен оқушылар (мыс. «Тегі Аты 2Н»): сыныбын анықтау, қайталанса — біріктіру
+  const tk = s => kzn(s).split(/\s+/).filter(x => x.length >= 3).map(x => x.slice(0, 5));
+  CL.kids.forEach((k, i) => {
+    if (k.gone || kidGrade(k)) return;
+    const m = /^(.*?)\s+(\d)\s*([A-Za-zА-ЯЁа-яё])\s*$/.exec(k.name); if (!m) return;
+    const c = clubClassName(m[2] + m[3]), name = m[1].trim();
+    const tks = tk(name);
+    const dup = CL.kids.findIndex((o, j) => j !== i && !o.gone && o.cls === c && tk(o.name).some(t => tks.includes(t)));
+    if (dup >= 0) {
+      CL.groups.forEach(g => { if (g.kids.includes(i)) { g.kids = g.kids.filter(x => x !== i); if (!g.kids.includes(dup)) g.kids.push(dup); } });
+      Object.assign(k, { gone: true, cls: '', cid: '' });
+      log.push(`«${m[0]}» — ${c} сыныбындағы «${CL.kids[dup].name}» оқушысымен бір адам деп біріктірілді`);
+    } else {
+      Object.assign(k, { cls: c, cid: S.classes.some(x => x.id === 'c' + c) ? 'c' + c : '', name });
+      log.push(`«${m[0]}» — сыныбы ${c}, аты-жөні «${name}» деп түзетілді`);
+    }
+  });
+  // 5) Оқушы бір уақытта екі үйірмеде: сол үйірменің басқа тобына ауыстыру, болмаса біреуінен шығару
+  let moved = 0, dropped = 0;
+  CL.kids.forEach((k, i) => {
+    if (k.gone) return;
+    for (let guard = 0; guard < 6; guard++) {
+      const mine = CL.groups.filter(g => g.kids.includes(i));
+      let pair = null;
+      for (const a of mine) for (const b of mine) if (a !== b && a.p === b.p && a.days.some(d => b.days.includes(d))) pair = pair || [a, b];
+      if (!pair) break;
+      let fixed = false;
+      for (const g of [...pair].sort((x, y) => (y.ov ? 1 : 0) - (x.ov ? 1 : 0) || y.kids.length - x.kids.length)) {
+        const alt = CL.groups.filter(o => o !== g && o.club === g.club && !o.kids.includes(i) && groupFits(o, k) && !placeholderT(o.teacher) && o.kids.length < CAP && kidFree(i, o, g))
+          .sort((x, y) => x.kids.length - y.kids.length)[0];
+        if (alt) { g.kids = g.kids.filter(x => x !== i); alt.kids.push(i); moved++; fixed = true; break; }
+      }
+      if (!fixed) { const g = pair.find(x => x.ov) || pair.sort((x, y) => y.kids.length - x.kids.length)[0]; g.kids = g.kids.filter(x => x !== i); dropped++; }
+    }
+  });
+  if (moved) log.push(`${moved} оқушы бір уақытқа түскен үйірмесінің басқа тобына (басқа уақытқа) ауыстырылды`);
+  if (dropped) log.push(`${dropped} жағдайда оқушы бір уақытқа түскен екі үйірменің біреуінен шығарылды (орнына басқа үйірме берілді)`);
+  // 6) Әр оқушыны 3 түрлі үйірмеге дейін толтыру
+  let added = 0; const short3 = [];
+  CL.kids.forEach((k, i) => {
+    if (k.gone || !kidGrade(k)) return;
+    const clubs = () => new Set(CL.groups.filter(g => g.kids.includes(i)).map(g => g.club));
+    while (clubs().size < 3) {
+      const have = clubs();
+      const c = CL.groups.filter(g => !have.has(g.club) && groupFits(g, k) && !placeholderT(g.teacher) && g.kids.length < CAP && kidFree(i, g))
+        .sort((a, b) => (/«|"/.test(b.num) ? 1 : 0) - (/«|"/.test(a.num) ? 1 : 0) || a.kids.length - b.kids.length)[0];
+      if (!c) { short3.push(k.cls + ' ' + k.name); break; }
+      c.kids.push(i); added++;
+    }
+  });
+  if (added) log.push(`${added} рет оқушы жаңа үйірмеге жазылды (әр оқушыда 3 түрлі үйірме болуы үшін)`);
+  if (short3.length) log.push(`3 үйірмеге толтыру мүмкін болмады (бос уақыт/орын жоқ): ${short3.join(', ')}`);
+  computeConflicts();
+  return log;
+}
+/* Оқушыны 3 түрлі үйірмеге дейін толтыру: уақыты бос топ таңдалады */
+function ensureThreeClubs(CL, names, cls4) {
+  const grp = (club, num) => CL.groups.find(g => g.club === club && g.num === num);
+  const cands = [grp('Speaking club', '4«E»'), grp('Шахматы', 'гр. 3'), grp('Шахматы', 'гр. 2'), grp('Шахматы', 'гр. 1')].filter(Boolean);
+  for (const n of names) {
+    const i = CL.kids.findIndex(k => !k.gone && k.cls === cls4 && k.name.startsWith(n)); if (i < 0) continue;
+    const mine = () => CL.groups.filter(g => g.kids.includes(i));
+    for (const g of cands) {
+      if (new Set(mine().map(x => x.club)).size >= 3) break;
+      const free = !mine().some(o => o.p === g.p && o.days.some(d => g.days.includes(d)));
+      if (free && !mine().some(o => o.club === g.club)) g.kids.push(i);
+    }
+  }
+}
+/* 4G-ден қалған оқушылар да 4E-ге ауысты; 3 үйірмеге жетпесе — уақыты бос үйірмеге жазылады */
+function clubFixes2(CL) {
+  const grp = (club, num) => CL.groups.find(g => g.club === club && g.num === num);
+  const cands = [grp('Speaking club', '4«E»'), grp('Шахматы', 'гр. 3'), grp('Шахматы', 'гр. 2'), grp('Шахматы', 'гр. 1')].filter(Boolean);
+  for (const n of FIXDATA.fix2) {
+    const i = CL.kids.findIndex(k => !k.gone && k.name.startsWith(n)); if (i < 0) continue;
+    CL.kids[i].cls = '4E'; CL.kids[i].cid = S.classes.some(x => x.id === 'c4E') ? 'c4E' : '';
+    const mine = () => CL.groups.filter(g => g.kids.includes(i));
+    for (const g of cands) {
+      if (new Set(mine().map(x => x.club)).size >= 3) break;
+      const free = !mine().some(o => o.p === g.p && o.days.some(d => g.days.includes(d)));
+      if (free && !mine().some(o => o.club === g.club)) g.kids.push(i);
+    }
+  }
+  CL.fixV = 2;
+}
+function clubFixes1(CL) {
+  const find = (c, name) => CL.kids.findIndex(k => !k.gone && k.cls === c && k.name === name);
+  const setCls = (i, c) => { CL.kids[i].cls = c; CL.kids[i].cid = S.classes.some(x => x.id === 'c' + c) ? 'c' + c : ''; };
+  const grp = (club, num, who) => CL.groups.find(g => g.club === club && g.num === num && (!who || String(g.who).startsWith(who)));
+  const join = (g, i) => { if (g && !g.kids.includes(i)) g.kids.push(i); };
+  let i = find('2F', FIXDATA.zh);
+  if (i < 0) i = find('2A', FIXDATA.zh);
+  if (i < 0) { CL.kids.push({ cls: '2A', cid: '', name: FIXDATA.zh }); i = CL.kids.length - 1; }
+  setCls(i, '2A');
+  const r3 = grp('Робототехника', 'гр. 3', '1–2');
+  if (r3) r3.kids = r3.kids.filter(x => x !== i);
+  join(grp('Шахматы', 'гр. 1'), i); join(grp('Турецкий', 'гр. 1'), i); join(grp('Робототехника', 'гр. 7', '1–2'), i);
+  FIXDATA.g4toE.forEach(([n, nn]) => {
+    const j = find('4G', n); if (j >= 0) { setCls(j, '4E'); if (nn) CL.kids[j].name = nn; } });
+  const a = find('4G', FIXDATA.mok), b = find('4D', FIXDATA.mok);
+  if (a >= 0 && b >= 0) { CL.groups.forEach(g => { g.kids = g.kids.filter(x => x !== a); }); Object.assign(CL.kids[a], { gone: true, cls: '', cid: '' }); }
+  CL.fixV = 1;
+}
+
+function ensure() {
+  S.subjects.forEach(s => { if (s.fixed === undefined) s.fixed = /^(О\+п|Түскі ас)/.test(s.name); });
+  // қанық түстер: қызыл «қайшылық» белгісімен шатаспайтындай
+  const RECOLOR = { 'Русский язык': '#8e24aa' };
+  if (!S.v3) { S.subjects.forEach(s => { if (RECOLOR[s.name]) s.color = RECOLOR[s.name]; }); S.address = ''; S.v3 = true; }
+  S.plan ??= {};
+  S.classes.forEach(c => { if (!S.plan[c.id]) S.plan[c.id] = buildPlan(c.id); });
+  S.af ??= { perDay: 2, scope: 'class' };
+  S.extra ??= [];
+  S.subs ??= { curators: [], list: [] };
+  if (S.web && (!S.web.url || /netlify\.app/.test(S.web.url))) S.web.url = SITE_URL;   // сайт Netlify-дан GitHub Pages-ке көшті
+  S.subtitle ??= SUBTITLE;
+  // екі тіл: сыныптың тілі және пәннің орысша атауы (бір рет)
+  if (!S.langV) {
+    const lat = n => String(n).toUpperCase().replace(/\s+/g, '').replace(/[АВСЕКН]/g, ch => ({ А: 'A', В: 'B', С: 'C', Е: 'E', К: 'K', Н: 'H' })[ch]);
+    S.classes.forEach(c => { c.lang ??= KZ_CLASSES.includes(lat(c.name)) ? 'kz' : 'ru'; });
+    S.subjects.forEach(s => { const n = s.name; if (!s.ru && SUBJ_RU[n]) s.ru = SUBJ_RU[n]; if (SUBJ_KZ[n]) s.name = SUBJ_KZ[n]; });
+    S.langV = 1;
+  }
+  if (!S.clubs && CLUBS_RAW) S.clubs = importClubs(CLUBS_RAW);
+  if (S.clubs && BUILD !== 'parent') applyClubFixes(S.clubs);
+}
+
+/* ---------- Сақтау ---------- */
+let saveTimer = null, pending = false;
+function setSaveState(t) { const el = $('#saveState'); if (el) el.textContent = t; }
+function save() {
+  if (SERVER) {
+    if (!isAdmin) return;
+    pending = true; clearTimeout(saveTimer); setSaveState('⏳ Сақталуда…');
+    saveTimer = setTimeout(pushServer, 1200);
+  } else { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+}
+function pushServer() {
+  google.script.run
+    .withSuccessHandler(() => { pending = false; setSaveState('☁ Сақталды ' + new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })); })
+    .withFailureHandler(e => { setSaveState('⚠ Сақталмады'); toast('Серверге сақталмады: ' + (e && e.message || e)); })
+    .saveData(adminPw, JSON.stringify(S));
+}
+window.addEventListener('beforeunload', e => { if (pending) { e.preventDefault(); e.returnValue = ''; } });
+function loadLocal() { try { const x = JSON.parse(localStorage.getItem(KEY)); if (x && x.classes && x.sched) return x; } catch (e) {} return null; }
+
+/* ---------- Қайшылықтарды табу ----------
+   1) Бір мұғалім/педагог бір уақытта әр түрлі жерде (бірлескен сабақ — бір пән + бір кабинет — қайшылық емес)
+   2) Бір кабинетте бір уақытта әр түрлі мұғалімдердің сабағы (ортақ кабинеттерден басқа)
+   3) Бір сыныпта бір уақытта топқа бөлінбеген екі сабақ
+   4) Оқушы бір уақытта екі үйірмеде немесе үйірме уақытында сыныбының сабағы бар
+   5) (қосымша) Бір күнде бір пән қайталанса */
+function computeConflicts() {
+  const les = {}, list = [], D = nDays(), L = S.times.length, gT = {}, gR = {}, gS = {}, sh = shared(), clubIdx = {};
+  const add = (ids, msg, d, l) => { ids.forEach(i => (les[i] ??= []).push(msg)); list.push({ d, l, msg }); };
+  const where = e => e.club ? e.label : e.ext ? e.label + ' (басқа сынып)' : cls(e.c).name + (e.g ? ' ' + e.g : '');
+  for (const k in S.sched) {
+    const [c, d, l] = k.split('|');
+    if (!cls(c) || +d >= D || +l >= L) continue;
+    const arr = S.sched[k];
+    arr.forEach((x, i) => {
+      if (!x.s) return;
+      const e = { id: k + '#' + i, c, d: +d, l: +l, ...x };
+      if (x.t) (gT[d + '|' + l + '|' + x.t] ??= []).push(e);
+      if (nr(x.r) && !sh.has(nr(x.r))) (gR[d + '|' + l + '|' + nr(x.r)] ??= []).push(e);
+      if (S.opt.noRepeat) (gS[c + '|' + d + '|' + x.s] ??= []).push(e);
+    });
+    const real = arr.filter(x => x.s);
+    if (real.length > 1) {
+      const gs = real.map(x => x.g || '');
+      if (gs.includes('') || new Set(gs).size < gs.length)
+        add(arr.map((x, i) => k + '#' + i), `Сыныпта бір уақытта бірнеше сабақ (топқа бөлінбеген): ${cls(c).name}`, +d, +l);
+    }
+  }
+  (S.extra || []).forEach((x, i) => {
+    if (x.d >= D || x.p >= L || !x.t) return;
+    (gT[x.d + '|' + x.p + '|' + x.t] ??= []).push({ id: 'x' + i, ext: true, label: x.label, d: x.d, l: x.p, s: x.s, t: x.t, r: x.r });
+  });
+  const CL = S.clubs, ev = {};
+  if (CL) CL.groups.forEach(g => g.days.forEach(d => {
+    if (d >= D || g.p >= L) return;
+    const e = { id: 'g:' + g.id + '|' + d, club: true, label: 'үйірме ' + clubLabel(g), d, l: g.p, s: 'club:' + g.id, t: g.tid || ('X:' + kzn(g.teacher)), tn: g.teacher, r: g.room };
+    if (g.tid || !placeholderT(g.teacher)) (gT[d + '|' + g.p + '|' + e.t] ??= []).push(e);
+    if (nr(g.room) && !sh.has(nr(g.room))) (gR[d + '|' + g.p + '|' + nr(g.room)] ??= []).push(e);
+    (ev[d + '|' + g.p] ??= []).push(g);
+    const cids = new Set(g.kids.map(i => CL.kids[i]?.cid).filter(Boolean));
+    cids.forEach(cid => (clubIdx[cid + '|' + d + '|' + g.p] ??= []).push(g));
+  }));
+  for (const g in gT) {
+    const es = gT[g]; if (es.length < 2) continue;
+    const joint = !es.some(e => e.ext || e.club) && new Set(es.map(e => e.s)).size === 1 && new Set(es.map(e => nr(e.r))).size === 1;
+    if (joint) continue;
+    const tn = teacher(es[0].t)?.name || es.find(e => e.tn)?.tn;
+    add(es.filter(e => !e.ext).map(e => e.id), `Мұғалім бір уақытта бірнеше жерде: ${tn || '?'} — ${es.map(where).join(', ')}`, es[0].d, es[0].l);
+  }
+  for (const g in gR) {
+    const es = gR[g]; if (new Set(es.map(e => e.t)).size < 2) continue;
+    add(es.map(e => e.id), `Кабинет бір уақытта бос емес: ${String(es[0].r).replace(/^каб\.?\s*/i, '')} — ${es.map(where).join(', ')}`, es[0].d, es[0].l);
+  }
+  for (const g in gS) {
+    const es = gS[g]; if (new Set(es.map(e => e.l)).size < 2) continue;
+    add(es.map(e => e.id), `Пән бір күнде қайталанады: ${subj(es[0].s)?.name} — ${cls(es[0].c).name} (${[...new Set(es.map(e => e.l + 1))].join(', ')}-сабақтар)`, es[0].d, -1);
+  }
+  if (CL) for (const key in ev) {
+    const [d, p] = key.split('|').map(Number), gs = ev[key], seen = {};
+    gs.forEach(g => g.kids.forEach(i => (seen[i] ??= []).push(g)));
+    for (const i in seen) if (seen[i].length > 1) {
+      const kd = CL.kids[i];
+      add([...seen[i].map(g => 'g:' + g.id + '|' + d), 'k:' + i + '|' + d + '|' + p], `Оқушы бір уақытта екі үйірмеде: ${kd.cls} ${kd.name} — ${seen[i].map(clubLabel).join(', ')}`, d, p);
+    }
+    const byCls = {};
+    gs.forEach(g => g.kids.forEach(i => { const cid = CL.kids[i]?.cid; if (cid) ((byCls[cid] ??= {})[g.id] ??= { g, ks: [] }).ks.push(i); }));
+    for (const cid in byCls) {
+      const k = cid + '|' + d + '|' + p, arr = cellL(k); if (!arr.length) continue;
+      const items = Object.values(byCls[cid]);
+      add([...S.sched[k].map((x, i) => k + '#' + i), ...items.map(x => 'g:' + x.g.id + '|' + d), ...items.flatMap(x => x.ks.map(i => 'k:' + i + '|' + d + '|' + p))],
+        `Үйірме уақытында сабақ бар: ${cls(cid).name} (${arr.map(x => subj(x.s)?.name).join('/')}) — ${items.map(x => clubLabel(x.g) + ' (' + x.ks.length + ' оқушы)').join(', ')}`, d, p);
+    }
+  }
+  list.sort((a, b) => a.d - b.d || a.l - b.l);
+  C = { les, list, clubIdx };
+}
+
+/* ---------- Дыбыс және хабарлама ---------- */
+let AC = null;
+function alarm() {
+  if (!S.opt.sound) return;
+  try {
+    AC = AC || new (window.AudioContext || window.webkitAudioContext)();
+    const t0 = AC.currentTime;
+    [880, 620, 880, 620].forEach((f, i) => {
+      const o = AC.createOscillator(), g = AC.createGain(), t = t0 + i * 0.18;
+      o.type = 'square'; o.frequency.value = f;
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.18, t + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.16);
+      o.connect(g).connect(AC.destination); o.start(t); o.stop(t + 0.17);
+    });
+  } catch (e) {}
+}
+let toastTimer;
+function toast(msg, ok) {
+  document.querySelectorAll('.toast').forEach(x => x.remove());
+  const d = document.createElement('div'); d.className = 'toast' + (ok ? ' okt' : ''); d.textContent = msg;
+  document.body.appendChild(d); clearTimeout(toastTimer); toastTimer = setTimeout(() => d.remove(), 5000);
+}
+
+function commit(rerender = true) {
+  save(); computeConflicts();
+  const now = new Set(Object.keys(C.les));
+  const fresh = [...now].filter(k => !prevConf.has(k));
+  prevConf = now;
+  if (rerender) render(); else renderHeader();
+  if (fresh.length && isAdmin) { alarm(); toast('⚠ Назар аударыңыз! ' + C.les[fresh[0]][0]); }
+}
+
+/* ---------- Сурет салу ---------- */
+function renderHeader() {
+  document.body.classList.toggle('admin', isAdmin);
+  $('#schoolName').textContent = S.school;
+  $('#schoolSub').textContent = S.subtitle || SUBTITLE;
+  const n = C.list.length, b = $('#confBtn');
+  b.className = 'hbtn admonly ' + (n ? 'bad' : 'good');
+  b.textContent = n ? `⚠ ${T('Қайшылық', 'Конфликтов')}: ${n}` : T('✓ Қайшылық жоқ', '✓ Конфликтов нет');
+  $('#soundBtn').textContent = S.opt.sound ? '🔔 Дыбыс қосулы' : '🔕 Дыбыс өшірулі';
+  const lb = $('#loginBtn'); lb.textContent = isAdmin ? T('🔓 Админ · шығу', '🔓 Админ · выйти') : '🔒 Админ'; lb.classList.toggle('adm', isAdmin);
+  $('#foot').textContent = isAdmin ? (SERVER ? 'Админ режимі: өзгерістер серверге автоматты түрде сақталады.' : 'Админ режимі: өзгерістер осы компьютерде сақталады.')
+    : T('Кестені тек қарауға болады. PDF жүктеу үшін керекті бөлімдегі «⬇ PDF» батырмасын басыңыз.', 'Расписание доступно только для просмотра. Чтобы скачать PDF, нажмите «⬇ PDF».');
+  // беттің тілі: ҚАЗ | РУС
+  const NAV = { all: ['📋 Жалпы кесте', '📋 Общее расписание'], class: ['🎒 Сынып кестесі', '🎒 Расписание класса'], teacher: ['👩‍🏫 Мұғалім кестесі', '👩‍🏫 Расписание учителей'],
+    room: ['🚪 Кабинет кестесі', '🚪 Расписание кабинетов'], clubs: ['🎨 Үйірмелер', '🎨 Кружки'], subs: ['🔁 Ауыстыру (замена)', '🔁 Замена'], plan: ['📚 Оқу жоспары', '📚 Учебный план'], settings: ['⚙️ Баптаулар', '⚙️ Настройки'] };
+  document.querySelectorAll('nav [data-tab]').forEach(b => { const n = NAV[b.dataset.tab]; if (n) b.textContent = T(n[0], n[1]); });
+  $('#printBtn').textContent = T('🖨 Басып шығару', '🖨 Печать');
+  $('#langBtn').textContent = UI === 'ru' ? '🌐 Қазақша' : '🌐 Русский';
+  document.documentElement.lang = UI === 'ru' ? 'ru' : 'kk';
+  $('#foot').textContent += ' · Сайт: ' + APP_VERSION;
+  document.querySelectorAll('nav button').forEach(x => x.classList.toggle('on', x.dataset.tab === tab));
+}
+
+function lesHTML(x, id, split, extra = '') {
+  const s = subj(x.s), t = teacher(x.t), conf = cf(id), col = s ? s.color : '#cccccc';
+  const name = sName(s, clsLang(String(id).split('|')[0]));   // пән атауы — сабақ өтетін сыныптың тілінде
+  const tip = [name, x.g, t?.name, x.r && 'Каб. ' + x.r, ...(conf || [])].filter(Boolean).join('\n');
+  return `<div class="les${split ? ' split' : ''}${conf ? ' conflict' : ''}" style="${colStyle(col)}" title="${esc(tip)}">
+    <div class="sn">${conf ? '⚠ ' : ''}${esc(name)}</div>${x.g ? `<div class="gn">${esc(x.g)}</div>` : ''}${extra}
+    <div class="tn">${t ? esc(short(t.name)) : ''}</div><div class="rn">${x.r ? esc(x.r) : ''}</div></div>`;
+}
+function clubBlock(cid, d, l) {
+  const gs = C.clubIdx[cid + '|' + d + '|' + l]; if (!gs || !gs.length) return '';
+  const bad = gs.some(g => cf('g:' + g.id + '|' + d));
+  const n = new Set(gs.flatMap(g => g.kids.filter(i => S.clubs.kids[i].cid === cid))).size;
+  return inLang(clsLang(cid), () => `<div class="les club${bad ? ' conflict' : ''}" data-club="${cid}|${d}|${l}" style="${colStyle(CLUB_COLOR)}" title="${T('Үйірмелер тізімін көру үшін басыңыз', 'Нажмите, чтобы увидеть список кружков')}">
+    <div class="sn">${bad ? '⚠ ' : ''}🎨 ${T('Үйірмелер', 'Кружки')}</div><div class="tn">${gs.length} ${T('топ', 'гр.')} · ${n} ${T('оқушы', 'уч.')}</div><div class="rn">${T('басып көріңіз', 'нажмите')}</div></div>`);
+}
+function cellHTML(k, hint = '') {
+  const arr = cellL(k), [cid, d, l] = k.split('|'), cb = clubBlock(cid, d, l);
+  if (!arr.length && !cb) return `<td class="cell empty${hint}" data-k="${k}"${hint === ' busy' ? ' title="Мұғалім немесе кабинет бұл уақытта бос емес"' : ''}>${isAdmin ? '+' : ''}</td>`;
+  return `<td class="cell${hint}" data-k="${k}"${isAdmin && arr.length ? ' draggable="true"' : ''}><div class="lw">${
+    S.sched[k] ? S.sched[k].map((x, i) => x.s ? lesHTML(x, k + '#' + i, arr.length > 1) : '').join('') : ''}${cb}</div></td>`;
+}
+function legend(ids, withClub, lang) {
+  const list = ids ? S.subjects.filter(s => ids.has(s.id)) : S.subjects;
+  // lang берілмесе (жалпы кесте) — екі атауы да
+  const nm = s => lang ? sName(s, lang) : s.ru && s.ru !== s.name ? s.name + ' / ' + s.ru : s.name;
+  return `<div class="legend">${list.map(s => `<span class="lg" style="--c:${s.color}"><i></i>${esc(nm(s))}</span>`).join('')}
+    ${withClub ? `<span class="lg" style="--c:${CLUB_COLOR}"><i></i>${T('Үйірмелер', 'Кружки')}</span>` : ''}
+    ${isAdmin ? '<span class="lg red"><i></i>⚠ Қайшылық (мұғалім / кабинет / сынып / оқушы сәйкес келді)</span>' : ''}</div>`;
+}
+const usedSubjects = keys => { const s = new Set(); keys.forEach(k => cellL(k).forEach(x => s.add(x.s))); return s; };
+const pdfBtns = (kind, oneLabel, allLabel) => `<span class="dl"><button class="btn sm primary" data-pdf="${kind}|one">⬇ ${oneLabel} — PDF</button>
+  <button class="btn sm pall" data-pdf="${kind}|all">⬇ ${allLabel} — ${T('бір PDF', 'один PDF')}</button>
+  <button class="btn sm pall" data-pdf="${kind}|zip">⬇ ${allLabel} — ZIP (${T('жеке PDF', 'отдельные PDF')})</button></span>`;
+
+/* ---------- Ата-аналарға арналған режим: ?view=parent (&class=2A) ---------- */
+let PARENT = false, PCLASS = '';
+function readParams(cb) {
+  if (SERVER && google.script.url) google.script.url.getLocation(loc => cb(loc.parameter || {}));
+  else { const p = {}; new URLSearchParams(location.search).forEach((v, k) => p[k] = v); cb(p); }
+}
+function applyParams(p) {
+  if (!/^(parent|ata-ana|ata)$/i.test(p.view || p.v || '')) return;
+  PARENT = true; document.body.classList.add('parent'); tab = 'class';
+  const c = S.classes.find(x => x.name.toLowerCase() === String(p.class || p.c || '').trim().toLowerCase());
+  if (c) { PCLASS = c.id; curClass = c.id; clubMode = 'class'; clubCls = c.name; UI = PICK || clsLang(c.id); }
+}
+/* Құпия сілтемелер (тек интернеттегі сайтта): мұғалімдерге біреу, әр сыныптың ата-анасына біреу */
+let LINKS = null, STAFF = '';
+function parentLinks() {
+  if (!SERVER) return '<p class="hint">Бұл мүмкіндік тек интернеттегі (Google) сайтта жұмыс істейді.</p>';
+  if (OLD_SERVER) return `<div class="warn">Сілтемелер жасау үшін script.google.com ішіндегі <b>Код.gs</b> файлын жаңа нұсқаға ауыстыру керек
+    (компьютердегі «Сайтқа орнату (Google)\\Code.gs»), содан кейін «Развернуть → Управление развертываниями → ✏️ → Новая версия». Сайттың қалған бөлігі қазір де толық жұмыс істейді.</div>`;
+  if (!LINKS) return '<p class="hint">«🔗 Сілтемелерді көрсету» батырмасын басыңыз.</p>';
+  // Google кейде ескі жариялаудың мекенжайын береді — сондықтан админ қойған жұмыс істеп тұрған сілтеме бірінші
+  const base = siteBase() || String(LINKS.base || '').replace(/[?#].*$/, '');
+  const row = linkRow;
+  return (siteBase() ? '' : '<div class="warn">Жоғарыға сайттың жұмыс істеп тұрған сілтемесін қойыңыз — әйтпесе төмендегі сілтемелер ашылмауы мүмкін.</div>') +
+    row('👩‍🏫 Мұғалімдерге', 'Мұғалімдерге арналған толық кесте', base + '?s=' + LINKS.staff) + '<hr style="border:0;border-top:1px solid var(--line)">' +
+    sortedClasses().filter(c => c.grade > 0 && LINKS.classes[c.name]).map(c => row(c.name + ' ата-аналарына', classWho(c), base + '?k=' + LINKS.classes[c.name])).join('');
+}
+/* Сілтеме жолы: ашу, тек сілтемені көшіру, чатқа тақырыбымен көшіру */
+const classWho = c => c.lang === 'ru' ? `Расписание уроков и кружки ${c.name} класса` : `${c.name} сыныбының сабақ кестесі мен үйірмелері`;
+function linkRow(label, who, url) {
+  const msg = `${S.subtitle || SUBTITLE}\n${S.school}\n${who}:\n${url}`;
+  return `<div class="plink"><b style="min-width:150px">${esc(label)}</b><input readonly value="${esc(url)}">
+    <a class="btn sm" target="_blank" rel="noopener" href="${esc(url)}" title="Жаңа бетте ашып тексеру">↗ Ашу</a>
+    <button class="btn sm" data-copy="${esc(url)}" title="Браузердің мекенжай жолына қоюға">🔗 Сілтеме</button>
+    <button class="btn sm" data-copy="${esc(msg)}" title="Тақырыбымен бірге — WhatsApp/Telegram чатына жіберуге">💬 Чатқа</button></div>`;
+}
+
+/* ---------- Жылдам сайт (Netlify): index.html + d/<кілт>.json ----------
+   Мұғалімдерге: …netlify.app/?t=КІЛТ (толық кесте), ата-анаға: …netlify.app/?k=КІЛТ (тек сол сынып). Деректер: <кілт>.json (сайттың түбінде).
+   Кілтсіз сілтеме ештеңе көрсетпейді. Деректер файлдарының аты — кілттің өзі, сондықтан оларды табу мүмкін емес. */
+function webEnsure(renew) {
+  const tok = () => [...crypto.getRandomValues(new Uint8Array(7))].map(b => b.toString(16).padStart(2, '0')).join('');
+  if (!S.web || renew) S.web = { url: S.web?.url || '', staff: tok(), classes: {} };
+  S.web.staff ||= tok(); S.web.classes ??= {};
+  S.classes.filter(c => c.grade > 0).forEach(c => { S.web.classes[c.name] ??= tok(); });
+  return S.web;
+}
+const webBase = () => { const m = /^https?:\/\/[^?#\s]+/.exec(String(S.web?.url || '').trim()); return m ? m[0].replace(/^http:/, 'https:').replace(/\/(index\.html)?$/, '') : ''; };
+function webLinks() {
+  const base = webBase();
+  if (!base || !S.web) return `<p class="hint">${T('Сайттың мекенжайын жазыңыз — сілтемелер осы жерде шығады.', 'Укажите адрес сайта — ссылки появятся здесь.')}</p>`;
+  return linkRow('👩‍🏫 Мұғалімдерге', 'Мұғалімдерге арналған толық кесте', base + '/?t=' + S.web.staff) + '<hr style="border:0;border-top:1px solid var(--line)">' +
+    sortedClasses().filter(c => S.web.classes[c.name]).map(c => linkRow(c.name + ' ата-аналарына' + (c.lang === 'ru' ? ' (орысша)' : ''), classWho(c), base + '/?k=' + S.web.classes[c.name])).join('');
+}
+/* Ата-анаға тек сол сыныптың деректері (Код.gs ішіндегі filterForClass_ сияқты) */
+function filterForClass(S, cname) {
+  const c = S.classes.find(x => x.name === cname), sched = {}, used = {};
+  for (const k in S.sched) if (k.startsWith(c.id + '|')) { sched[k] = S.sched[k]; S.sched[k].forEach(x => { if (x.t) used[x.t] = 1; }); }
+  const teachers = S.teachers.filter(t => used[t.id] || t.cls === c.id).map(t => ({ id: t.id, name: t.name, subjects: t.subjects, cls: t.cls === c.id ? c.id : '', room: '' }));
+  let clubs = null;
+  if (S.clubs) {
+    const remap = {}, kids = [];
+    S.clubs.kids.forEach((kd, i) => { if (!kd.gone && kd.cls === cname) { remap[i] = kids.length; kids.push(kd); } });
+    const groups = S.clubs.groups.filter(g => g.kids.some(i => remap[i] !== undefined)).map(g => ({ ...clone(g), kids: g.kids.filter(i => remap[i] !== undefined).map(i => remap[i]) }));
+    clubs = { date: S.clubs.date, map: S.clubs.map, kids, noclub: [], groups, report: [], fixV: S.clubs.fixV, fixLog: [] };
+  }
+  return { school: S.school, subtitle: S.subtitle, year: S.year, opt: S.opt, sharedRooms: S.sharedRooms, times: S.times, subjects: S.subjects,
+    classes: [c], teachers, sched, plan: {}, extra: [], af: S.af, v3: true, langV: S.langV, clubs };
+}
+const isStaticHtml = h => /id="dBuild">"static"/.test(h || '');
+/* Netlify-дағы index.html алынбаса — компьютердегі «Сайт (Netlify)\index.html» файлын таңдату */
+function pickStaticFile() {
+  return new Promise(res => {
+    openModal(`<h3>🌐 index.html файлын таңдаңыз</h3><p>Netlify сайтынан бағдарламаны алу мүмкін болмады (сайт әлі жарияланбаған болуы мүмкін).</p>
+      <p>Компьютердегі <b>Сабақ кестесі → Сайт (Netlify) → index.html</b> файлын таңдаңыз:</p><input type="file" id="stFile" accept=".html,text/html">
+      <div class="mbtns"><span style="flex:1"></span><button class="btn" data-close>Болдырмау</button></div>`);
+    $('#stFile').onchange = e => { const f = e.target.files[0]; if (!f) return;
+      f.text().then(h => { closeModal(); if (isStaticHtml(h)) res(h); else { toast('Бұл басқа файл: «Сайт (Netlify)» қалтасындағы index.html керек'); res(''); } }); };
+  });
+}
+async function webZip() {
+  if (!window.JSZip) { toast('ZIP кітапханасы жүктелмеді — бетті жаңартып көріңіз'); return; }
+  const base = webBase(); if (!base) { toast('Алдымен Netlify сайтының мекенжайын жазыңыз (…netlify.app)'); return; }
+  const W = webEnsure(false);
+  let html = '';
+  try { const r = await fetch(base + '/index.html', { cache: 'no-store' }); if (r.ok) html = await r.text(); } catch (e) {}
+  if (!isStaticHtml(html)) html = await pickStaticFile();
+  if (!html) return;
+  // Netlify ZIP-ті жай файлдар тізімі ретінде күтеді: бөлек «d/» қалта жазбасынсыз, қысылған түрде
+  const zip = new JSZip(), full = clone(S), _file = zip.file.bind(zip);
+  zip.file = (name, data) => _file(name, data, { createFolders: false });
+  delete full.web; delete full.siteUrl;
+  zip.file('index.html', html);
+  // '/' + '*' — Google жол ішіндегі «/*» белгісін түсініктеме деп қиып тастамауы үшін
+  zip.file('_headers', '/' + '*\n  Access-Control-Allow-Origin: *\n  Cache-Control: no-cache\n');
+  zip.file(W.staff + '.json', JSON.stringify(full));
+  sortedClasses().filter(c => W.classes[c.name]).forEach(c => zip.file(W.classes[c.name] + '.json', JSON.stringify(filterForClass(S, c.name))));
+  download(await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' }), 'sabak-netlify.zip');
+  save(); const el = $('#wlinks'); if (el) el.innerHTML = webLinks();
+  openModal(`<h3>✓ sabak-netlify.zip жүктелді</h3><ol>
+    <li>Жүктеулер (Загрузки) қалтасындағы <b>sabak-netlify.zip</b> → оң жақ батырма → <b>«Извлечь все…» → «Извлечь»</b>.</li>
+    <li><b>app.netlify.com</b> → сайтыңыз → <b>Deploys</b> бөлімі.</li>
+    <li>Ашылған <b>sabak-netlify</b> қалтасын тінтуірмен беттің төменгі жағындағы «Drag and drop your site output folder here» алаңына апарып тастаңыз.</li>
+    <li>«Published» деп шыққанда — дайын. Сілтемелер өзгермейді, бұрын жіберілгендері жаңа кестені көрсетеді.</li></ol>
+    <div class="mbtns"><span style="flex:1"></span><button class="btn primary" data-close>Түсінікті</button></div>`);
+}
+/* Админ браузердің мекенжай жолынан қойған сілтеме: …/macros/s/ID/exec (параметрлерсіз) */
+function siteBase() {
+  const m = /^https:\/\/script\.google\.com\/(a\/macros\/[^\/]+|macros)(?:\/u\/\d+)?\/s\/([A-Za-z0-9_-]+)\/(exec|dev)/.exec(String(S.siteUrl || '').trim());
+  return m ? 'https://script.google.com/' + m[1] + '/s/' + m[2] + '/exec' : '';
+}
+function loadLinks(renew) {
+  if (!SERVER || OLD_SERVER) { const el = $('#plinks'); if (el) el.innerHTML = parentLinks(); return; }
+  const names = sortedClasses().filter(c => c.grade > 0).map(c => c.name);
+  setSaveState('⏳ Сақталуда…');
+  // алдымен кестенің соңғы нұсқасын серверге сақтаймыз — ата-аналар сол нұсқаны көреді
+  google.script.run.withSuccessHandler(() => {
+    pending = false; setSaveState('☁ Сақталды');
+    google.script.run.withSuccessHandler(txt => {
+      LINKS = JSON.parse(txt); if (renew) STAFF = LINKS.staff;
+      const el = $('#plinks'); if (el) el.innerHTML = parentLinks();
+      toast(renew ? '✓ Жаңа сілтемелер жасалды. Ескі сілтемелер енді ашылмайды.' : '✓ Сілтемелер дайын', true);
+    }).withFailureHandler(e => toast('Қате: ' + e.message)).makeLinks(adminPw, names, !!renew);
+  }).withFailureHandler(e => toast('Сақталмады: ' + e.message)).saveData(adminPw, JSON.stringify(S));
+}
+/* Жарамсыз сілтеме: ештеңе көрсетпей, тек админге мұғалімдер сілтемесін алу формасы */
+function showDenied(msg) {
+  $('#main').setAttribute('data-ok', '1');
+  document.body.classList.add('parent');
+  $('#loadScr').hidden = true; document.querySelector('nav').hidden = true; document.querySelector('.hbtns').hidden = true;
+  $('#schoolName').textContent = 'Baiterek School of Science and Technology'; $('#schoolSub').textContent = SUBTITLE;
+  $('#foot').textContent = 'Сайт: ' + APP_VERSION;
+  $('#main').innerHTML = `<div class="card" style="max-width:560px;margin:30px auto"><h2>🔒 Сілтеме жарамсыз</h2>
+    <p>${esc(msg || 'Бұл сілтеме қате немесе ескірген.')} Сабақ кестесін көру үшін сынып жетекшісінен жаңа сілтеме сұраңыз.</p>
+    <p class="hint">Ссылка неверная или устарела. Чтобы посмотреть расписание, попросите новую ссылку у классного руководителя.</p>
+    ${STATIC ? '' : `<details style="margin-top:14px"><summary class="hint">Админ үшін</summary>
+      <form id="dnForm" style="margin-top:8px"><label>Админ құпиясөзі<input type="password" id="dnPw"></label>
+      <button class="btn primary" style="margin-top:8px">Мұғалімдер сілтемесін алу</button></form><div id="dnOut" style="margin-top:10px"></div></details>`}</div>`;
+  if (STATIC) return;
+  $('#dnForm').onsubmit = e => {
+    e.preventDefault();
+    google.script.run.withSuccessHandler(url => {
+      const tok = (String(url).split('?s=')[1] || '').trim();
+      $('#dnOut').innerHTML = `<p>Браузердің жоғарғы мекенжай жолындағы сілтеменің <b>соңына</b> мынаны жазып, Enter басыңыз:</p>
+        <p style="font-size:18px"><b>?s=${esc(tok)}</b></p><p class="hint">Немесе: <a target="_top" href="${esc(url)}">осы сілтеме</a> (ашылмаса — жоғарыдағы тәсілді қолданыңыз).</p>`; })
+      .withFailureHandler(err => { $('#dnOut').innerHTML = `<div class="warn">${esc(err.message)}</div>`; }).staffLink($('#dnPw').value);
+  };
+}
+
+function viewAll() {
+  const D = nDays(), L = S.times.length;
+  const grades = [...new Set(S.classes.map(c => c.grade))].sort();
+  const cl = sortedClasses().filter(c => gradeF < 0 || c.grade === gradeF);
+  const keys = [];
+  let h = `<div class="bar"><h2>${T('Жалпы кесте', 'Общее расписание')}</h2>
+    <button class="chip${gradeF < 0 ? ' on' : ''}" data-grade="-1">${T('Барлық сыныптар', 'Все классы')}</button>
+    ${grades.map(g => `<button class="chip${gradeF === g ? ' on' : ''}" data-grade="${g}">${gradeName(g)}</button>`).join('')}
+    ${isAdmin ? '<span class="hint">Ұяшықты басып өңдеңіз · сүйреп бір сынып ішінде орнын ауыстырыңыз</span>' : ''}
+    <span class="dl"><button class="btn sm primary" data-pdf="class|filter">⬇ PDF: ${T('көрсетілген сыныптар', 'выбранные классы')}</button>
+    <button class="btn sm" data-pdf="class|zip">⬇ ZIP: ${T('әр сынып жеке PDF', 'каждый класс отдельным PDF')}</button></span></div>
+    <div class="tw"><table class="tt"><thead><tr><th>${T('Күн', 'День')}</th><th class="stk2">${T('№ / уақыт', '№ / время')}</th>${cl.map(c => `<th title="${T('Сынып жетекшісі', 'Классный руководитель')}: ${esc(homeroom(c.id)?.name || '—')}">${esc(c.name)}</th>`).join('')}</tr></thead><tbody>`;
+  for (let d = 0; d < D; d++) {
+    if (d) h += `<tr class="dsep"><td colspan="${cl.length + 2}"></td></tr>`;
+    for (let l = 0; l < L; l++) {
+      h += `<tr>${l === 0 ? `<td class="day" rowspan="${L}"><span>${DAYS_ALL[d]}</span></td>` : ''}<td class="num">${l + 1}<small>${timeStr(l)}</small></td>`;
+      cl.forEach(c => { const k = c.id + '|' + d + '|' + l; keys.push(k); h += cellHTML(k); });
+      h += '</tr>';
+    }
+  }
+  return h + '</tbody></table></div>' + legend(usedSubjects(keys), true);
+}
+
+function viewClass() {
+  const cl = sortedClasses();
+  if (!cls(curClass)) curClass = cl[0]?.id;
+  const c = cls(curClass);
+  if (!c) return '<div class="card">Сынып жоқ.</div>';
+  // таңдалмаса — сыныптың өз тілінде; ҚАЗ | РУС басылса — таңдалған тілде (пән атаулары бәрібір сыныптың тілінде)
+  return inLang(PICK || clsLang(c.id), () => classPage(c, cl));
+}
+function classPage(c, cl) {
+  const D = nDays(), L = S.times.length, hrT = homeroom(c.id), keys = [];
+  let h = `<div class="bar"><h2>${T('Сынып кестесі', 'Расписание класса')}</h2>${cl.filter(x => !PCLASS || x.id === PCLASS).map(x => `<button class="chip${x.id === c.id ? ' on' : ''}" data-cls="${x.id}">${esc(x.name)}</button>`).join('')}</div>
+    <div class="bar"><b style="font-size:17px">${esc(c.name)} ${T('сыныбы', 'класс')}</b><span class="hint">${T('Сынып жетекшісі', 'Классный руководитель')}: <b>${hrT ? esc(hrT.name) : '—'}</b> · ${T('Кабинет', 'Кабинет')}: <b>${esc(c.room || '—')}</b></span>
+    ${isAdmin ? `<button class="btn sm${manual ? ' primary' : ''}" data-act="manual">✋ Қолмен құру${manual ? ' — қосулы' : ''}</button>` : ''}
+    ${pdfBtns('class', esc(c.name), T('Барлық сыныптар', 'Все классы'))}</div>
+    ${isAdmin && manual ? manualPanel(c) : ''}
+    <div class="tw"><table class="tt cls"><thead><tr><th>${T('№ / уақыт', '№ / время')}</th>${[...Array(D).keys()].map(d => `<th>${DAYS_ALL[d]}</th>`).join('')}</tr></thead><tbody>`;
+  for (let l = 0; l < L; l++) {
+    h += `<tr><td class="num">${l + 1}<small>${timeStr(l)}</small></td>`;
+    for (let d = 0; d < D; d++) { const k = c.id + '|' + d + '|' + l; keys.push(k); h += cellHTML(k, hintFor(k)); }
+    h += '</tr>';
+  }
+  h += '</tbody></table></div>';
+  const fact = {};
+  keys.forEach(k => { const seen = new Set(); cellL(k).forEach(x => { if (!seen.has(x.s)) { seen.add(x.s); fact[x.s] = (fact[x.s] || 0) + 1; } }); });
+  const pills = S.subjects.filter(s => fact[s.id]).sort((a, b) => fact[b.id] - fact[a.id])
+    .map(s => `<span class="pill" style="${colStyle(s.color)}">${esc(sName(s))}: <b>${fact[s.id]}</b></span>`).join('');
+  return h + `<div class="info"><span class="pill"><b>${T('Аптасына сабақ саны (пән бойынша)', 'Количество уроков в неделю (по предметам)')}:</b></span>${pills}</div>` + legend(new Set(Object.keys(fact)), true, UI);
+}
+
+/* ---------- Қолмен құру: жоспардан пәнді таңдап, ұяшықты басу ---------- */
+let manual = false, brush = null;
+const brushRow = () => brush && brush !== 'erase' ? planOf(curClass).rows.find(r => r.id === brush) : null;
+function rowPlaced(cid, row) {
+  const D = nDays(), L = S.times.length, ts = row.items.map(x => x.t).sort().join(','); let n = 0;
+  for (let d = 0; d < D; d++) for (let l = 0; l < L; l++) {
+    const a = cellL(cid + '|' + d + '|' + l);
+    if (a.length && a.every(x => x.s === row.s) && a.map(x => x.t).sort().join(',') === ts) n++;
+  }
+  return n;
+}
+function hintFor(k) {
+  const row = brushRow(); if (!manual || !row || cellL(k).length) return '';
+  const [, d, l] = k.split('|'), sh = shared();
+  if (row.items.some(x => x.t && busyAt(x.t, d, l, k))) return ' busy';
+  for (const k2 in S.sched) {
+    if (k2 === k) continue; const [, d2, l2] = k2.split('|'); if (d2 !== d || l2 !== l) continue;
+    if (S.sched[k2].some(y => y.s && nr(y.r) && !sh.has(nr(y.r)) && row.items.some(x => nr(x.r) === nr(y.r)))) return ' busy';
+  }
+  return ' ok';
+}
+function manualPanel(c) {
+  const P = planOf(c.id);
+  const chips = P.rows.filter(r => r.s && subj(r.s)).map(r => {
+    const s = subj(r.s), n = rowPlaced(c.id, r), who = r.items.map(x => teacher(x.t) ? short(teacher(x.t).name) : '—').join(' / ');
+    return `<button class="chip brush${brush === r.id ? ' on' : ''}${n >= r.h ? ' full' : ''}" data-brush="${r.id}" style="${colStyle(s.color)}" title="${esc(s.name + ' · ' + who)}">
+      <b>${esc(s.name)}</b><small>${esc(who)}${r.items.length > 1 ? ' · топқа бөлінген' : ''}</small><b>${n}/${+r.h || 0}</b></button>`;
+  }).join('');
+  return `<div class="manual"><b>✋ Қолмен құру.</b> <span class="hint">1) Төменнен пәнді таңдаңыз → 2) кестедегі ұяшықты басыңыз. Жасыл жиекті ұяшық — бос, сызықпен белгіленген — мұғалім немесе кабинет бос емес.
+    Сандар: қойылғаны / жоспар бойынша. Тізімде жоқ пәнді «📚 Оқу жоспары» бөлімінде қосыңыз.</span>
+    <div style="margin-top:6px">${chips}
+      <button class="chip${brush === 'erase' ? ' on' : ''}" data-brush="erase">🧽 Өшіргіш</button></div>
+    <div class="mbtns" style="margin-top:6px"><button class="btn sm danger" data-act="clearClass">${esc(c.name)} кестесін тазалау (бекітілгендерден басқа)</button>
+      <button class="btn sm" data-act="manual">Дайын — режимнен шығу</button></div></div>`;
+}
+function paint(k) {
+  if (brush === 'erase') { if (S.sched[k]) { delete S.sched[k]; commit(); } return; }
+  const row = brushRow(); if (!row || !row.s) return;
+  S.sched[k] = row.items.map(x => ({ s: row.s, t: x.t, r: x.r, g: row.items.length > 1 ? x.g : '' }));
+  commit();
+}
+
+function clubEntry(g, d, sub) {
+  const bad = cf('g:' + g.id + '|' + d);
+  return `<div class="les club${bad ? ' conflict' : ''}" data-gshow="${g.id}" style="${colStyle(clubColor(g))}" title="${esc((bad || []).join('\n'))}">
+    <div class="sn">${bad ? '⚠ ' : ''}🎨 ${esc(clubLabel(g))}</div><div class="tn">${esc(sub)}</div><div class="rn">${g.kids.length} оқушы</div></div>`;
+}
+/* Барлық мұғалімдер / кабинеттер — ортақ кесте */
+let tMode = 'all', rMode = 'all', mxDay = -1;
+function buildIndex() {
+  const D = nDays(), L = S.times.length, T = {}, Rm = {};
+  const put = (o, key, dl, e) => ((o[key] ??= {})[dl] ??= []).push(e);
+  for (const k in S.sched) {
+    const [c, d, l] = k.split('|');
+    if (!cls(c) || +d >= D || +l >= L) continue;
+    S.sched[k].forEach((x, i) => { if (!x.s) return; const e = { k, i, x, c }; if (x.t) put(T, x.t, d + '|' + l, e); if (nr(x.r)) put(Rm, nr(x.r), d + '|' + l, e); });
+  }
+  (S.extra || []).forEach(x => { if (x.d < D && x.p < L) put(T, x.t, x.d + '|' + x.p, { ext: x }); });
+  (S.clubs?.groups || []).forEach(g => g.days.forEach(d => {
+    if (d >= D || g.p >= L) return;
+    if (g.tid) put(T, g.tid, d + '|' + g.p, { club: g, d });
+    if (nr(g.room)) put(Rm, nr(g.room), d + '|' + g.p, { club: g, d });
+  }));
+  return { T, Rm };
+}
+function entryHTML(e, kind) {
+  if (e.club) return clubEntry(e.club, e.d, kind === 'teacher' ? e.club.room : e.club.teacher);
+  if (e.ext) { const s = subj(e.ext.s);
+    return `<div class="les ext" title="Бастауыш сыныптан тыс сабақ"><div class="sn">${esc(e.ext.label)} · ${esc(s ? s.name : '')}</div><div class="rn">${e.ext.r ? 'Каб. ' + esc(e.ext.r) : ''}</div></div>`; }
+  const x = kind === 'teacher' ? { ...e.x, t: '' } : { ...e.x, r: '' };
+  return `<div data-k="${e.k}">${lesHTML(x, e.k + '#' + e.i, false, `<div class="tn"><b>${esc(cls(e.c).name)}</b></div>`)}</div>`;
+}
+function modeBar(kind) {
+  const m = kind === 'teacher' ? tMode : rMode, one = kind === 'teacher' ? T('Жеке мұғалім', 'Один учитель') : T('Жеке кабинет', 'Один кабинет'), all = kind === 'teacher' ? T('Барлық мұғалімдер', 'Все учителя') : T('Барлық кабинеттер', 'Все кабинеты');
+  return `<button class="chip${m === 'all' ? ' on' : ''}" data-mode="${kind}|all">${all}</button><button class="chip${m === 'one' ? ' on' : ''}" data-mode="${kind}|one">${one}</button>`;
+}
+function viewMatrix(kind) {
+  const D = nDays(), L = S.times.length, idx = buildIndex(), src = kind === 'teacher' ? idx.T : idx.Rm;
+  const cols = kind === 'teacher'
+    ? sortedTeachers().filter(t => src[t.id]).map(t => ({ id: t.id, name: short(t.name), full: t.name })).sort((a, b) => a.name.localeCompare(b.name, 'kk'))
+    : roomList().filter(r => src[r[0]]).map(r => ({ id: r[0], name: r[1], full: 'Кабинет ' + r[1] }));
+  const days = [...Array(D).keys()].filter(d => mxDay < 0 || d === mxDay);
+  const label = kind === 'teacher' ? T('Мұғалімдер', 'Учителя') : T('Кабинеттер', 'Кабинеты');
+  let h = `<div class="bar"><h2>${kind === 'teacher' ? T('Мұғалім кестесі', 'Расписание учителей') : T('Кабинет кестесі', 'Расписание кабинетов')}</h2>${modeBar(kind)}
+    <span class="dl"><button class="btn sm primary" data-pdf="${kind}|all">⬇ ${label} — ${T('бір PDF', 'один PDF')}</button>
+    <button class="btn sm" data-pdf="${kind}|zip">⬇ ${label} — ZIP (${T('әрқайсысы жеке PDF', 'каждый отдельным PDF')})</button></span></div>
+    <div class="bar"><button class="chip${mxDay < 0 ? ' on' : ''}" data-mday="-1">${T('Барлық күндер', 'Все дни')}</button>
+    ${[...Array(D).keys()].map(d => `<button class="chip${mxDay === d ? ' on' : ''}" data-mday="${d}">${DAYS_ALL[d]}</button>`).join('')}
+    <span class="hint">${cols.length} ${kind === 'teacher' ? T('мұғалім', 'учит.') : T('кабинет', 'каб.')} · ${T('атын басса, жеке кестесі ашылады', 'нажмите на название, чтобы открыть расписание')}</span></div>
+    <div class="tw"><table class="tt"><thead><tr><th>${T('Күн', 'День')}</th><th class="stk2">${T('№ / уақыт', '№ / время')}</th>${cols.map(c => `<th class="pick" data-pick="${kind}|${esc(c.id)}" title="${esc(c.full)}">${esc(c.name)}</th>`).join('')}</tr></thead><tbody>`;
+  days.forEach((d, di) => {
+    if (di) h += `<tr class="dsep"><td colspan="${cols.length + 2}"></td></tr>`;
+    for (let l = 0; l < L; l++) {
+      h += `<tr>${l === 0 ? `<td class="day" rowspan="${L}"><span>${DAYS_ALL[d]}</span></td>` : ''}<td class="num">${l + 1}<small>${timeStr(l)}</small></td>`;
+      cols.forEach(c => { const es = src[c.id][d + '|' + l] || []; h += `<td class="tcell mx${es.length ? '' : ' free'}">${es.map(e => entryHTML(e, kind)).join('')}</td>`; });
+      h += '</tr>';
+    }
+  });
+  return h + '</tbody></table></div>' + legend(null, true);
+}
+
+function viewTeacher() {
+  if (tMode === 'all') return viewMatrix('teacher');
+  const ts = sortedTeachers();
+  if (!teacher(curTeacher)) curTeacher = ts[0]?.id;
+  const t = teacher(curTeacher);
+  if (!t) return '<div class="card">Мұғалім жоқ.</div>';
+  const D = nDays(), L = S.times.length, at = {}, sids = new Set(); let total = 0;
+  for (const k in S.sched) {
+    const [c, d, l] = k.split('|');
+    if (!cls(c) || +d >= D || +l >= L) continue;
+    S.sched[k].forEach((x, i) => { if (x.s && x.t === t.id) { (at[d + '|' + l] ??= []).push({ k, i, x }); total++; sids.add(x.s); } });
+  }
+  (S.extra || []).forEach(x => { if (x.t === t.id && x.d < D && x.p < L) { (at[x.d + '|' + x.p] ??= []).push({ ext: x }); total++; } });
+  const gs = (S.clubs?.groups || []).filter(g => g.tid === t.id);
+  gs.forEach(g => g.days.forEach(d => { if (d < D && g.p < L) { (at[d + '|' + g.p] ??= []).push({ club: g, d }); total++; } }));
+  let h = `<div class="bar"><h2>${T('Мұғалім кестесі', 'Расписание учителей')}</h2>${modeBar('teacher')}
+    <select id="tSel">${ts.map(x => `<option value="${x.id}"${x.id === t.id ? ' selected' : ''}>${esc(x.name)}</option>`).join('')}</select></div>
+    <div class="bar"><b style="font-size:17px">${esc(t.name)}</b><span class="hint">${T('Пәндері', 'Предметы')}: ${t.subjects.map(s => esc(sName(subj(s)))).filter(x => x !== '?').join(', ') || '—'}
+    ${t.cls && cls(t.cls) ? ' · ' + T('Сынып жетекшісі', 'Классный руководитель') + ': <b>' + esc(cls(t.cls).name) + '</b>' : ''} · ${T('Аптасына', 'В неделю')}: <b>${total}</b> ${T('сабақ', 'уроков')}</span>
+    ${pdfBtns('teacher', T('Осы мұғалім', 'Этот учитель'), T('Барлық мұғалімдер', 'Все учителя'))}</div>
+    <div class="tw"><table class="tt cls"><thead><tr><th>${T('№ / уақыт', '№ / время')}</th>${[...Array(D).keys()].map(d => `<th>${DAYS_ALL[d]}</th>`).join('')}</tr></thead><tbody>`;
+  for (let l = 0; l < L; l++) {
+    h += `<tr><td class="num">${l + 1}<small>${timeStr(l)}</small></td>`;
+    for (let d = 0; d < D; d++) {
+      const es = at[d + '|' + l] || [];
+      h += `<td class="tcell${es.length ? '' : ' free'}">${es.map(e => {
+        if (e.club) return clubEntry(e.club, e.d, e.club.room);
+        if (e.ext) { const s = subj(e.ext.s);
+          return `<div class="les ext" title="Бастауыш сыныптан тыс сабақ (мұғалімдер кестесінен)"><div class="sn">${esc(e.ext.label)} · ${esc(s ? s.name : '')}</div><div class="rn">${e.ext.r ? 'Каб. ' + esc(e.ext.r) : ''} · ${T('басқа сынып', 'другой класс')}</div></div>`; }
+        const cn = cls(e.k.split('|')[0]).name;
+        return `<div data-k="${e.k}">${lesHTML({ ...e.x, t: '' }, e.k + '#' + e.i, false, `<div class="tn"><b>${esc(cn)}</b></div>`)}</div>`;
+      }).join('')}</td>`;
+    }
+    h += '</tr>';
+  }
+  return h + '</tbody></table></div>' + legend(sids, gs.length > 0);
+}
+
+function viewRoom() {
+  if (rMode === 'all') return viewMatrix('room');
+  const rooms = roomList();
+  if (!rooms.some(r => r[0] === curRoom)) curRoom = rooms[0]?.[0];
+  if (!curRoom) return '<div class="card">Кабинет жоқ.</div>';
+  const D = nDays(), L = S.times.length, at = {}, sids = new Set(); let total = 0;
+  for (const k in S.sched) {
+    const [c, d, l] = k.split('|');
+    if (!cls(c) || +d >= D || +l >= L) continue;
+    S.sched[k].forEach((x, i) => { if (x.s && nr(x.r) === curRoom) { (at[d + '|' + l] ??= []).push({ k, i, x }); total++; sids.add(x.s); } });
+  }
+  const gs = (S.clubs?.groups || []).filter(g => nr(g.room) === curRoom);
+  gs.forEach(g => g.days.forEach(d => { if (d < D && g.p < L) { (at[d + '|' + g.p] ??= []).push({ club: g, d }); total++; } }));
+  const owners = S.classes.filter(c => nr(c.room) === curRoom).map(c => c.name);
+  let h = `<div class="bar"><h2>${T('Кабинет кестесі', 'Расписание кабинетов')}</h2>${modeBar('room')}
+    <select id="rSel">${rooms.map(r => `<option value="${esc(r[0])}"${r[0] === curRoom ? ' selected' : ''}>${esc(r[1])}</option>`).join('')}</select></div>
+    <div class="bar"><b style="font-size:17px">Кабинет ${esc(roomName(curRoom))}</b><span class="hint">${owners.length ? T('Сынып кабинеті', 'Кабинет класса') + ': <b>' + esc(owners.join(', ')) + '</b> · ' : ''}${shared().has(curRoom) ? T('Ортақ кабинет · ', 'Общий кабинет · ') : ''}${T('Аптасына', 'В неделю')}: <b>${total}</b> ${T('сабақ', 'уроков')}</span>
+    ${pdfBtns('room', T('Осы кабинет', 'Этот кабинет'), T('Барлық кабинеттер', 'Все кабинеты'))}</div>
+    <div class="tw"><table class="tt cls"><thead><tr><th>${T('№ / уақыт', '№ / время')}</th>${[...Array(D).keys()].map(d => `<th>${DAYS_ALL[d]}</th>`).join('')}</tr></thead><tbody>`;
+  for (let l = 0; l < L; l++) {
+    h += `<tr><td class="num">${l + 1}<small>${timeStr(l)}</small></td>`;
+    for (let d = 0; d < D; d++) {
+      const es = at[d + '|' + l] || [];
+      h += `<td class="tcell${es.length ? '' : ' free'}">${es.map(e => e.club ? clubEntry(e.club, e.d, e.club.teacher) :
+        `<div data-k="${e.k}">${lesHTML({ ...e.x, r: '' }, e.k + '#' + e.i, false, `<div class="tn"><b>${esc(cls(e.k.split('|')[0]).name)}</b></div>`)}</div>`).join('')}</td>`;
+    }
+    h += '</tr>';
+  }
+  return h + '</tbody></table></div>' + legend(sids, gs.length > 0);
+}
+
+/* ---------- Ауыстыру (замена) ----------
+   Әкімші ауырған мұғалімді, басталатын күнді және неше оқу күні ауыратынын жазады. Сол күндердегі сабақтарына
+   бос мұғалім автоматты түрде таңдалады (сол пәнді беретін, сол сыныптың жетекшісі, сол күні мектепте бар, ауыстыруы аз мұғалімге басымдық);
+   бос мұғалім болмаса — куратор. Әкімші кез келген ұсынысты қолмен өзгерте алады. Мұғалімдер тек көреді, ата-аналарға көрсетілмейді. */
+const ymd = dt => dt.getFullYear() + '-' + String(dt.getMonth() + 1).padStart(2, '0') + '-' + String(dt.getDate()).padStart(2, '0');
+const parseYmd = s => { const [y, m, d] = String(s).split('-').map(Number); return new Date(y, m - 1, d); };
+const dmy = s => s.slice(8, 10) + '.' + s.slice(5, 7);
+let subsOld = false;
+/* Ауырған күндер: тек оқу күндері (дүйсенбі–жұма, сенбі баптауда қосулы болса) */
+function absDates(a) {
+  const out = [], dt = parseYmd(a.from);
+  for (let guard = 0; out.length < (+a.days || 1) && guard < 90; guard++) {
+    const wd = (dt.getDay() + 6) % 7; if (wd < nDays()) out.push({ date: ymd(dt), d: wd });
+    dt.setDate(dt.getDate() + 1);
+  }
+  return out;
+}
+const subName = p => !p ? '' : p.startsWith('c:') ? p.slice(2) + ' (' + T('куратор', 'куратор') + ')' : teacher(p)?.name || '?';
+const dayHas = (tid, d) => Object.keys(S.sched).some(k => +k.split('|')[1] === d && S.sched[k].some(x => x.s && x.t === tid));
+function freeAt(d, l, slot, ctx) { return S.teachers.filter(t => !ctx.absent[slot.split('|')[0]]?.has(t.id) && !busyAt(t.id, d, l) && !ctx.used[slot]?.has(t.id)); }
+function autoSub(r, d, slot, ctx) {
+  const date = slot.split('|')[0], sid = r.x?.s;
+  const score = t => (sid && t.subjects.includes(sid) ? 0 : 10) + (r.cid && t.cls === r.cid ? 0 : 3) + (dayHas(t.id, d) ? 0 : 5) + 2 * (ctx.load[date + '|' + t.id] || 0);
+  const free = freeAt(d, r.l, slot, ctx).sort((p, q) => score(p) - score(q) || p.name.localeCompare(q.name, 'kk'));
+  if (free.length) return free[0].id;
+  const cur = (S.subs.curators || []).find(n => !ctx.used[slot]?.has('c:' + n));
+  return cur ? 'c:' + cur : '';
+}
+/* Барлық ауыстырулар: әр ауырған мұғалімнің әр сабағы — кім ауыстырады */
+function subPlan() {
+  const items = [...S.subs.list].sort((a, b) => a.from.localeCompare(b.from)), ctx = { used: {}, load: {}, absent: {} }, rows = [];
+  items.forEach(a => absDates(a).forEach(x => (ctx.absent[x.date] ??= new Set()).add(a.tid)));
+  items.forEach(a => absDates(a).forEach(({ date, d }) => {
+    const ls = [];
+    for (const k in S.sched) {
+      const [cid, dd, l] = k.split('|'); if (+dd !== d || !cls(cid) || +l >= S.times.length) continue;
+      S.sched[k].forEach((x, i) => { if (x.s && x.t === a.tid) ls.push({ key: date + '|' + k + '#' + i, cid, l: +l, x }); });
+    }
+    (S.clubs?.groups || []).forEach(g => { if (g.tid === a.tid && g.days.includes(d)) ls.push({ key: date + '|g:' + g.id, l: g.p, club: g }); });
+    ls.sort((p, q) => p.l - q.l).forEach(r => {
+      const slot = date + '|' + r.l, manual = a.pick && r.key in a.pick;
+      const pick = manual ? a.pick[r.key] : autoSub(r, d, slot, ctx);
+      if (pick) { (ctx.used[slot] ??= new Set()).add(pick); ctx.load[date + '|' + pick] = (ctx.load[date + '|' + pick] || 0) + 1; }
+      rows.push({ a, date, d, slot, ...r, pick, manual });
+    });
+  }));
+  return { rows, ctx };
+}
+function viewSubs() {
+  const SB = S.subs, today = ymd(new Date()), { rows, ctx } = subPlan();
+  const shown = rows.filter(r => subsOld || r.date >= today);
+  const absList = [...SB.list].sort((a, b) => b.from.localeCompare(a.from)).filter(a => subsOld || absDates(a).some(x => x.date >= today));
+  let h = `<div class="bar"><h2>${T('🔁 Ауыстыру (замена)', '🔁 Замена')}</h2>
+    <label class="chk hint" style="flex-direction:row;gap:6px"><input type="checkbox" id="subsOld"${subsOld ? ' checked' : ''}> ${T('Өткен күндерді де көрсету', 'Показывать прошедшие дни')}</label></div>`;
+  if (isAdmin) h += `<div class="card" style="margin-bottom:12px"><b>🤒 ${T('Мұғалім ауырып қалса (больничный)', 'Учитель заболел (больничный)')}</b>
+    <div class="bar" style="margin-top:8px;align-items:flex-end">
+      <label class="hint" style="display:flex;flex-direction:column">${T('Мұғалім', 'Учитель')}<select id="sbT" style="min-width:260px"><option value="">— ${T('таңдаңыз', 'выберите')} —</option>${sortedTeachers().map(t => `<option value="${t.id}">${esc(t.name)}</option>`).join('')}</select></label>
+      <label class="hint" style="display:flex;flex-direction:column">${T('Басталатын күні', 'С какого дня')}<input type="date" id="sbF" value="${today}"></label>
+      <label class="hint" style="display:flex;flex-direction:column">${T('Неше оқу күні', 'Сколько учебных дней')}<input type="number" id="sbN" min="1" max="40" value="1" style="width:90px"></label>
+      <label class="hint" style="display:flex;flex-direction:column">${T('Ескерту', 'Примечание')}<input id="sbNote" placeholder="${T('больничный', 'больничный')}"></label>
+      <button class="btn primary" data-act="subAdd">➕ ${T('Қосу', 'Добавить')}</button></div>
+    <div class="hint">${T('Сабақтарына бос мұғалімдер автоматты түрде қойылады: сол пәнді беретін, сол сыныптың жетекшісі, сол күні мектепте бар мұғалімге басымдық беріледі. Бос мұғалім болмаса — куратор. Кез келгенін төмендегі тізімнен өзгертуге болады.',
+      'Свободные учителя ставятся автоматически: приоритет — ведущим тот же предмет, классному руководителю, тем, кто в этот день в школе. Если свободных нет — куратор. Любую замену можно изменить в списке ниже.')}</div>
+    <details style="margin-top:8px"><summary class="hint"><b>${T('Кураторлар тізімі', 'Список кураторов')} (${SB.curators.length})</b></summary>
+      <textarea id="sbCur" rows="5" style="width:100%;margin-top:6px" placeholder="${T('Әр жолға бір адамның аты-жөні', 'По одному ФИО на строку')}">${esc(SB.curators.join('\n'))}</textarea>
+      <button class="btn sm" data-act="subCur">${T('Кураторларды сақтау', 'Сохранить кураторов')}</button></details></div>`;
+  if (!absList.length) return h + `<p class="hint">${T('Ауыстыру жоқ.', 'Замен нет.')}</p>`;
+  const opts = r => {
+    const free = freeAt(r.d, r.l, r.slot, { ...ctx, used: { [r.slot]: new Set([...(ctx.used[r.slot] || [])].filter(x => x !== r.pick)) } });
+    const curs = (S.subs.curators || []).map(n => 'c:' + n);
+    const o = (v, label) => `<option value="${esc(v)}"${v === r.pick ? ' selected' : ''}>${esc(label)}</option>`;
+    return o('', '— ' + T('ешкім', 'никто') + ' —') + `<optgroup label="${T('Бос мұғалімдер', 'Свободные учителя')}">${free.sort((p, q) => p.name.localeCompare(q.name, 'kk')).map(t => o(t.id, t.name + (r.x && t.subjects.includes(r.x.s) ? ' ✓' : ''))).join('')}</optgroup>` +
+      (curs.length ? `<optgroup label="${T('Кураторлар', 'Кураторы')}">${curs.map(c => o(c, c.slice(2))).join('')}</optgroup>` : '') +
+      (r.pick && !free.some(t => t.id === r.pick) && !curs.includes(r.pick) ? o(r.pick, subName(r.pick) + ' ⚠') : '');
+  };
+  return h + absList.map(a => {
+    const ds = absDates(a), rs = shown.filter(r => r.a === a), t = teacher(a.tid);
+    return `<div class="kcard" style="max-width:1200px"><div class="kh"><b>🤒 ${esc(t ? t.name : '?')}</b>
+      <span>${dmy(ds[0].date)} – ${dmy(ds[ds.length - 1].date)} · ${ds.length} ${T('оқу күні', 'уч. дн.')}${a.note ? ' · ' + esc(a.note) : ''}</span>
+      ${isAdmin ? `<button class="btn sm" style="margin-left:auto" data-act="subDel" data-id="${a.id}">✕ ${T('Жою', 'Удалить')}</button>` : ''}</div>
+      ${rs.length ? `<table><tr><th>${T('Күні', 'День')}</th><th>${T('Сабақ', 'Урок')}</th><th>${T('Сынып', 'Класс')}</th><th>${T('Пән', 'Предмет')}</th><th>${T('Кімнің орнына', 'Вместо кого')}</th><th>${T('Кім ауыстырады', 'Кто заменяет')}</th><th>${T('Кабинет', 'Кабинет')}</th></tr>
+      ${rs.map(r => `<tr class="${r.pick ? '' : 'bad'}"><td><b>${dmy(r.date)}</b> ${DAYS_ALL[r.d]}</td><td>${r.l + 1}${T('-сабақ', '-й урок')} · ${timeStr(r.l)}</td>
+        <td>${r.club ? '—' : esc(cls(r.cid).name)}</td><td>${r.club ? '🎨 ' + esc(clubLabel(r.club)) : esc(sName(subj(r.x.s), clsLang(r.cid))) + (r.x.g ? ' · ' + esc(r.x.g) : '')}</td>
+        <td>${esc(t ? short(t.name) : '?')}</td>
+        <td>${isAdmin ? `<select data-subpick="${a.id}|${esc(r.key)}" style="max-width:300px">${opts(r)}</select>${r.manual ? '' : ' <span class="hint" title="' + T('Автоматты таңдалған', 'Выбрано автоматически') + '">✨</span>'}`
+          : r.pick ? `<b>${esc(subName(r.pick))}</b>` : `<b>${T('ешкім жоқ', 'нет замены')}</b>`}</td>
+        <td>${esc(r.club ? r.club.room || '' : r.x.r || '')}</td></tr>`).join('')}</table>`
+        : `<div style="padding:10px 14px" class="hint">${T('Бұл күндері сабағы жоқ', 'В эти дни уроков нет')}</div>`}</div>`;
+  }).join('');
+}
+
+/* ---------- Үйірмелер беті ---------- */
+const kidBad = (i, g) => g.days.some(d => cf('k:' + i + '|' + d + '|' + g.p));
+const clubTime = g => `${g.days.map(d => DAYS_ALL[d]).join(', ')} · ${g.p + 1}${T('-сабақ', '-й урок')} (${timeStr(g.p)})`;
+function hl(text) {
+  const t = esc(text); if (clubQ.length < 2) return t;
+  const i = t.toLowerCase().indexOf(esc(clubQ).toLowerCase()); if (i < 0) return t;
+  return t.slice(0, i) + '<mark>' + t.slice(i, i + esc(clubQ).length) + '</mark>' + t.slice(i + esc(clubQ).length);
+}
+function groupCard(g) {
+  const CL = S.clubs, bad = g.days.some(d => cf('g:' + g.id + '|' + d)), col = clubColor(g);
+  const kids = g.kids.map(i => ({ i, k: CL.kids[i] })).filter(x => x.k).sort((a, b) => a.k.cls.localeCompare(b.k.cls) || a.k.name.localeCompare(b.k.name, 'ru'));
+  return `<div class="gcard${bad ? ' bad' : ''}">
+    <div class="gh" style="background:${col};color:${textOn(col)}"><b>${bad ? '⚠ ' : ''}${esc(g.club)} · ${esc(g.num)}</b>
+      <div class="gm">${esc(clubTime(g))}</div>
+      <div class="gm">${esc(g.room || T('кабинет нақтыланады', 'кабинет уточняется'))} · ${esc(g.teacher)} · ${esc(g.who)}</div></div>
+    <div class="gb"><div class="kc">${kids.length} ${T('оқушы', 'уч.')}${g.ov ? T(' · уақыты ауыстырылған', ' · время перенесено') : ''}</div>
+      ${kids.length ? `<ol>${kids.map(x => `<li class="${kidBad(x.i, g) ? 'bad' : ''}">${esc(x.k.cls)} ${hl(x.k.name)}</li>`).join('')}</ol>` : `<div class="kc">${T('Топта әзірге оқушы жоқ', 'В группе пока нет учеников')}</div>`}</div>
+    <div class="gf"><button class="btn sm" data-gpdf="${g.id}">⬇ ${T('Тізім', 'Список')} — PDF</button>${isAdmin ? `<button class="btn sm" data-gedit="${g.id}">✎ Өзгерту</button>` : ''}</div></div>`;
+}
+function clubResults() {
+  const CL = S.clubs, Q = clubQ.toLowerCase();
+  if (clubMode === 'class') {
+    const classes = [...new Set(CL.kids.filter(k => !k.gone).map(k => k.cls).concat(CL.noclub.map(k => k.cls)))].filter(Boolean).filter(c => !PCLASS || 'c' + c === PCLASS).sort();
+    if (!classes.includes(clubCls)) clubCls = classes[0];
+    const ids = CL.kids.map((k, i) => i).filter(i => CL.kids[i].cls === clubCls);
+    const days = [...new Set(CL.groups.flatMap(g => g.days))].sort();
+    const rows = ids.map(i => ({ name: CL.kids[i].name, by: Object.fromEntries(days.map(d => [d, CL.groups.filter(g => g.days.includes(d) && g.kids.includes(i)).sort((a, b) => a.p - b.p).map(g => ({ g, bad: cf('k:' + i + '|' + d + '|' + g.p) }))])) }))
+      .concat(CL.noclub.filter(k => k.cls === clubCls).map(k => ({ name: k.name, by: {} }))).sort((a, b) => a.name.localeCompare(b.name, 'ru'));
+    return `<div class="bar">${classes.map(c => `<button class="chip${c === clubCls ? ' on' : ''}" data-ccls="${esc(c)}">${esc(c)}</button>`).join('')}</div>
+      <div class="tw" style="max-height:none"><table class="kt"><tr><th>№</th><th>${T('Оқушының аты-жөні', 'ФИО ученика')} (${esc(clubCls)})</th>${days.map(d => `<th>${DAYS_ALL[d]}</th>`).join('')}</tr>
+      ${rows.map((r, n) => `<tr><td>${n + 1}</td><td>${esc(r.name)}</td>${days.map(d => `<td>${(r.by[d] || []).map(x => `<span class="ev${x.bad ? ' bad' : ''}" style="background:${clubColor(x.g)}">${x.g.p + 1}${T('-с.', '-й ур.')} · ${esc(clubLabel(x.g))} · ${esc(x.g.room)}</span>`).join('') || '—'}</td>`).join('')}</tr>`).join('')}</table></div>`;
+  }
+  let gs = CL.groups.filter(g => clubDay < 0 || g.days.includes(clubDay));
+  let kidsHtml = '';
+  if (Q.length >= 2) {
+    // Оқушыны іздеу: тек сол оқушының үйірмелері шығады
+    const norm = s => s.toLowerCase().replace(/\s+/g, ' ');
+    const hit = k => norm(k.name).includes(Q) || norm(k.cls + ' ' + k.name).includes(Q);
+    const kh = CL.kids.map((k, i) => ({ k, i })).filter(x => !x.k.gone && hit(x.k));
+    const nh = (CL.noclub || []).filter(hit);
+    if (kh.length || nh.length) {
+      kidsHtml = `<p class="hint">${T('Табылған оқушылар', 'Найдено учеников')}: ${kh.length + nh.length}${kh.length > 30 ? T(' (алғашқы 30-ы көрсетілген)', ' (показаны первые 30)') : ''}</p>` +
+        kh.slice(0, 30).map(x => kidCard(x.i)).join('') +
+        nh.map(k => `<div class="kcard"><div class="kh"><b>${hl(k.name)}</b><span>${esc(k.cls)} ${T('сыныбы', 'класс')}</span></div><div style="padding:10px 14px" class="hint">${T('Үйірмеге жазылмаған', 'Не записан в кружок')}</div></div>`).join('');
+    }
+    gs = gs.filter(g => (g.club + ' ' + g.num + ' ' + g.teacher + ' ' + g.room).toLowerCase().includes(Q));
+    if (kidsHtml && !gs.length) return kidsHtml;
+  }
+  const by = {}; gs.forEach(g => (by[g.club] ??= []).push(g));
+  const names = Object.keys(by).sort((a, b) => a.localeCompare(b, 'ru'));
+  if (!names.length && !kidsHtml) return `<p class="hint">${T('Ештеңе табылмады. Оқушының тегін немесе атын тексеріңіз (кемінде 2 әріп).', 'Ничего не найдено. Проверьте фамилию или имя (не менее 2 букв).')}</p>`;
+  return kidsHtml + (kidsHtml && names.length ? `<h3 style="margin:18px 0 4px">${T('Атауы сәйкес келетін үйірмелер', 'Кружки с подходящим названием')}</h3>` : '') +
+    names.map(n => `<h3 style="margin:16px 0 8px">${esc(n)} <span class="hint">(${by[n].length} ${T('топ', 'гр.')})</span></h3>
+    <div class="ggrid">${by[n].sort((a, b) => a.num.localeCompare(b.num, 'ru', { numeric: true })).map(groupCard).join('')}</div>`).join('');
+}
+function kidCard(i) {
+  const CL = S.clubs, k = CL.kids[i];
+  const rows = [];
+  CL.groups.forEach(g => { if (g.kids.includes(i)) g.days.forEach(d => rows.push({ g, d })); });
+  rows.sort((a, b) => a.d - b.d || a.g.p - b.g.p);
+  return `<div class="kcard"><div class="kh"><b>${hl(k.name)}</b><span>${esc(k.cls)} ${T('сыныбы', 'класс')}</span>
+      <span style="margin-left:auto;opacity:.9">${new Set(rows.map(r => r.g.id)).size} ${T('үйірме · аптасына', 'кружк. · в неделю')} ${rows.length} ${T('сабақ', 'зан.')}</span></div>
+    ${rows.length ? `<table><tr><th>${T('Күні', 'День')}</th><th>${T('Уақыты', 'Время')}</th><th>${T('Үйірме', 'Кружок')}</th><th>Кабинет</th><th>Педагог</th>${isAdmin ? '<th></th>' : ''}</tr>
+      ${rows.map(r => `<tr class="${cf('k:' + i + '|' + r.d + '|' + r.g.p) ? 'bad' : ''}"><td><b>${DAYS_ALL[r.d]}</b></td><td>${r.g.p + 1}${T('-сабақ', '-й урок')} · ${timeStr(r.g.p)}</td>
+        <td><span class="dot" style="background:${clubColor(r.g)}"></span>${esc(clubLabel(r.g))}</td><td>${esc(r.g.room || '—')}</td><td>${esc(r.g.teacher)}</td>
+        ${isAdmin ? `<td><button class="x" data-kdel="${i}|${r.g.id}" title="Осы үйірмеден шығару">✕</button></td>` : ''}</tr>`).join('')}</table>`
+      : `<div style="padding:10px 14px" class="hint">${T('Үйірмеге жазылмаған', 'Не записан в кружок')}</div>`}
+    ${isAdmin ? kidAdmin(i) : ''}</div>`;
+}
+/* Админ: оқушының сыныбын өзгерту, үйірмеге қосу */
+function clubClassList() {
+  return [...new Set(S.classes.filter(c => c.grade > 0).map(c => c.name).concat(S.clubs.kids.filter(k => !k.gone).map(k => k.cls)))].filter(Boolean).sort();
+}
+function kidAdmin(i) {
+  const CL = S.clubs, k = CL.kids[i];
+  const gs = CL.groups.filter(g => !g.kids.includes(i)).sort((a, b) => a.club.localeCompare(b.club, 'ru') || a.num.localeCompare(b.num, 'ru', { numeric: true }));
+  return `<div class="bar" style="padding:8px 14px;margin:0;background:#fffbeb;border-top:1px solid #fde68a">
+    <label class="hint">Сыныбы: <select data-kcls="${i}">${clubClassList().map(c => `<option${c === k.cls ? ' selected' : ''}>${esc(c)}</option>`).join('')}</select></label>
+    <label class="hint">Үйірмеге қосу: <select data-kadd="${i}" style="max-width:420px"><option value="">— топты таңдаңыз —</option>${gs.map(g => {
+      const busy = g.days.some(d => CL.groups.some(o => o !== g && o.kids.includes(i) && o.p === g.p && o.days.includes(d)));
+      return `<option value="${g.id}">${esc(clubLabel(g))} — ${esc(g.days.map(d => DAYS_ALL[d].slice(0, 3)).join(', '))} ${g.p + 1}-сабақ${busy ? ' ⚠ уақыты бос емес' : ''}</option>`; }).join('')}</select></label></div>`;
+}
+function newKid() {
+  openModal(`<h3>➕ Жаңа оқушы</h3>
+    <label>Сыныбы<select id="nkC">${clubClassList().map(c => `<option>${esc(c)}</option>`).join('')}</select></label>
+    <label>Аты-жөні<input id="nkN" placeholder="Тегі Аты"></label>
+    <div class="mbtns"><span style="flex:1"></span><button class="btn" data-close>Болдырмау</button><button class="btn primary" id="nkOk">Қосу</button></div>`);
+  $('#nkOk').onclick = () => {
+    const name = $('#nkN').value.replace(/\s+/g, ' ').trim(), c = $('#nkC').value; if (!name) return;
+    S.clubs.kids.push({ cls: c, cid: S.classes.some(x => x.id === 'c' + c) ? 'c' + c : '', name });
+    clubQ = name; clubMode = 'groups'; closeModal(); commit(); toast('✓ Оқушы қосылды. Енді оны үйірмеге жазыңыз.', true);
+  };
+}
+function viewClubs() {
+  const CL = S.clubs; if (!CL) return '<div class="card">Үйірмелер жоқ.</div>';
+  const days = [...new Set(CL.groups.flatMap(g => g.days))].sort();
+  const hrs = CL.groups.reduce((a, g) => a + g.days.length, 0);
+  const cats = Object.entries(CAT).map(([k, v]) => `<span class="lg" style="--c:${v[1]}"><i></i>${T(v[0], CAT_RU[k])}</span>`).join('');
+  return `<div class="bar"><h2>${T('Үйірмелер', 'Кружки')}</h2>
+      <button class="chip${clubMode === 'groups' ? ' on' : ''}" data-cmode="groups">${T('Үйірмелер бойынша', 'По кружкам')}</button>
+      <button class="chip${clubMode === 'class' ? ' on' : ''}" data-cmode="class">${T('Сынып бойынша', 'По классу')}</button>
+      <span class="hint">${CL.groups.length} ${T('топ', 'гр.')} · ${CL.kids.length} ${T('оқушы · аптасына', 'уч. · в неделю')} ${hrs} ${T('сабақ · деректер', 'зан. · данные')}: ${esc(CL.date || '')}</span>
+      <span class="dl pall"><button class="btn sm primary" data-gpdf="*">⬇ Барлық тізімдер — бір PDF</button><button class="btn sm" data-gpdf="zip">⬇ ZIP (әр топ жеке PDF)</button></span></div>
+    <div class="bar"><span class="sbox"><input type="search" id="clubQ" placeholder="${T('Баланың аты-жөнін жазыңыз — қай үйірмеге баратыны шығады', 'Введите ФИО ребёнка — появятся его кружки')}" value="${esc(clubQ)}" autocomplete="off"></span>
+    ${clubMode === 'groups' ? `<button class="chip${clubDay < 0 ? ' on' : ''}" data-cday="-1">${T('Барлық күндер', 'Все дни')}</button>
+      ${days.map(d => `<button class="chip${clubDay === d ? ' on' : ''}" data-cday="${d}">${DAYS_ALL[d]}</button>`).join('')}` : ''}</div>
+    ${isAdmin ? `<div class="card admonly" style="margin-bottom:12px"><b>Үйірме сабақтарының кестедегі орны</b>
+      <div class="bar" style="margin-top:8px">${[8, 9, 10].map(ol => `<label class="hint">Үйірме сайтындағы ${ol}-сабақ →
+        <select data-cmap="${ol}">${S.times.map((t, i) => `<option value="${i}"${CL.map[ol] === i ? ' selected' : ''}>${i + 1}-сабақ (${t[0]})</option>`).join('')}</select></label>`).join('')}
+        <button class="btn sm" data-act="clubMapApply">Қолдану</button>
+        <button class="btn sm" data-act="clubRefresh">↻ Үйірмелер сайтынан жаңарту</button>
+        <button class="btn sm" data-act="kidNew">➕ Жаңа оқушы</button></div>
+      <div class="hint">Оқушыны басқа сыныпқа ауыстыру, үйірмеге қосу немесе шығару үшін іздеу жолына оның атын жазыңыз.</div>
+      ${CL.report?.length ? `<div class="hint">Сейсенбі/бейсенбіден ауыстырылған топтар: ${CL.report.map(esc).join('; ')}</div>` : ''}
+      ${CL.fixLog?.length ? `<details style="margin-top:6px"><summary class="hint"><b>Қайшылықтарды түзету кезінде жасалған өзгерістер (${CL.fixLog.length})</b></summary><ul class="ul">${CL.fixLog.map(x => `<li>${esc(x)}</li>`).join('')}</ul></details>` : ''}</div>` : ''}
+    <div id="clubRes">${clubResults()}</div><div class="legend">${cats}</div>`;
+}
+
+/* ---------- Оқу жоспары ---------- */
+function factCount(cid) {
+  const D = nDays(), L = S.times.length, f = {};
+  for (let d = 0; d < D; d++) for (let l = 0; l < L; l++) {
+    const seen = new Set(); cellL(cid + '|' + d + '|' + l).forEach(x => { if (!seen.has(x.s)) { seen.add(x.s); f[x.s] = (f[x.s] || 0) + 1; } });
+  }
+  return f;
+}
+function teacherOptions(sid, sel) {
+  const yes = sortedTeachers().filter(t => t.subjects.includes(sid)), no = sortedTeachers().filter(t => !t.subjects.includes(sid));
+  const o = t => `<option value="${t.id}"${t.id === sel ? ' selected' : ''}>${esc(t.name)}</option>`;
+  return `<option value="">— мұғалім —</option>` + (yes.length ? `<optgroup label="Осы пәнді береді">${yes.map(o).join('')}</optgroup>` : '') + `<optgroup label="Басқа мұғалімдер">${no.map(o).join('')}</optgroup>`;
+}
+function viewPlan() {
+  const cl = sortedClasses();
+  if (!cls(curClass)) curClass = cl[0]?.id;
+  const c = cls(curClass);
+  if (!c) return '<div class="card">Сынып жоқ.</div>';
+  const P = planOf(c.id), fact = factCount(c.id), planBy = {};
+  P.rows.forEach(r => planBy[r.s] = (planBy[r.s] || 0) + (+r.h || 0));
+  const notInPlan = Object.keys(fact).filter(s => !planBy[s]);
+  const sumPlan = P.rows.reduce((a, r) => a + (+r.h || 0), 0), sumFact = Object.values(fact).reduce((a, b) => a + b, 0);
+  const rooms = roomList();
+  return `<div class="bar"><h2>Оқу жоспары</h2>${cl.map(x => `<button class="chip${x.id === c.id ? ' on' : ''}" data-cls="${x.id}">${esc(x.name)}</button>`).join('')}</div>
+  <div class="cards">
+  <section class="card wide"><h2>📚 ${esc(c.name)} сыныбының оқу жоспары (аптасына)</h2>
+    <div class="bar"><label class="chk" style="flex-direction:row;align-items:center;gap:6px;color:var(--ink)">Күніне ең көп сабақ:
+      <input type="number" min="1" max="${S.times.length}" data-plmax="1" value="${+P.max || S.times.length}" style="width:70px"></label>
+      <span class="hint">Жоспар бойынша: <b>${sumPlan}</b> сағат · Кестеде: <b>${sumFact}</b> сағат</span></div>
+    <div class="scroll" style="max-height:620px"><table class="st"><tr><th style="min-width:190px">Пән</th><th>Сағат</th><th>Кестеде</th><th>Мұғалім және кабинет (топқа бөлінсе — әр топ жеке жолда)</th><th></th></tr>
+    ${P.rows.map(r => { const s = subj(r.s), f = fact[r.s] || 0, p = planBy[r.s] || 0;
+      return `<tr><td><select data-pl="${r.id}|s" style="width:100%;${s ? `background:${s.color};color:${textOn(s.color)}` : ''}"><option value="">— пән —</option>${S.subjects.map(x => `<option value="${x.id}"${x.id === r.s ? ' selected' : ''}>${esc(x.name)}</option>`).join('')}</select>
+        ${s && s.fixed ? '<div class="hint">бекітілген — орнында қалады</div>' : ''}</td>
+      <td><input type="number" min="0" max="40" data-pl="${r.id}|h" value="${+r.h || 0}" style="width:64px"></td>
+      <td class="${f === p ? 'ok' : 'miss'}" title="Кестедегі нақты сағат (осы пән бойынша)">${f}</td>
+      <td>${r.items.map((it, i) => `<div class="pli">${r.items.length > 1 ? `<input data-pli="${r.id}|${i}|g" value="${esc(it.g)}" style="width:90px" placeholder="топ">` : ''}
+        <select data-pli="${r.id}|${i}|t">${teacherOptions(r.s, it.t)}</select>
+        <input data-pli="${r.id}|${i}|r" list="planRooms" value="${esc(it.r)}" placeholder="кабинет" style="width:120px">
+        ${r.items.length > 1 ? `<button class="x" data-act="plDelItem" data-id="${r.id}" data-i="${i}" title="Топты жою">✕</button>` : ''}</div>`).join('')}
+        <button class="btn sm" data-act="plAddItem" data-id="${r.id}">+ топқа бөлу</button></td>
+      <td><button class="x" data-act="plDel" data-id="${r.id}" title="Жою">✕</button></td></tr>`; }).join('')}
+    </table></div><datalist id="planRooms">${rooms.map(r => `<option value="${esc(r[1])}">`).join('')}</datalist>
+    ${notInPlan.length ? `<div class="warn" style="margin-top:8px">Кестеде бар, бірақ жоспарда жоқ: ${notInPlan.map(s => esc(subj(s)?.name)).join(', ')}</div>` : ''}
+    <div class="mbtns"><button class="btn sm" data-act="plAdd">+ Пән қосу</button>
+      <button class="btn sm" data-act="plRebuild">↻ Жоспарды қазіргі кестеден алу</button>
+      <span class="hint">Көшіру:</span><select id="plCopyTo"><option value="">— қай сыныпқа —</option>${cl.filter(x => x.id !== c.id).map(x => `<option value="${x.id}">${esc(x.name)}</option>`).join('')}</select>
+      <button class="btn sm" data-act="plCopy">Жоспарды көшіру</button></div></section>
+
+  <section class="card wide"><h2>⚡ Кестені автоматты құру</h2>
+    <div class="grid2">
+      <label>Қай сыныптар үшін құру керек
+        <select data-af="scope"><option value="class"${S.af.scope === 'class' ? ' selected' : ''}>Тек ${esc(c.name)} сыныбы</option>
+          <option value="grade"${S.af.scope === 'grade' ? ' selected' : ''}>${esc(GRADE_NAMES[c.grade] || c.grade + '-сыныптар')} (бүкіл параллель)</option>
+          <option value="all"${S.af.scope === 'all' ? ' selected' : ''}>Барлық сыныптар</option></select></label>
+      <label>Бір күнде бір пәннен ең көп сабақ<input type="number" min="1" max="6" data-af="perDay" value="${+S.af.perDay || 2}"></label>
+    </div>
+    <label class="chk" style="margin-top:8px"><input type="checkbox" data-af="keepClubs"${S.af.keepClubs !== false ? ' checked' : ''}> Үйірмелер уақытын бос қалдыру (дүйсенбі, сәрсенбі, жұма — үйірме сабақтары)</label>
+    <p class="hint">Кесте әр сыныптың оқу жоспары бойынша құрылады. Мұғалім бір уақытта екі жерде болмайды, кабинеттер (ортақтарынан басқа) қайталанбайды, мұғалімдердің басқа сыныптардағы сабақтары мен таңдалмаған сыныптардың кестесі ескеріледі.
+      Бекітілген пәндер (${S.subjects.filter(s => s.fixed).map(s => esc(s.name)).join(', ') || '—'}) орнында қалады — оларды Баптаулар → Пәндер бөлімінде белгілейсіз.</p>
+    <button class="btn primary" data-act="autofill">⚡ Автоматты құру</button></section>
+  </div>`;
+}
+
+function autoFill(ids, perDay) {
+  const D = nDays(), L = S.times.length, sh = shared();
+  const base = {};
+  for (const k in S.sched) {
+    const c = k.split('|')[0];
+    if (!ids.has(c)) base[k] = S.sched[k];
+    else { const keep = S.sched[k].filter(x => subj(x.s)?.fixed); if (keep.length) base[k] = keep; }
+  }
+  const bT0 = new Set(), bR0 = new Set(), blocked = new Set();
+  const markIn = (bT, bR, d, l, x) => { if (x.t) bT.add(d + '|' + l + '|' + x.t); if (nr(x.r) && !sh.has(nr(x.r))) bR.add(d + '|' + l + '|' + nr(x.r)); };
+  for (const k in base) { const [, d, l] = k.split('|'); base[k].forEach(x => markIn(bT0, bR0, d, l, x)); }
+  (S.extra || []).forEach(x => bT0.add(x.d + '|' + x.p + '|' + x.t));
+  (S.clubs?.groups || []).forEach(g => g.days.forEach(d => { if (g.tid) bT0.add(d + '|' + g.p + '|' + g.tid); if (nr(g.room) && !sh.has(nr(g.room))) bR0.add(d + '|' + g.p + '|' + nr(g.room)); }));
+  if (S.af.keepClubs !== false) for (const key in C.clubIdx) blocked.add(key);
+  const items = [], load = {};
+  for (const cid of ids) {
+    const P = planOf(cid);
+    for (const row of P.rows) {
+      if (!row.s || subj(row.s)?.fixed) continue;
+      for (let i = 0; i < (+row.h || 0); i++) items.push({ cid, row, max: Math.min(L, +P.max || L) });
+      row.items.forEach(it => { if (it.t) load[it.t] = (load[it.t] || 0) + (+row.h || 0); });
+    }
+  }
+  const prio = it => it.row.items.length * 100 + Math.max(0, ...it.row.items.map(x => load[x.t] || 0));
+  let best = null; const t0 = Date.now();
+  for (let a = 0; a < 40 && (Date.now() - t0 < 4000); a++) {
+    const sched = { ...base }, bT = new Set(bT0), bR = new Set(bR0), miss = [];
+    const order = items.map(it => ({ it, key: prio(it) + (a ? Math.random() * 60 : 0) })).sort((x, y) => y.key - x.key).map(x => x.it);
+    for (const it of order) {
+      const { cid, row, max } = it;
+      const cnt = d => { let n = 0; for (let l = 0; l < L; l++) if (sched[cid + '|' + d + '|' + l]?.length) n++; return n; };
+      const sc = d => { let n = 0; for (let l = 0; l < L; l++) if (sched[cid + '|' + d + '|' + l]?.some(x => x.s === row.s)) n++; return n; };
+      const days = [...Array(D).keys()].filter(d => sc(d) < perDay).map(d => [d, cnt(d)]).filter(x => x[1] < max)
+        .sort((x, y) => x[1] - y[1] || (a ? Math.random() - .5 : x[0] - y[0])).map(x => x[0]);
+      let ok = false;
+      for (const d of days) {
+        for (let l = 0; l < L && !ok; l++) {
+          const k = cid + '|' + d + '|' + l; if (sched[k]?.length || blocked.has(k)) continue;
+          if (row.items.some(x => (x.t && bT.has(d + '|' + l + '|' + x.t)) || (nr(x.r) && !sh.has(nr(x.r)) && bR.has(d + '|' + l + '|' + nr(x.r))))) continue;
+          sched[k] = row.items.map(x => ({ s: row.s, t: x.t, r: x.r, g: row.items.length > 1 ? x.g : '' }));
+          sched[k].forEach(x => markIn(bT, bR, d, l, x)); ok = true;
+        }
+        if (ok) break;
+      }
+      if (!ok) miss.push(it);
+    }
+    if (!best || miss.length < best.miss.length) best = { sched, miss };
+    if (!miss.length) break;
+  }
+  S.sched = clone(best.sched);
+  const m = {}; best.miss.forEach(it => { const key = cls(it.cid).name + ' — ' + (subj(it.row.s)?.name || '?'); m[key] = (m[key] || 0) + 1; });
+  return { placed: items.length - best.miss.length, total: items.length, miss: Object.entries(m) };
+}
+function runAutofill() {
+  const c = cls(curClass), scope = S.af.scope, perDay = Math.max(1, +S.af.perDay || 2);
+  const ids = new Set(S.classes.filter(x => scope === 'all' || (scope === 'grade' ? x.grade === c.grade : x.id === c.id)).map(x => x.id));
+  const what = scope === 'all' ? 'барлық сыныптардың' : scope === 'grade' ? (GRADE_NAMES[c.grade] || c.grade + '-сыныптар') + ' параллелінің' : c.name + ' сыныбының';
+  ask(`${what} қазіргі кестесі өшіріліп, оқу жоспары бойынша қайта құрылады. Бекітілген сабақтар орнында қалады. Жалғастырамыз ба?`, () => {
+    const backup = clone(S.sched);
+    const res = autoFill(ids, perDay);
+    commit();
+    openModal(`<h3>${res.miss.length ? '⚠ Кесте ішінара құрылды' : '✓ Кесте құрылды'}</h3>
+      <p>Орналастырылған сабақтар: <b>${res.placed}</b> / ${res.total}</p>
+      ${res.miss.length ? `<div class="warn">Орын табылмаған сабақтар (уақыт, мұғалім немесе кабинет бос емес):<ul class="ul">${res.miss.map(([k, n]) => `<li>${esc(k)}: ${n} сағат</li>`).join('')}</ul>
+        Жоспарды (сағат санын, «күніне ең көп сабақ», мұғалімді) өзгертіп, қайта көріңіз немесе қолмен қойыңыз.</div>` : ''}
+      <p class="hint">Қайшылықтар саны: ${C.list.length}</p>
+      <div class="mbtns"><button class="btn danger" id="afUndo">↩ Болдырмау (бұрынғы кестені қайтару)</button><span style="flex:1"></span><button class="btn primary" data-close>Жабу</button></div>`);
+    $('#afUndo').onclick = () => { S.sched = backup; closeModal(); commit(); toast('Бұрынғы кесте қайтарылды', true); };
+  });
+}
+
+function viewSettings() {
+  const ct = sortedClasses();
+  const f = (coll, id, field, val, extra = '') => `<input data-f="${coll}|${id}|${field}" value="${esc(val)}" ${extra}>`;
+  const cnt = {}; for (const k in S.sched) S.sched[k].forEach(x => { if (x.s) cnt[x.s] = (cnt[x.s] || 0) + 1; });
+  return `<div class="cards">
+  <section class="card"><h2>🏫 Мектеп</h2>
+    <label>Мектеп атауы<input data-school="school" value="${esc(S.school)}"></label>
+    <label style="margin-top:8px">Атаудың астындағы жазу<input data-school="subtitle" value="${esc(S.subtitle || '')}"></label>
+    <div class="checks">
+      <label class="chk"><input type="checkbox" data-opt="sat" ${S.opt.sat ? 'checked' : ''}> Сенбі күні де сабақ бар (6 күндік апта)</label>
+      <label class="chk"><input type="checkbox" data-opt="noRepeat" ${S.opt.noRepeat ? 'checked' : ''}> Бір күнде бір пән қайталанса — қайшылық деп белгілеу</label>
+      <label class="chk"><input type="checkbox" data-opt="sound" ${S.opt.sound ? 'checked' : ''}> Қайшылық болса дыбыс шығару</label>
+    </div>
+    <label style="margin-top:12px">Ортақ кабинеттер (бір уақытта бірнеше сынып бола алады, үтірмен бөліңіз)
+      <input data-school="sharedRooms" value="${esc(S.sharedRooms || '')}"></label></section>
+
+  <section class="card"><h2>🔑 Админ құпиясөзі</h2>
+    <label>Қазіргі құпиясөз<input type="password" id="pwOld" autocomplete="current-password"></label>
+    <label style="margin-top:8px">Жаңа құпиясөз (кемінде 6 таңба)<input type="password" id="pwNew" autocomplete="new-password"></label>
+    <label style="margin-top:8px">Жаңа құпиясөзді қайталаңыз<input type="password" id="pwNew2" autocomplete="new-password"></label>
+    <button class="btn sm primary" style="margin-top:10px" data-act="pwChange">Құпиясөзді өзгерту</button>
+    <p class="hint">${SERVER ? 'Құпиясөз серверде сақталады және тексеріледі.' : 'Бұл компьютердегі файл үшін құпиясөз. Интернеттегі сайттың құпиясөзі серверде бөлек.'}</p></section>
+
+  <section class="card"><h2>⏰ Сабақ уақыты</h2>
+    <div class="scroll"><table class="st"><tr><th>№</th><th>Басталуы</th><th>Аяқталуы</th><th></th></tr>
+    ${S.times.map((t, i) => `<tr><td><b>${i + 1}</b></td><td><input type="time" data-time="${i}|0" value="${t[0]}"></td><td><input type="time" data-time="${i}|1" value="${t[1]}"></td>
+      <td>${i === S.times.length - 1 && S.times.length > 1 ? '<button class="x" data-act="delTime" title="Жою">✕</button>' : ''}</td></tr>`).join('')}
+    </table></div><button class="btn sm" style="margin-top:8px" data-act="addTime">+ Сабақ қосу</button></section>
+
+  <section class="card"><h2>🎒 Сыныптар (${S.classes.length})</h2>
+    <div class="scroll"><table class="st"><tr><th>Сынып</th><th>Параллель</th><th title="Сынып кестесі мен PDF осы тілде шығады">Тілі</th><th>Кабинет</th><th>Сынып жетекшісі</th><th></th></tr>
+    ${ct.map(c => `<tr><td>${f('classes', c.id, 'name', c.name, 'style="width:64px"')}</td>
+      <td><select data-f="classes|${c.id}|grade" data-num>${[0, 1, 2, 3, 4].map(g => `<option value="${g}"${g === c.grade ? ' selected' : ''}>${g ? g : 'Мектепалды'}</option>`).join('')}</select></td>
+      <td><select data-f="classes|${c.id}|lang"><option value="kz"${c.lang !== 'ru' ? ' selected' : ''}>Қазақ</option><option value="ru"${c.lang === 'ru' ? ' selected' : ''}>Орыс</option></select></td>
+      <td>${f('classes', c.id, 'room', c.room, 'style="width:70px"')}</td>
+      <td class="hint">${esc(homeroom(c.id) ? short(homeroom(c.id).name) : '—')}</td>
+      <td><button class="x" data-act="delClass" data-id="${c.id}" title="Жою">✕</button></td></tr>`).join('')}
+    </table></div><button class="btn sm" style="margin-top:8px" data-act="addClass">+ Сынып қосу</button></section>
+
+  <section class="card"><h2>🎨 Пәндер және түстер (${S.subjects.length})</h2>
+    <div class="scroll"><table class="st"><tr><th>Түсі</th><th>Пән атауы (қазақша)</th><th title="Орыс сыныптарының кестесінде осы атау шығады. Бос болса — қазақша атауы">Орысша атауы</th><th>Сабақ</th><th title="Автоматты құрғанда орнында қалады (мыс. түскі ас)">Бекітілген</th><th></th></tr>
+    ${S.subjects.map(s => `<tr><td><input type="color" data-f="subjects|${s.id}|color" value="${s.color}"></td><td>${f('subjects', s.id, 'name', s.name, 'class="w"')}</td><td>${f('subjects', s.id, 'ru', s.ru || '', 'class="w" placeholder="' + esc(s.name) + '"')}</td>
+      <td class="hint">${cnt[s.id] || 0}</td><td style="text-align:center"><input type="checkbox" data-fixed="${s.id}"${s.fixed ? ' checked' : ''}></td><td><button class="x" data-act="delSubj" data-id="${s.id}" title="Жою">✕</button></td></tr>`).join('')}
+    </table></div><button class="btn sm" style="margin-top:8px" data-act="addSubj">+ Пән қосу</button></section>
+
+  <section class="card wide"><h2>👩‍🏫 Мұғалімдер (${S.teachers.length})</h2>
+    <div class="scroll" style="max-height:560px"><table class="st"><tr><th style="min-width:240px">Аты-жөні</th><th>Беретін пәндері</th><th>Сынып жетекшісі</th><th></th></tr>
+    ${sortedTeachers().map(t => `<tr><td>${f('teachers', t.id, 'name', t.name, 'class="w"')}</td>
+      <td><div class="tchips">${t.subjects.map(sid => { const s = subj(sid); return s ? `<span class="tchip" style="${colStyle(s.color)}">${esc(s.name)}<button data-act="tsubDel" data-id="${t.id}" data-s="${sid}" title="Алып тастау">✕</button></span>` : ''; }).join('')}
+        <select data-tsubadd="${t.id}"><option value="">+ пән</option>${S.subjects.filter(s => !t.subjects.includes(s.id)).map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join('')}</select></div></td>
+      <td><select data-f="teachers|${t.id}|cls"><option value="">—</option>${ct.map(c => `<option value="${c.id}"${c.id === t.cls ? ' selected' : ''}>${esc(c.name)}</option>`).join('')}</select></td>
+      <td><button class="x" data-act="delTeacher" data-id="${t.id}" title="Жою">✕</button></td></tr>`).join('')}
+    </table></div><button class="btn sm" style="margin-top:8px" data-act="addTeacher">+ Мұғалім қосу</button></section>
+
+  <section class="card wide"><h2>🌐 ${T('Мұғалімдер мен ата-аналарға арналған сайт', 'Сайт для учителей и родителей')}</h2>
+    <p class="hint">${T('Сайт GitHub Pages-те тұр: бірден ашылады, тегін және лимиті жоқ. Деректерді Google-дан кілт бойынша тікелей алады — кестені осы жерде өзгертсеңіз, сайт бірден жаңарады, ештеңе жүктеудің қажеті жоқ. Орыс сыныптарының ата-аналары кестені орысша көреді.',
+      'Сайт размещён на GitHub Pages: открывается сразу, бесплатно и без лимитов. Данные берутся из Google по ключу — изменения расписания сразу видны на сайте, ничего загружать не нужно. Родители русских классов видят расписание на русском.')}</p>
+    <label>${T('Сайттың мекенжайы', 'Адрес сайта')}<input data-web="url" value="${esc(S.web?.url || '')}" placeholder="${SITE_URL}"></label>
+    <div class="mbtns"><button class="btn danger" data-act="webRenew">♻ ${T('Сілтемелерді жаңарту (ескілері жабылады)', 'Обновить ссылки (старые закроются)')}</button></div>
+    <div style="margin-top:8px" id="wlinks">${webLinks()}</div></section>
+
+  <section class="card wide"><h2>🔗 Мұғалімдер мен ата-аналарға арналған сілтемелер (Google)</h2>
+    <p class="hint"><b>Мұғалімдер сілтемесі</b> толық сайтты ашады. <b>Сыныптың сілтемесі</b> тек сол сыныптың сабақ кестесі мен сол сынып оқушыларының үйірмелерін ашады — басқа сыныптар мен басқа балалардың аты-жөні ата-анаға мүлде жіберілмейді.
+      Сайттың қарапайым сілтемесі (…/exec) толық сайтты ашады — оны тек мұғалімдерге беріңіз.</p>
+    <label>1) Сайттың жұмыс істеп тұрған сілтемесі — браузердің жоғарғы мекенжай жолынан көшіріп қойыңыз (…/exec деп аяқталады)
+      <input data-school="siteUrl" value="${esc(S.siteUrl || '')}" placeholder="https://script.google.com/macros/s/…/exec"></label>
+    <p class="hint">2) «🔗 Сілтемелерді көрсету» → 3) «Көшіру» — сілтеме «${esc(S.subtitle || SUBTITLE)}» деген тақырыппен бірге көшіріледі, WhatsApp-қа қоя салыңыз.</p>
+    <div class="mbtns"><button class="btn primary" data-act="linksShow">🔗 Сілтемелерді көрсету</button>
+      <button class="btn danger" data-act="linksRenew">♻ Барлық сілтемені жаңарту (ескілері жабылады)</button></div>
+    <div style="margin-top:8px" id="plinks">${parentLinks()}</div></section>
+
+  <section class="card wide help"><h2>📖 Нұсқаулық: қалай жасау керек</h2>
+    <h3>Жаңа пән қосу</h3><ol>
+      <li>Осы беттегі «🎨 Пәндер және түстер» → <b>+ Пән қосу</b> → атауын жазыңыз, түсін таңдаңыз.</li>
+      <li>«👩‍🏫 Мұғалімдер» бөлімінде сол пәнді беретін мұғалімнің жолындағы <b>«+ пән»</b> тізімінен пәнді қосыңыз.</li>
+      <li>«📚 Оқу жоспары» → сыныпты таңдаңыз → <b>+ Пән қосу</b> → пәнді, сағат санын, мұғалімді, кабинетті көрсетіңіз.</li>
+      <li>Кестеге қою: «🎒 Сынып кестесі» → <b>✋ Қолмен құру</b> (немесе ұяшықты басып қолмен, немесе «Оқу жоспары» → ⚡ Автоматты құру).</li></ol>
+    <h3>Пәннің атауын немесе түсін өзгерту</h3><ol>
+      <li>«🎨 Пәндер және түстер» бөлімінде атауын/түсін өзгертіңіз — барлық кестеде, PDF-те бірден өзгереді.</li></ol>
+    <h3>Қазақ және орыс сыныптары</h3><ol>
+      <li>«🎒 Сыныптар» бөліміндегі <b>Тілі</b> бағаны: орыс сыныбының кестесі, PDF-і және ата-аналар беті орысша шығады.</li>
+      <li>«🎨 Пәндер және түстер» бөліміндегі <b>Орысша атауы</b> — орыс сыныптарында шығатын атау (бос болса — қазақша атауы шығады).</li></ol>
+    <h3>Пәнді алып тастау</h3><ol><li>Пән жолындағы <b>✕</b> — сол пәннің барлық сабақтары кестеден өшеді.</li></ol>
+    <h3>Жаңа мұғалім келсе</h3><ol>
+      <li>«👩‍🏫 Мұғалімдер» → <b>+ Мұғалім қосу</b> → аты-жөнін жазыңыз (Аты Әкесінің аты Тегі), «+ пән» арқылы пәндерін қосыңыз, сынып жетекшісі болса — сыныбын таңдаңыз.</li>
+      <li>Оқу жоспарында немесе кестеде сабақтарына осы мұғалімді таңдаңыз.</li></ol>
+    <h3>Мұғалім жұмыстан шықса</h3><ol>
+      <li>Орнына келген мұғалімді алдымен <b>+ Мұғалім қосу</b> арқылы қосыңыз.</li>
+      <li>Кеткен мұғалімнің жолындағы <b>✕</b> → «Сабақтарын кімге беру керек?» тізімінен жаңа мұғалімді таңдаңыз → <b>Жою</b>. Барлық сабақтары, жоспары, пәндері мен сынып жетекшілігі жаңа мұғалімге өтеді.</li></ol>
+    <h3>Кестені қолмен құру</h3><ol>
+      <li>«🎒 Сынып кестесі» → сыныпты таңдаңыз → <b>✋ Қолмен құру</b>.</li>
+      <li>Сары тақтадан пәнді таңдаңыз (санауыш: қойылғаны / жоспар бойынша) → кестедегі ұяшықты басыңыз. Жасыл жиек — бос уақыт, сызықты ұяшық — мұғалім немесе кабинет бос емес.</li>
+      <li>Қате қойылса — <b>🧽 Өшіргіш</b>-ті таңдап, ұяшықты басыңыз. Сабақтың орнын тінтуірмен сүйреп ауыстыруға да болады.</li>
+      <li>Қайшылық болса, ұяшық қызыл болып, дыбыс шығады — «⚠ Қайшылық» батырмасынан тізімін көресіз.</li></ol></section>
+
+  <section class="card wide"><h2>💾 Деректер</h2>
+    <div class="dbtns">
+      <button class="btn primary" data-act="export">⬇ Экспорт (JSON)</button>
+      <button class="btn" data-act="import">⬆ Импорт (JSON)</button>
+      <button class="btn danger" data-act="clear">Кестені тазалау</button>
+      <button class="btn danger" data-act="reset">Мектептің бастапқы кестесіне (PDF) қайтару</button>
+    </div>
+    <p class="hint">Бастапқы деректер: «Расписание по классам.pdf» (20.10.2026), мұғалімдердің толық аты-жөні мен бастауыш сыныптан тыс сабақтары — мұғалімдер кестесінен; үйірмелер — үйірме сайтынан.</p></section>
+  </div>`;
+}
+
+function render() {
+  if ((tab === 'plan' || tab === 'settings') && !isAdmin) tab = 'all';
+  if (PARENT && tab !== 'class' && tab !== 'clubs') tab = 'class';
+  renderHeader();
+  const sc = window.scrollY, tw = $('.tw'), tsx = tw ? tw.scrollLeft : 0, tsy = tw ? tw.scrollTop : 0;
+  $('#main').setAttribute('data-ok', '1');
+  $('#main').innerHTML = tab === 'all' ? viewAll() : tab === 'class' ? viewClass() : tab === 'teacher' ? viewTeacher()
+    : tab === 'room' ? viewRoom() : tab === 'clubs' ? viewClubs() : tab === 'subs' ? viewSubs() : tab === 'plan' ? viewPlan() : viewSettings();
+  const tw2 = $('.tw'); if (tw2) { tw2.scrollLeft = tsx; tw2.scrollTop = tsy; }
+  window.scrollTo(0, sc);
+}
+
+/* ---------- Модаль терезе ---------- */
+function openModal(html) { $('#md').innerHTML = html; $('#ov').hidden = false; }
+function closeModal() { $('#ov').hidden = true; }
+$('#ov').addEventListener('click', e => { if (!busy && (e.target.id === 'ov' || e.target.closest('[data-close]'))) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !busy) closeModal(); });
+function ask(msg, yes) {
+  openModal(`<h3>Растау</h3><p>${msg}</p><div class="mbtns"><span style="flex:1"></span>
+    <button class="btn" data-close>Жоқ</button><button class="btn primary" id="askYes">Иә</button></div>`);
+  $('#askYes').onclick = () => { closeModal(); yes(); };
+}
+
+/* ---------- Админ кіру ---------- */
+async function sha256(s) {
+  const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+  return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join('');
+}
+const localHash = () => { try { return localStorage.getItem(HKEY) || DEFAULT_PW_HASH; } catch (e) { return DEFAULT_PW_HASH; } };
+function verifyPw(pw) {
+  return SERVER ? new Promise((res, rej) => google.script.run.withSuccessHandler(res).withFailureHandler(rej).checkPassword(pw))
+    : sha256(pw).then(h => h === localHash());
+}
+function openLogin() {
+  openModal(`<h3>🔒 Админ ретінде кіру</h3>
+    <form id="lgForm"><label>Құпиясөз<input type="password" id="lgPw" autocomplete="current-password" autofocus></label>
+    <div class="warn" id="lgW"></div>
+    <div class="mbtns"><span style="flex:1"></span><button type="button" class="btn" data-close>Болдырмау</button><button class="btn primary" type="submit" id="lgOk">Кіру</button></div></form>`);
+  setTimeout(() => $('#lgPw')?.focus(), 30);
+  $('#lgForm').onsubmit = async e => {
+    e.preventDefault();
+    const pw = $('#lgPw').value; if (!pw) return;
+    $('#lgOk').disabled = true; $('#lgW').textContent = '';
+    try {
+      if (await verifyPw(pw)) {
+        isAdmin = true; adminPw = pw; try { sessionStorage.setItem('sabak-adm', pw); } catch (e) {}
+        closeModal(); computeConflicts(); prevConf = new Set(Object.keys(C.les)); render(); toast('✓ Админ режимі қосылды. Енді кестені өзгертуге болады.', true);
+      } else { $('#lgW').textContent = 'Құпиясөз қате.'; $('#lgOk').disabled = false; }
+    } catch (err) { $('#lgW').textContent = 'Тексеру мүмкін болмады: ' + (err && err.message || err); $('#lgOk').disabled = false; }
+  };
+}
+function logout() {
+  if (pending) pushServer();
+  isAdmin = false; adminPw = ''; try { sessionStorage.removeItem('sabak-adm'); } catch (e) {}
+  render(); toast('Админ режимінен шықтыңыз', true);
+}
+async function changePw() {
+  const o = $('#pwOld').value, n = $('#pwNew').value, n2 = $('#pwNew2').value;
+  if (n.length < 6) return toast('Жаңа құпиясөз кемінде 6 таңба болуы керек');
+  if (n !== n2) return toast('Жаңа құпиясөздер сәйкес емес');
+  try {
+    if (SERVER) await new Promise((res, rej) => google.script.run.withSuccessHandler(res).withFailureHandler(rej).changePassword(o, n));
+    else { if (await sha256(o) !== localHash()) throw new Error('Қазіргі құпиясөз қате'); localStorage.setItem(HKEY, await sha256(n)); }
+    adminPw = n; try { sessionStorage.setItem('sabak-adm', n); } catch (e) {}
+    $('#pwOld').value = $('#pwNew').value = $('#pwNew2').value = '';
+    toast('✓ Құпиясөз өзгертілді', true);
+  } catch (e) { toast((e && e.message) || String(e)); }
+}
+
+/* ---------- Ұяшықты өңдеу ---------- */
+function candidates(c, sid) {
+  const all = S.teachers.filter(t => t.subjects.includes(sid));
+  const h = all.filter(t => t.cls === c.id); return h.length ? [...h, ...all.filter(t => t.cls !== c.id)] : all;
+}
+function busyAt(tid, d, l, exceptK) {
+  for (const k in S.sched) { if (k === exceptK) continue; const [, d2, l2] = k.split('|'); if (+d2 === +d && +l2 === +l && S.sched[k].some(x => x.s && x.t === tid)) return true; }
+  return (S.extra || []).some(x => x.t === tid && x.d === +d && x.p === +l) || (S.clubs?.groups || []).some(g => g.tid === tid && g.p === +l && g.days.includes(+d));
+}
+function openEdit(k) {
+  const [cid, d, l] = k.split('|'), c = cls(cid); if (!c) return;
+  let W = clone(cellL(k)); if (!W.length) W = [{ s: '', t: '', r: c.room || '', g: '' }];
+  const rooms = roomList();
+  const tOpts = (sid, sel) => {
+    const yes = S.teachers.filter(t => t.subjects.includes(sid)), no = sortedTeachers().filter(t => !t.subjects.includes(sid));
+    const o = t => `<option value="${t.id}"${t.id === sel ? ' selected' : ''}>${esc(t.name)}${t.cls && cls(t.cls) ? ' (' + esc(cls(t.cls).name) + ')' : ''}${busyAt(t.id, d, l, k) ? ' — бос емес' : ''}</option>`;
+    return `<option value="">—</option>` + (yes.length ? `<optgroup label="Осы пәнді береді">${yes.map(o).join('')}</optgroup>` : '') + `<optgroup label="Басқа мұғалімдер">${no.map(o).join('')}</optgroup>`;
+  };
+  const draw = () => {
+    $('#eL').innerHTML = W.map((x, i) => `<div class="eb" style="--c:${subj(x.s)?.color || '#cbd5e1'}" data-i="${i}">
+      <div class="ebh"><span>${W.length > 1 ? (i + 1) + '-топ' : 'Сабақ'}</span>${W.length > 1 ? `<button class="x" data-del="${i}" title="Бұл топты жою">✕</button>` : ''}</div>
+      <label class="full">Пән<select data-e="s"><option value="">— бос —</option>${S.subjects.map(s => `<option value="${s.id}"${s.id === x.s ? ' selected' : ''}>${esc(s.name)}</option>`).join('')}</select></label>
+      <label class="full">Мұғалім<select data-e="t">${tOpts(x.s, x.t)}</select></label>
+      <label>Кабинет<input data-e="r" list="roomsDL" value="${esc(x.r || '')}"></label>
+      <label>Топ (бөлінсе)<input data-e="g" value="${esc(x.g || '')}" placeholder="мыс. 1 группа"></label></div>`).join('');
+    warn();
+  };
+  const warn = () => {
+    const old = S.sched[k]; S.sched[k] = W.filter(x => x.s); computeConflicts();
+    const msgs = [...new Set(S.sched[k].flatMap((x, i) => C.les[k + '#' + i] || []))];
+    if (old) S.sched[k] = old; else delete S.sched[k]; computeConflicts();
+    $('#eW').innerHTML = msgs.map(m => '⚠ ' + esc(m)).join('<br>');
+  };
+  openModal(`<h3>${esc(c.name)} · ${DAYS_ALL[d]} · ${+l + 1}-сабақ <small>${timeStr(+l)}</small></h3>
+    <div id="eL"></div><datalist id="roomsDL">${rooms.map(r => `<option value="${esc(r[1])}">`).join('')}</datalist>
+    <button class="btn sm" id="eAdd">+ Топқа бөлу / топ қосу</button>
+    <div class="warn" id="eW"></div>
+    <div class="mbtns"><button class="btn danger" id="eDel">Ұяшықты тазалау</button><span style="flex:1"></span>
+      <button class="btn" data-close>Болдырмау</button><button class="btn primary" id="eOk">Сақтау</button></div>`);
+  const box = $('#eL');
+  box.addEventListener('change', e => {
+    const el = e.target, i = +el.closest('.eb').dataset.i, x = W[i], f = el.dataset.e; if (!f) return;
+    x[f] = el.value;
+    if (f === 's') {
+      if (!x.s) x.t = '';
+      else if (!teacher(x.t)?.subjects.includes(x.s)) { const cd = candidates(c, x.s), t = cd.find(t => !busyAt(t.id, d, l, k)) || cd[0]; x.t = t ? t.id : ''; }
+      draw(); return;
+    }
+    warn();
+  });
+  box.addEventListener('input', e => { const el = e.target; if (el.dataset.e === 'r' || el.dataset.e === 'g') { W[+el.closest('.eb').dataset.i][el.dataset.e] = el.value; warn(); } });
+  box.addEventListener('click', e => { const b = e.target.closest('[data-del]'); if (b) { W.splice(+b.dataset.del, 1); if (W.length === 1 && /^\d+ (группа|топ)$/.test(W[0].g)) W[0].g = ''; draw(); } });
+  $('#eAdd').onclick = () => { W.forEach((x, i) => { if (!x.g) x.g = (i + 1) + ' группа'; }); W.push({ s: W[0]?.s || '', t: '', r: '', g: (W.length + 1) + ' группа' }); draw(); };
+  $('#eOk').onclick = () => { const v = W.filter(x => x.s).map(x => ({ s: x.s, t: x.t, r: x.r.trim(), g: x.g.trim() })); if (v.length) S.sched[k] = v; else delete S.sched[k]; closeModal(); commit(); };
+  $('#eDel').onclick = () => { delete S.sched[k]; closeModal(); commit(); };
+  draw();
+}
+
+/* ---------- Үйірме терезелері ---------- */
+function showClubSlot(cid, d, l) {
+  const gs = C.clubIdx[cid + '|' + d + '|' + l] || [], CL = S.clubs;
+  openModal(`<h3>🎨 ${esc(cls(cid).name)} · ${DAYS_ALL[d]} · ${+l + 1}${T('-сабақ', '-й урок')} <small>${timeStr(+l)}</small></h3>
+    <p class="hint">${T(`Осы уақытта ${esc(cls(cid).name)} сыныбының оқушылары қатысатын үйірмелер:`, `Кружки, которые в это время посещают ученики ${esc(cls(cid).name)} класса:`)}</p>
+    ${gs.map(g => { const ks = g.kids.filter(i => CL.kids[i].cid === cid).map(i => CL.kids[i].name).sort((a, b) => a.localeCompare(b, 'ru'));
+      return `<div class="eb" style="--c:${clubColor(g)};display:block"><b>${esc(clubLabel(g))}</b> <span class="hint">· ${esc(g.room)} · ${esc(g.teacher)}</span>
+        <ol style="margin:6px 0 0;padding-left:22px">${ks.map(n => `<li>${esc(n)}</li>`).join('')}</ol></div>`; }).join('')}
+    <div class="mbtns"><span style="flex:1"></span><button class="btn primary" data-close>${T('Жабу', 'Закрыть')}</button></div>`);
+}
+function showGroup(id) { const g = S.clubs.groups.find(x => x.id === id); if (!g) return; openModal(groupCard(g).replace('class="gcard', 'style="box-shadow:none" class="gcard') + `<div class="mbtns"><span style="flex:1"></span><button class="btn primary" data-close>${T('Жабу', 'Закрыть')}</button></div>`); }
+function editGroup(id) {
+  const g = S.clubs.groups.find(x => x.id === id); if (!g) return;
+  openModal(`<h3>✎ ${esc(clubLabel(g))}</h3>
+    <div class="grid2"><label>Үйірме атауы<input id="gC" value="${esc(g.club)}"></label><label>Топ<input id="gN" value="${esc(g.num)}"></label></div>
+    <label>Күндері</label><div class="bar">${[...Array(nDays()).keys()].map(d => `<label class="chk" style="flex-direction:row;gap:4px;color:var(--ink)"><input type="checkbox" class="gD" value="${d}"${g.days.includes(d) ? ' checked' : ''}>${DAYS_ALL[d]}</label>`).join('')}</div>
+    <label>Сабақ<select id="gP">${S.times.map((t, i) => `<option value="${i}"${g.p === i ? ' selected' : ''}>${i + 1}-сабақ (${t[0]}–${t[1]})</option>`).join('')}</select></label>
+    <div class="grid2"><label>Кабинет<input id="gR" value="${esc(g.room)}"></label><label>Педагог<input id="gT" value="${esc(g.teacher)}"></label></div>
+    <div class="mbtns"><span style="flex:1"></span><button class="btn" data-close>Болдырмау</button><button class="btn primary" id="gOk">Сақтау</button></div>`);
+  $('#gOk').onclick = () => {
+    g.club = $('#gC').value.trim() || g.club; g.num = $('#gN').value.trim(); g.room = $('#gR').value.trim();
+    if ($('#gT').value.trim() !== g.teacher) { g.teacher = $('#gT').value.trim(); g.tid = matchTeacher(g.teacher); }
+    g.days = [...document.querySelectorAll('.gD:checked')].map(x => +x.value); g.p = +$('#gP').value; g.ov = true;
+    closeModal(); commit();
+  };
+}
+/* Мұғалім жұмыстан шықса: сабақтарын басқа мұғалімге беру немесе мұғалімсіз қалдыру */
+function removeTeacher(id) {
+  const t = teacher(id); if (!t) return;
+  let n = 0; for (const k in S.sched) S.sched[k].forEach(x => { if (x.t === id) n++; });
+  const others = sortedTeachers().filter(x => x.id !== id);
+  openModal(`<h3>Мұғалімді жою: ${esc(t.name)}</h3>
+    <p>Бұл мұғалімнің кестеде <b>${n}</b> сабағы бар${t.cls && cls(t.cls) ? `, ол <b>${esc(cls(t.cls).name)}</b> сыныбының жетекшісі` : ''}.</p>
+    <label>Сабақтарын кімге беру керек?<select id="rtTo"><option value="">— ешкімге (сабақтар мұғалімсіз қалады) —</option>
+      ${others.map(x => `<option value="${x.id}">${esc(x.name)}${x.subjects.some(s => t.subjects.includes(s)) ? ' ✓ осы пәндерді береді' : ''}</option>`).join('')}</select></label>
+    <p class="hint">Таңдалған мұғалімге барлық сабақтар, оқу жоспарындағы сағаттар, пәндер${t.cls ? ' және сынып жетекшілігі' : ''} беріледі. Жаңа мұғалім әлі тізімде болмаса, алдымен «+ Мұғалім қосу» арқылы қосыңыз.</p>
+    <div class="mbtns"><span style="flex:1"></span><button class="btn" data-close>Болдырмау</button><button class="btn danger" id="rtOk">Жою</button></div>`);
+  $('#rtOk').onclick = () => {
+    const to = $('#rtTo').value, nt = teacher(to);
+    for (const k in S.sched) S.sched[k].forEach(x => { if (x.t === id) x.t = to; });
+    for (const c in S.plan) S.plan[c].rows.forEach(r => r.items.forEach(it => { if (it.t === id) it.t = to; }));
+    S.extra = (S.extra || []).filter(x => x.t !== id);
+    (S.clubs?.groups || []).forEach(g => { if (g.tid === id) g.tid = to; });
+    if (nt) { t.subjects.forEach(s => { if (!nt.subjects.includes(s)) nt.subjects.push(s); }); if (t.cls && !nt.cls) nt.cls = t.cls; }
+    S.teachers = S.teachers.filter(x => x.id !== id);
+    closeModal(); commit(); toast(nt ? `✓ Сабақтары ${nt.name} мұғаліміне берілді` : '✓ Мұғалім жойылды, сабақтары мұғалімсіз қалды', true);
+  };
+}
+
+function refreshClubs() {
+  const done = txt => {
+    try {
+      const j = JSON.parse(txt); if (!j.ok || !j.payload || !Array.isArray(j.payload.groups)) throw new Error(j.error || 'деректер жоқ');
+      S.clubs = importClubs(j.payload, S.clubs?.map); applyClubFixes(S.clubs); commit(); toast(`✓ Үйірмелер жаңартылды: ${S.clubs.groups.length} топ, ${S.clubs.kids.length} оқушы (${S.clubs.date})`, true);
+    } catch (e) { toast('Үйірмелерді жаңарту мүмкін болмады: ' + e.message); }
+  };
+  toast('Үйірмелер сайтынан жүктелуде…', true);
+  if (SERVER) google.script.run.withSuccessHandler(done).withFailureHandler(e => toast('Қате: ' + e.message)).fetchClubs(STAFF);
+  else fetch(CLUB_API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'primary' }) })
+    .then(r => r.text()).then(done).catch(e => toast('Қате: ' + e.message));
+}
+
+function showConflicts() {
+  if (!C.list.length) { toast('✓ Кестеде қайшылық жоқ: мұғалімдер, кабинеттер, сыныптар және үйірмелер сәйкес келмейді', true); return; }
+  alarm();
+  openModal(`<h3>⚠ Қайшылықтар (${C.list.length})</h3><ul class="clist">${C.list.map(x =>
+    `<li><b>${DAYS_ALL[x.d]}${x.l >= 0 ? ', ' + (x.l + 1) + '-сабақ (' + timeStr(x.l) + ')' : ''}</b><br>${esc(x.msg)}</li>`).join('')}</ul>
+    <div class="mbtns"><span style="flex:1"></span><button class="btn primary" data-close>Жабу</button></div>`);
+}
+
+/* ---------- PDF жүктеу ---------- */
+function pdfData(kind, id) {
+  const D = nDays(), L = S.times.length, map = {}, push = (d, l, e) => (map[d + '|' + l] ??= []).push(e);
+  let title = '', sub = [], lang = 'kz';
+  const inRange = k => { const [c, d, l] = k.split('|'); return cls(c) && +d < D && +l < L; };
+  const clubE = (g, b, c) => ({ name: g.club + ' · ' + g.num, col: clubColor(g), b, c, r: '' });
+  const nm = (x, c) => sName(subj(x.s), clsLang(c));   // пән атауы — сабақ өтетін сыныптың тілінде
+  if (kind === 'class') {
+    const c = cls(id), hr = homeroom(id); lang = clsLang(id);
+    const t2 = (kz, ru) => lang === 'ru' ? ru : kz;
+    title = c.name + ' ' + t2('сыныбы', 'класс');
+    sub = [hr && t2('Сынып жетекшісі: ', 'Классный руководитель: ') + hr.name, c.room && 'Кабинет: ' + c.room];
+    for (let d = 0; d < D; d++) for (let l = 0; l < L; l++) {
+      cellL(id + '|' + d + '|' + l).forEach(x => push(d, l, { s: x.s, name: nm(x, id), b: '', g: x.g, c: teacher(x.t) ? short(teacher(x.t).name) : '', r: x.r }));
+      const gs = C.clubIdx[id + '|' + d + '|' + l];
+      if (gs && gs.length) push(d, l, { name: t2('Үйірмелер', 'Кружки'), col: CLUB_COLOR, b: gs.length + t2(' топ', ' гр.'), c: '', r: '' });
+    }
+  } else if (kind === 'teacher') {
+    const t = teacher(id); let n = 0; title = t.name;
+    for (const k in S.sched) { if (!inRange(k)) continue; const [c, d, l] = k.split('|');
+      S.sched[k].forEach(x => { if (x.s && x.t === id) { n++; push(+d, +l, { s: x.s, name: nm(x, c), b: cls(c).name, g: x.g, c: '', r: x.r }); } }); }
+    (S.extra || []).forEach(x => { if (x.t === id && x.d < D && x.p < L) { n++; push(x.d, x.p, { s: x.s, b: x.label, c: '', r: x.r }); } });
+    (S.clubs?.groups || []).forEach(g => { if (g.tid === id) g.days.forEach(d => { if (d < D && g.p < L) { n++; push(d, g.p, { ...clubE(g, g.kids.length + ' оқушы', ''), r: g.room }); } }); });
+    lang = UI; sub = [t.cls && cls(t.cls) && T('Сынып жетекшісі: ', 'Классный руководитель: ') + cls(t.cls).name, T('Аптасына: ', 'В неделю: ') + n + T(' сабақ', ' уроков')];
+  } else {
+    title = 'Кабинет ' + roomName(id);
+    const owners = S.classes.filter(c => nr(c.room) === id).map(c => c.name);
+    for (const k in S.sched) { if (!inRange(k)) continue; const [c, d, l] = k.split('|');
+      S.sched[k].forEach(x => { if (x.s && nr(x.r) === id) push(+d, +l, { s: x.s, name: nm(x, c), b: cls(c).name, g: x.g, c: teacher(x.t) ? short(teacher(x.t).name) : '', r: '' }); }); }
+    (S.clubs?.groups || []).forEach(g => { if (nr(g.room) === id) g.days.forEach(d => { if (d < D && g.p < L) push(d, g.p, clubE(g, g.teacher, '')); }); });
+    lang = UI; sub = [owners.length && T('Сынып кабинеті: ', 'Кабинет класса: ') + owners.join(', ')];
+  }
+  let last = 0; for (const key in map) last = Math.max(last, +key.split('|')[1]);
+  return { title, sub: sub.filter(Boolean), map, rows: last + 1, D, lang };
+}
+function pdfHead(title, sub) {
+  return `<div style="height:92px;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid #1e3a8a;padding-bottom:6px;box-sizing:border-box">
+    <div><div style="font-size:14px;color:#334155;font-weight:600">${esc(S.school)}</div>
+      <div style="font-size:30px;font-weight:800;color:#1e3a8a;line-height:1.15">${esc(title)}</div>
+      <div style="font-size:13.5px;color:#334155">${sub.map(esc).join(' &nbsp;·&nbsp; ')}</div></div>
+    <div style="text-align:right;font-size:12.5px;color:#475569;max-width:300px">${esc(S.subtitle || SUBTITLE)}</div></div>`;
+}
+const pdfFoot = () => `<div style="height:24px;display:flex;justify-content:space-between;align-items:flex-end;font-size:11px;color:#64748b"><span>${T('Құрастырылған күні', 'Дата составления')}: ${new Date().toLocaleDateString('ru-RU')}</span><span>${esc(S.school)}</span></div>`;
+const pdfPage = p => inLang(p.lang || 'kz', () => pdfPageL(p));
+function pdfPageL(p) {
+  const W = 1123, H = 794, headH = 92, footH = 24, pad = 26, thH = 28;
+  const rowH = Math.floor((H - pad * 2 - headH - footH - thH) / p.rows), big = rowH >= 56;
+  const fs = big ? 13 : rowH >= 44 ? 11.5 : 10, fs2 = fs - 2;
+  const el = document.createElement('div');
+  el.style.cssText = `width:${W}px;height:${H}px;padding:${pad}px;background:#fff;font-family:'Segoe UI',Arial,sans-serif;color:#111827;box-sizing:border-box`;
+  let h = pdfHead(p.title, p.sub) + `<table style="width:100%;border-collapse:collapse;table-layout:fixed">
+    <tr style="height:${thH}px"><th style="width:78px;background:#1e3a8a;color:#fff;font-size:12px;border:1px solid #1e3a8a">${T('№ / уақыт', '№ / время')}</th>
+    ${[...Array(p.D).keys()].map(d => `<th style="background:#1e3a8a;color:#fff;font-size:14px;border:1px solid #1e3a8a">${DAYS_ALL[d]}</th>`).join('')}</tr>`;
+  for (let l = 0; l < p.rows; l++) {
+    h += `<tr style="height:${rowH}px"><td style="background:#e8eefb;text-align:center;border:1px solid #cbd5e1;font-weight:700;font-size:${fs + 2}px;line-height:1.1">${l + 1}<div style="font-weight:400;font-size:10.5px;color:#475569">${timeStr(l)}</div></td>`;
+    for (let d = 0; d < p.D; d++) {
+      const es = p.map[d + '|' + l] || [];
+      h += `<td style="border:1px solid #cbd5e1;padding:2px;vertical-align:top"><div style="display:flex;gap:2px;height:${rowH - 6}px">${es.map(e => {
+        const s = e.s ? subj(e.s) : null, col = e.col || (s ? s.color : '#cccccc'), tc = textOn(col), sp = es.length > 1;
+        const g = String(e.g || '').replace(/\s*группа/i, ' гр.');
+        const l3 = [g, e.r && 'Каб. ' + String(e.r).replace(/^каб\.?\s*/i, '')].filter(Boolean).join(' · ');
+        return `<div style="flex:1;min-width:0;overflow:hidden;background:${col};color:${tc};border-radius:4px;padding:2px ${sp ? 4 : 6}px;box-sizing:border-box">
+          <div style="font-weight:700;font-size:${sp ? fs - 1.5 : fs}px;line-height:1.15;white-space:nowrap;overflow:hidden;letter-spacing:${sp ? -0.2 : 0}px">${esc(e.name || (s ? s.name : '?'))}</div>
+          <div style="font-size:${fs2}px;line-height:1.2;white-space:nowrap;overflow:hidden;opacity:.92">${esc([e.b, e.c].filter(Boolean).join(' · '))}</div>
+          ${l3 ? `<div style="font-size:${fs2}px;line-height:1.2;white-space:nowrap;overflow:hidden;opacity:.85">${esc(l3)}</div>` : ''}</div>`;
+      }).join('')}</div></td>`;
+    }
+    h += '</tr>';
+  }
+  el.innerHTML = h + '</table>' + pdfFoot();
+  return el;
+}
+function clubListPage(g) {
+  const CL = S.clubs, el = document.createElement('div');
+  const kids = g.kids.map(i => CL.kids[i]).filter(Boolean).sort((a, b) => a.cls.localeCompare(b.cls) || a.name.localeCompare(b.name, 'ru'));
+  const half = Math.ceil(kids.length / 2), cols = kids.length > 16 ? [kids.slice(0, half), kids.slice(half)] : [kids];
+  const fs = kids.length > 40 ? 12 : 15;
+  el.style.cssText = `width:1123px;height:794px;padding:26px;background:#fff;font-family:'Segoe UI',Arial,sans-serif;color:#111827;box-sizing:border-box;display:flex;flex-direction:column`;
+  let n = 0;
+  el.innerHTML = pdfHead(g.club + ' · ' + g.num, [clubTime(g), g.room, g.teacher, kids.length + T(' оқушы', ' уч.')].filter(Boolean)) +
+    `<div style="flex:1;display:flex;gap:24px;margin-top:14px">${cols.map(col => `<table style="flex:1;border-collapse:collapse;align-self:flex-start">
+      <tr><th style="background:${clubColor(g)};color:#fff;padding:6px;border:1px solid #cbd5e1;width:40px">№</th><th style="background:${clubColor(g)};color:#fff;padding:6px;border:1px solid #cbd5e1;width:70px">${T('Сынып', 'Класс')}</th><th style="background:${clubColor(g)};color:#fff;padding:6px;border:1px solid #cbd5e1;text-align:left">${T('Оқушының аты-жөні', 'ФИО ученика')}</th></tr>
+      ${col.map(k => `<tr><td style="border:1px solid #cbd5e1;padding:4px 6px;text-align:center;font-size:${fs}px">${++n}</td><td style="border:1px solid #cbd5e1;padding:4px 6px;text-align:center;font-size:${fs}px">${esc(k.cls)}</td><td style="border:1px solid #cbd5e1;padding:4px 8px;font-size:${fs}px">${esc(k.name)}</td></tr>`).join('')}</table>`).join('')}</div>` + pdfFoot();
+  return el;
+}
+const safeName = s => String(s).replace(/[\\/:*?"<>|]+/g, '_').trim();
+function download(blob, name) {
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+}
+async function renderInto(doc, el, first) {
+  $('#pdfHost').appendChild(el);
+  try {
+    const cv = await html2canvas(el, { scale: 2, backgroundColor: '#ffffff', logging: false });
+    if (!first) doc.addPage('a4', 'landscape');
+    doc.addImage(cv.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, 297, 210);
+  } finally { el.remove(); }
+}
+async function makePdf(items, mode, zipName, oneName) {
+  if (busy) return;
+  if (!window.jspdf || !window.html2canvas || !window.JSZip) { toast('PDF кітапханасы жүктелмеді'); return; }
+  if (!items.length) { toast('Жүктейтін ештеңе жоқ'); return; }
+  const { jsPDF } = window.jspdf;
+  busy = true;
+  openModal(`<h3>📄 ${T('PDF дайындалуда…', 'PDF готовится…')}</h3><p id="pgTxt">0 / ${items.length}</p><div class="pbar"><i id="pgBar"></i></div>`);
+  const prog = i => { $('#pgTxt').textContent = `${i} / ${items.length}`; $('#pgBar').style.width = (i / items.length * 100) + '%'; };
+  try {
+    if (mode === 'zip') {
+      const zip = new JSZip();
+      for (let i = 0; i < items.length; i++) {
+        const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+        await renderInto(doc, items[i].el(), true);
+        zip.file(safeName(items[i].name) + '.pdf', doc.output('arraybuffer')); prog(i + 1);
+      }
+      download(await zip.generateAsync({ type: 'blob' }), safeName(zipName + '.zip'));
+    } else {
+      const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+      for (let i = 0; i < items.length; i++) { await renderInto(doc, items[i].el(), i === 0); prog(i + 1); }
+      download(doc.output('blob'), safeName(items.length === 1 ? items[0].name + ' — ' + oneName + '.pdf' : zipName + '.pdf'));
+    }
+    busy = false; closeModal(); toast(T('✓ PDF жүктелді (Жүктеулер / Downloads қалтасын қараңыз)', '✓ PDF скачан (папка «Загрузки» / Downloads)'), true);
+  } catch (e) { busy = false; closeModal(); toast('PDF жасау кезінде қате: ' + e); }
+}
+function pdfAction(kind, mode) {
+  let ids;
+  if (kind === 'class') ids = mode === 'one' ? [curClass] : sortedClasses().filter(c => mode !== 'filter' || gradeF < 0 || c.grade === gradeF).map(c => c.id);
+  else if (kind === 'teacher') ids = mode === 'one' ? [curTeacher] : sortedTeachers().filter(t => !pdfData('teacher', t.id).sub.some(x => /: 0 (сабақ|уроков)/.test(x))).map(t => t.id);
+  else ids = mode === 'one' ? [curRoom] : roomList().map(r => r[0]);
+  const nameOf = id => kind === 'class' ? cls(id).name + (clsLang(id) === 'ru' ? ' класс' : ' сынып') : kind === 'teacher' ? teacher(id).name : 'Кабинет ' + roomName(id);
+  const label = { class: 'Сыныптар', teacher: 'Мұғалімдер', room: 'Кабинеттер' }[kind];
+  makePdf(ids.filter(Boolean).map(id => ({ name: nameOf(id), el: () => pdfPage(pdfData(kind, id)) })), mode === 'zip' ? 'zip' : 'one', label + ' — сабақ кестесі', kind === 'class' && ids.length === 1 && clsLang(ids[0]) === 'ru' ? 'расписание' : 'сабақ кестесі');
+}
+function clubPdf(which) {
+  const gs = which === '*' || which === 'zip' ? [...S.clubs.groups].sort((a, b) => a.club.localeCompare(b.club, 'ru') || a.num.localeCompare(b.num, 'ru', { numeric: true })) : S.clubs.groups.filter(g => g.id === which);
+  makePdf(gs.map(g => ({ name: g.club + ' ' + g.num, el: () => clubListPage(g) })), which === 'zip' ? 'zip' : 'one', 'Үйірмелер — оқушылар тізімі', 'оқушылар тізімі');
+}
+
+/* ---------- Админ бөлімдерінің орысша аудармасы (ҚАЗ | РУС → РУС) ----------
+   Баптаулар, оқу жоспары, терезелер мен хабарламалар қазақша жазылған; орысша режимде олардың мәтіні осы сөздік бойынша ауыстырылады.
+   Пән атаулары, мұғалімдер мен оқушылардың аты-жөні (кесте ұяшықтары, тізімдер) өзгертілмейді. */
+const RU_UI = {
+  '— бос —': '— пусто —', '— бос емес': '— занято', '— ешкімге': '— никому', '➕ Жаңа оқушы': '➕ Новый ученик', '— қай сыныпқа —': '— в какой класс —',
+  '— мұғалім —': '— учитель —', '— мұғалімдер мен ата-аналарға': '— для учителей и родителей', '— пән —': '— предмет —', '— топты таңдаңыз —': '— выберите группу —',
+  '. Жалғастырамыз ба?': '. Продолжить?', '⏰ Сабақ уақыты': '⏰ Время уроков', '⏳ Сақталуда…': '⏳ Сохранение…', '+ Мұғалім қосу': '+ Добавить учителя',
+  '+ пән': '+ предмет', '+ Пән қосу': '+ Добавить предмет', '+ Сабақ қосу': '+ Добавить урок', '+ Сынып қосу': '+ Добавить класс', '+ топқа бөлу': '+ разделить на группы',
+  '+ Топқа бөлу / топ қосу': '+ Разделить на группы / добавить группу', '⬆ Импорт (JSON)': '⬆ Импорт (JSON)', '⬇ Экспорт (JSON)': '⬇ Экспорт (JSON)',
+  '⬇ Netlify-ға арналған ZIP': '⬇ ZIP для Netlify', '⬇ Барлық тізімдер — бір PDF': '⬇ Все списки — один PDF', '⬇ ZIP (әр топ жеке PDF)': '⬇ ZIP (каждая группа отдельным PDF)',
+  '↩ Болдырмау (бұрынғы кестені қайтару)': '↩ Отменить (вернуть прежнее расписание)', '↻ Жоспарды қазіргі кестеден алу': '↻ Взять план из текущего расписания',
+  '↻ Үйірмелер сайтынан жаңарту': '↻ Обновить с сайта кружков', '☁ Сақталды': '☁ Сохранено', '✓ Админ режимі қосылды. Енді кестені өзгертуге болады.': '✓ Режим администратора включён. Теперь можно изменять расписание.',
+  '✓ Деректер жүктелді': '✓ Данные загружены', '✓ Жоспар көшірілді': '✓ План скопирован', '✓ Кесте құрылды': '✓ Расписание составлено',
+  '✓ Кестеде қайшылық жоқ: мұғалімдер, кабинеттер, сыныптар және үйірмелер сәйкес келмейді': '✓ Конфликтов нет: учителя, кабинеты, классы и кружки не пересекаются',
+  '✓ Қайшылық жоқ': '✓ Конфликтов нет', '✓ Құпиясөз өзгертілді': '✓ Пароль изменён', '✓ Мұғалім жойылды, сабақтары мұғалімсіз қалды': '✓ Учитель удалён, его уроки остались без учителя',
+  '✓ Оқушы қосылды. Енді оны үйірмеге жазыңыз.': '✓ Ученик добавлен. Теперь запишите его в кружок.', '✓ осы пәндерді береді': '✓ ведёт эти предметы',
+  '✓ Сілтемелер дайын': '✓ Ссылки готовы', '✓ Үйірме сабақтарының уақыты жаңартылды': '✓ Время занятий кружков обновлено', '✓ Үйірмелер жаңартылды:': '✓ Кружки обновлены:',
+  '✓ Жаңа сілтемелер жасалды. Ескі сілтемелер енді ашылмайды.': '✓ Созданы новые ссылки. Старые ссылки больше не открываются.',
+  '✓ Жаңа сілтемелер жасалды. Енді «⬇ Netlify-ға арналған ZIP» батырмасын басыңыз.': '✓ Созданы новые ссылки. Теперь нажмите «⬇ ZIP для Netlify».',
+  '✋ Қолмен құру': '✋ Ручное составление', '✋ Қолмен құру.': '✋ Ручное составление.', '— қосулы': '— включено', '♻ Netlify сілтемелерін жаңарту (ескілері жабылады)': '♻ Обновить ссылки Netlify (старые закроются)',
+  '♻ Барлық сілтемені жаңарту (ескілері жабылады)': '♻ Обновить все ссылки (старые закроются)', '⚠ Кесте ішінара құрылды': '⚠ Расписание составлено частично',
+  '⚠ Қайшылық:': '⚠ Конфликтов:', '⚠ Қайшылықтар': '⚠ Конфликты', '⚠ Назар аударыңыз!': '⚠ Внимание!', '⚠ уақыты бос емес': '⚠ время занято',
+  '⚡ Автоматты құру': '⚡ Составить автоматически', '⚡ Кестені автоматты құру': '⚡ Автоматическое составление расписания', 'Бір күнде бір пәннен ең көп сабақ': 'Максимум уроков одного предмета в день',
+  'Сенбі күні де сабақ бар (6 күндік апта)': 'Уроки и в субботу (6-дневная неделя)', 'Netlify сайтының мекенжайы (мысалы: https://baiterek-kestesi.netlify.app)': 'Адрес сайта Netlify (например: https://baiterek-kestesi.netlify.app)',
+  'Netlify сайтының мекенжайын жазып, «⬇ Netlify-ға арналған ZIP» батырмасын басыңыз — сілтемелер осы жерде шығады.': 'Укажите адрес сайта Netlify и нажмите «⬇ ZIP для Netlify» — ссылки появятся здесь.',
+  'Netlify-дағы сайт бірден ашылады және Google аккаунтына байланысты емес. Кестені осы жерде өзгерткеннен кейін': 'Сайт на Netlify открывается сразу и не зависит от аккаунта Google. После изменения расписания здесь нажмите',
+  'батырмасын басып, ZIP ішіндегі қалтаны Netlify-ға салыңыз — сілтемелер өзгермейді.': 'и загрузите ZIP на Netlify — ссылки не меняются.',
+  'Орыс сыныптарының ата-аналары кестені орысша көреді.': 'Родители русских классов видят расписание на русском.',
+  'ZIP кітапханасы жүктелмеді — бетті жаңартып көріңіз': 'Библиотека ZIP не загрузилась — обновите страницу', 'Автоматты құрғанда орнында қалады (мыс. түскі ас)': 'Остаётся на месте при автосоставлении (напр. обед)',
+  'Админ құпиясөзі': 'Пароль администратора', 'Админ режимі: өзгерістер осы компьютерде сақталады.': 'Режим администратора: изменения сохраняются на этом компьютере.',
+  'Админ режимі: өзгерістер серверге автоматты түрде сақталады.': 'Режим администратора: изменения автоматически сохраняются на сервере.', 'Админ режимінен шықтыңыз': 'Вы вышли из режима администратора',
+  'Алдымен Netlify сайтының мекенжайын жазыңыз (…netlify.app)': 'Сначала укажите адрес сайта Netlify (…netlify.app)', 'Алдымен қай сыныпқа көшіретініңізді таңдаңыз': 'Сначала выберите класс, в который копировать',
+  'Алып тастау': 'Убрать', 'ата-аналарына': 'родителям', 'Атаудың астындағы жазу': 'Подзаголовок', 'Аты Әкесінің аты Тегі': 'Имя Отчество Фамилия', 'Аты-жөні': 'ФИО',
+  'Аяқталуы': 'Конец', 'Басталуы': 'Начало', 'Баланың аты-жөнін жазыңыз — қай үйірмеге баратыны шығады': 'Введите ФИО ребёнка — появятся его кружки',
+  'Барлық сабақтарды кестеден өшіру керек пе?': 'Удалить все уроки из расписания?', 'Барлық күндер': 'Все дни', 'Барлық сыныптар': 'Все классы', 'Басқа мұғалімдер': 'Другие учителя',
+  'Бекітілген': 'Закреплён', 'Бекітілген пәндер': 'Закреплённые предметы', 'Беретін пәндері': 'Предметы', 'Бір күнде бір пән қайталанса — қайшылық деп белгілеу': 'Отмечать как конфликт повтор предмета в один день',
+  'Болдырмау': 'Отмена', 'Бұл батырма тек компьютердегі нұсқада жұмыс істейді': 'Эта кнопка работает только в версии на компьютере',
+  'Бұл компьютердегі файл үшін құпиясөз. Интернеттегі сайттың құпиясөзі серверде бөлек.': 'Это пароль для файла на компьютере. Пароль сайта в интернете хранится на сервере отдельно.',
+  'Бұл топты жою': 'Удалить эту группу', 'Бұрынғы кесте қайтарылды': 'Прежнее расписание возвращено', 'Дайын — режимнен шығу': 'Готово — выйти из режима',
+  'Жабу': 'Закрыть', 'Жаңа': 'Новый', 'Жаңа құпиясөз (кемінде 6 таңба)': 'Новый пароль (не менее 6 символов)', 'Жаңа құпиясөз кемінде 6 таңба болуы керек': 'Новый пароль должен быть не менее 6 символов',
+  'Жаңа құпиясөздер сәйкес емес': 'Новые пароли не совпадают', 'Жаңа құпиясөзді қайталаңыз': 'Повторите новый пароль', 'Жаңа мұғалім': 'Новый учитель', 'Жаңа пән': 'Новый предмет',
+  'Жоспар бойынша:': 'По плану:', 'Жоспарды көшіру': 'Копировать план', 'Жою': 'Удалить', 'Жоқ': 'Нет', 'Иә': 'Да', 'Кабинет бір уақытта бос емес:': 'Кабинет занят в одно время:',
+  'Кестеде бар, бірақ жоспарда жоқ:': 'Есть в расписании, но нет в плане:', 'Кестедегі нақты сағат': 'Фактически часов в расписании', 'Кестені тазалау': 'Очистить расписание',
+  'Кіру': 'Войти', 'Көшіру': 'Копировать', 'Күндері': 'Дни', 'Күні': 'День', 'Күніне ең көп сабақ:': 'Максимум уроков в день:', 'Қазақ': 'Казахский', 'Орыс': 'Русский',
+  'Қазіргі құпиясөз': 'Текущий пароль', 'Қазіргі құпиясөз қате': 'Текущий пароль неверный', 'Қай сыныптар үшін құру керек': 'Для каких классов составить',
+  'Қайшылық болса дыбыс шығару': 'Звуковой сигнал при конфликте', 'Қайшылықтар саны:': 'Количество конфликтов:', 'Қате:': 'Ошибка:', 'Қолдану': 'Применить', 'Қосу': 'Добавить',
+  'Құпиясөз': 'Пароль', 'Құпиясөз қате.': 'Неверный пароль.', 'Құпиясөз серверде сақталады және тексеріледі.': 'Пароль хранится и проверяется на сервере.', 'Құпиясөзді өзгерту': 'Изменить пароль',
+  'Мектеп атауы': 'Название школы', 'Мектепалды': 'Предшкола', 'Мұғалім': 'Учитель', 'Мұғалім бір уақытта бірнеше жерде:': 'Учитель одновременно в нескольких местах:',
+  'Мұғалім және кабинет': 'Учитель и кабинет', 'Мұғалімдерге арналған толық кесте': 'Полное расписание для учителей', 'Мұғалімді жою:': 'Удалить учителя:',
+  'Оқу жоспары': 'Учебный план', 'оқушы': 'уч.', 'Оқушы бір уақытта екі үйірмеде:': 'Ученик одновременно в двух кружках:', 'Оқушының аты-жөні': 'ФИО ученика',
+  'Оқушыны басқа сыныпқа ауыстыру, үйірмеге қосу немесе шығару үшін іздеу жолына оның атын жазыңыз.': 'Чтобы перевести ученика в другой класс, записать в кружок или исключить, введите его имя в поиск.',
+  'Орналастырылған сабақтар:': 'Размещено уроков:', 'Орын табылмаған сабақтар': 'Уроки, для которых не нашлось места', 'Орысша атауы': 'Название на русском',
+  'Ортақ кабинеттер (бір уақытта бірнеше сынып бола алады, үтірмен бөліңіз)': 'Общие кабинеты (несколько классов одновременно, через запятую)', 'Осы пәнді береді': 'Ведёт этот предмет',
+  'Осы үйірмеден шығару': 'Исключить из этого кружка', 'Параллель': 'Параллель', 'Педагог': 'Педагог', 'Пән': 'Предмет', 'Пән атауы (қазақша)': 'Название (на казахском)',
+  'Пән бір күнде қайталанады:': 'Предмет повторяется в один день:', 'Растау': 'Подтвердить', 'Сабақ': 'Урок', 'Сағат': 'Часов', 'Сақталмады:': 'Не сохранено:', 'Сақтау': 'Сохранить',
+  'Сыныбы': 'Класс', 'Сыныбы:': 'Класс:', 'Сынып': 'Класс', 'Сынып жетекшісі': 'Классный руководитель', 'Сынып кестесі мен PDF осы тілде шығады': 'Расписание класса и PDF выводятся на этом языке',
+  'Сыныпта бір уақытта бірнеше сабақ': 'В классе несколько уроков одновременно', 'Тегі Аты': 'Фамилия Имя', 'Тілі': 'Язык', 'Топ': 'Группа', 'Топты жою': 'Удалить группу', 'Түсі': 'Цвет',
+  'Түсінікті': 'Понятно', 'Уақыты': 'Время', 'Үйірме': 'Кружок', 'Үйірме атауы': 'Название кружка', 'Үйірме сабақтарының кестедегі орны': 'Место занятий кружков в расписании',
+  'Үйірме уақытында сабақ бар:': 'Урок во время кружка:', 'Үйірмеге қосу:': 'Записать в кружок:', 'Үйірмелер': 'Кружки', 'Үйірмелер сайтынан жүктелуде…': 'Загрузка с сайта кружков…',
+  'Үйірмелер уақытын бос қалдыру': 'Оставить время кружков свободным', 'Үйірмелерді жаңарту мүмкін болмады:': 'Не удалось обновить кружки:', 'Ұяшықты тазалау': 'Очистить ячейку',
+  'Файл қате: сабақ кестесінің JSON файлы емес': 'Ошибка файла: это не JSON-файл расписания', 'Тексеру мүмкін болмады:': 'Не удалось проверить:',
+  '🌐 Жылдам сайт (Netlify) — мұғалімдер мен ата-аналарға': '🌐 Быстрый сайт (Netlify) — для учителей и родителей', '🎒 Сыныптар': '🎒 Классы',
+  '🎨 Пәндер және түстер': '🎨 Предметы и цвета', '🏫 Мектеп': '🏫 Школа', '👩‍🏫 Мұғалімдер': '👩‍🏫 Учителя', '👩‍🏫 Мұғалімдерге': '👩‍🏫 Учителям', '💾 Деректер': '💾 Данные',
+  '📖 Нұсқаулық: қалай жасау керек': '📖 Инструкция', '🔑 Админ құпиясөзі': '🔑 Пароль администратора', '🔒 Админ ретінде кіру': '🔒 Вход для администратора',
+  '🔗 Мұғалімдер мен ата-аналарға арналған сілтемелер (Google)': '🔗 Ссылки для учителей и родителей (Google)', '🔗 Сілтемелерді көрсету': '🔗 Показать ссылки',
+  '🔔 Дыбыс қосулы': '🔔 Звук включён', '🔕 Дыбыс өшірулі': '🔕 Звук выключен', '🧽 Өшіргіш': '🧽 Ластик', 'Кестені қолмен құру': 'Ручное составление расписания',
+  'Мектептің бастапқы кестесіне (PDF) қайтару': 'Вернуть исходное расписание школы (PDF)', '«🔗 Сілтемелерді көрсету» батырмасын басыңыз.': 'Нажмите «🔗 Показать ссылки».',
+  'Жоғарыға сайттың жұмыс істеп тұрған сілтемесін қойыңыз — әйтпесе төмендегі сілтемелер ашылмауы мүмкін.': 'Укажите выше рабочую ссылку сайта — иначе ссылки ниже могут не открыться.',
+  'Сайттың қарапайым сілтемесі (…/exec) толық сайтты ашады — оны тек мұғалімдерге беріңіз.': 'Простая ссылка сайта (…/exec) открывает полный сайт — давайте её только учителям.',
+  'Сайттың жұмыс істеп тұрған сілтемесі — браузердің жоғарғы мекенжай жолынан көшіріп қойыңыз (…/exec деп аяқталады)': 'Рабочая ссылка сайта — скопируйте из адресной строки браузера (заканчивается на …/exec)',
+  'Кестені тек қарауға болады. PDF жүктеу үшін керекті бөлімдегі «⬇ PDF» батырмасын басыңыз.': 'Расписание доступно только для просмотра. Чтобы скачать PDF, нажмите «⬇ PDF».',
+  'Сандар: қойылғаны / жоспар бойынша. Тізімде жоқ пәнді «📚 Оқу жоспары» бөлімінде қосыңыз.': 'Числа: размещено / по плану. Предмет, которого нет в списке, добавьте в «📚 Учебный план».',
+  'Қайшылықтарды түзету кезінде жасалған өзгерістер': 'Изменения, сделанные при исправлении конфликтов', 'Сейсенбі/бейсенбіден ауыстырылған топтар:': 'Группы, перенесённые со вторника/четверга:',
+  'Таңдалған мұғалімге барлық сабақтар, оқу жоспарындағы сағаттар, пәндер': 'Выбранному учителю передаются все уроки, часы учебного плана, предметы',
+  'Сабақтарын кімге беру керек?': 'Кому передать уроки?', 'сабақтар мұғалімсіз қалады': 'уроки останутся без учителя', 'бекітілгендерден басқа': 'кроме закреплённых',
+  'Барлық өзгерістер өшіріліп, мектептің бастапқы кестесі (PDF) мен үйірмелер қайта жүктеледі. Жалғастырамыз ба?': 'Все изменения будут удалены, исходное расписание (PDF) и кружки загрузятся заново. Продолжить?',
+  'Бұл мүмкіндік тек интернеттегі (Google) сайтта жұмыс істейді.': 'Эта функция работает только на сайте в интернете (Google).',
+  'Үйірмеге жазылмаған': 'Не записан в кружок', 'Табылған оқушылар': 'Найдено учеников', 'Ештеңе табылмады. Оқушының тегін немесе атын тексеріңіз (кемінде 2 әріп).': 'Ничего не найдено. Проверьте фамилию или имя (не менее 2 букв).',
+  'Үйірмелер бойынша': 'По кружкам', 'Сынып бойынша': 'По классу', 'Жаңа мұғалім келсе': 'Если пришёл новый учитель', 'Мұғалім жұмыстан шықса': 'Если учитель уволился',
+  'Жаңа пән қосу': 'Добавить новый предмет', 'Пәннің атауын немесе түсін өзгерту': 'Изменить название или цвет предмета', 'Пәнді алып тастау': 'Удалить предмет',
+  'Қазақ және орыс сыныптары': 'Казахские и русские классы', 'Сыныптың сілтемесі': 'Ссылка класса', 'Мұғалімдер сілтемесі': 'Ссылка для учителей',
+  'Сынып жоқ.': 'Нет класса.', 'Кестеде': 'В расписании', 'Көшіру:': 'Копировать:', 'топ': 'группа', 'кабинет': 'кабинет', 'Топ (бөлінсе)': 'Группа (если делится)',
+  'мыс. 1 группа': 'напр. 1 группа', 'бекітілген — орнында қалады': 'закреплён — остаётся на месте', 'Бекітілген пәндер': 'Закреплённые предметы',
+  'Мұғалім және кабинет (топқа бөлінсе — әр топ жеке жолда)': 'Учитель и кабинет (при делении на группы — каждая группа отдельной строкой)',
+  'Кестедегі нақты сағат (осы пән бойынша)': 'Фактически часов в расписании (по этому предмету)',
+  'Үйірмелер уақытын бос қалдыру (дүйсенбі, сәрсенбі, жұма — үйірме сабақтары)': 'Оставлять свободным время кружков (понедельник, среда, пятница — занятия кружков)',
+  'Кесте әр сыныптың оқу жоспары бойынша құрылады. Мұғалім бір уақытта екі жерде болмайды, кабинеттер (ортақтарынан басқа) қайталанбайды, мұғалімдердің басқа сыныптардағы сабақтары мен таңдалмаған сыныптардың кестесі ескеріледі.':
+    'Расписание составляется по учебному плану каждого класса. Учитель не бывает в двух местах одновременно, кабинеты (кроме общих) не повторяются, учитываются уроки учителей в других классах и расписание невыбранных классов.',
+  'орнында қалады — оларды Баптаулар → Пәндер бөлімінде белгілейсіз.': 'остаются на месте — их отмечают в Настройки → Предметы.',
+  'Осы беттегі «🎨 Пәндер және түстер» →': 'На этой странице «🎨 Предметы и цвета» →', 'Кестеге қою: «🎒 Сынып кестесі» →': 'Поставить в расписание: «🎒 Расписание класса» →'
+};
+/* Сан араласқан жазулар */
+const RU_RX = [[/(\d+)-сабақ/g, '$1-й урок'], [/(\d+) сағат/g, '$1 ч.'], [/(^|\s)сағат(?![а-яәғқңөұүһі])/gi, '$1ч.'], [/Кестеде:/g, 'В расписании:'], [/(\d+)-топ(?![а-яәғқңөұүһі])/gi, 'Группа $1'],
+  [/(\d+)-сыныптар/g, '$1 классы'], [/\(бүкіл параллель\)/g, '(вся параллель)'], [/^Тек (.+) сыныбы$/, 'Только $1 класс'], [/ — бос емес$/, ' — занят'],
+  [/^📚 (.+) сыныбының оқу жоспары \(аптасына\)$/, '📚 Учебный план: $1 класс (в неделю)']];
+let RU_LONG = null;
+/* Бір мәтінді аудару: толық сәйкес келсе — бүтіндей, ұзын сөйлемдер — мәтіннің ішінен де */
+function trStr(s) {
+  if (UI !== 'ru' || !s || !/[ӘәҒғҚқҢңӨөҰұҮүҺһІі]|[а-я]{3}/.test(s)) return s;
+  const t = s.trim(); if (RU_UI[t]) return s.replace(t, RU_UI[t]);
+  const cnt = /^(.*\S)(\s*\(\d+\))$/.exec(t); if (cnt && RU_UI[cnt[1]]) return s.replace(t, RU_UI[cnt[1]] + cnt[2]);   // «🎒 Сыныптар (27)»
+  for (const [rx, to] of RU_RX) s = s.replace(rx, to);
+  RU_LONG ??= Object.keys(RU_UI).filter(k => k.length >= 14).sort((a, b) => b.length - a.length);
+  for (const k of RU_LONG) if (s.includes(k)) s = s.split(k).join(RU_UI[k]);
+  return s;
+}
+/* Бет бөлігін аудару (кесте ұяшықтары мен тізімдердегі аттар өзгертілмейді) */
+function trDom(root) {
+  if (UI !== 'ru' || !root) return;
+  if (root.nodeType === 3) { const v = trStr(root.nodeValue); if (v !== root.nodeValue) root.nodeValue = v; return; }
+  if (root.nodeType !== 1 || root.closest('.les,.tchip,.kt,.gb,.kcard td,#pdfHost')) return;
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => n.parentElement.closest('.les,.tchip,.kt,.gb,.kcard td,option[value^="t"],option[value^="s"]') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+  for (let n; (n = w.nextNode());) { const v = trStr(n.nodeValue); if (v !== n.nodeValue) n.nodeValue = v; }
+  [root, ...root.querySelectorAll('[placeholder],[title],optgroup[label]')].forEach(el => ['placeholder', 'title', 'label'].forEach(a => {
+    const v = el.getAttribute && el.getAttribute(a); if (v) { const t = trStr(v); if (t !== v) el.setAttribute(a, t); } }));
+}
+/* Беттің кез келген жаңа бөлігі (бөлім, терезе, тізім) орысша режимде бірден аударылады */
+new MutationObserver(ms => { if (UI === 'ru') ms.forEach(m => m.addedNodes.forEach(trDom)); })
+  .observe(document.body, { childList: true, subtree: true });
+
+/* ---------- Оқиғалар ---------- */
+document.querySelector('nav').addEventListener('click', e => { const b = e.target.closest('[data-tab]'); if (b) { tab = b.dataset.tab; render(); } });
+$('#confBtn').onclick = showConflicts;
+$('#soundBtn').onclick = () => { S.opt.sound = !S.opt.sound; save(); renderHeader(); if (S.opt.sound) alarm(); if (tab === 'settings') render(); };
+$('#loginBtn').onclick = () => isAdmin ? logout() : openLogin();
+$('#langBtn').onclick = () => { PICK = UI = UI === 'ru' ? 'kz' : 'ru'; try { localStorage.setItem('sabak-lang', PICK); } catch (e) {} render(); };
+
+const main = $('#main');
+main.addEventListener('click', e => {
+  const t = e.target;
+  const cp = t.closest('[data-copy]'); if (cp) {
+    const inp = cp.parentElement.querySelector('input'); inp.select();
+    const done = () => toast('✓ Сілтеме көшірілді — WhatsApp-қа қойып жіберіңіз', true);
+    (navigator.clipboard ? navigator.clipboard.writeText(cp.dataset.copy) : Promise.reject()).then(done, () => { try { document.execCommand('copy'); done(); } catch (e) { toast('Сілтемені белгілеп, Ctrl+C басыңыз'); } });
+    return; }
+  const br = t.closest('[data-brush]'); if (br) { brush = brush === br.dataset.brush ? null : br.dataset.brush; render(); return; }
+  if (isAdmin && manual && brush && tab === 'class') { const c = t.closest('td.cell[data-k]'); if (c) { paint(c.dataset.k); return; } }
+  const g = t.closest('[data-grade]'); if (g) { gradeF = +g.dataset.grade; render(); return; }
+  const cb = t.closest('[data-cls]'); if (cb) { curClass = cb.dataset.cls; render(); return; }
+  const md = t.closest('[data-mode]'); if (md) { const [kind, m] = md.dataset.mode.split('|'); if (kind === 'teacher') tMode = m; else rMode = m; render(); return; }
+  const mdy = t.closest('[data-mday]'); if (mdy) { mxDay = +mdy.dataset.mday; render(); return; }
+  const pk = t.closest('[data-pick]'); if (pk) { const [kind, id] = pk.dataset.pick.split('|'); if (kind === 'teacher') { curTeacher = id; tMode = 'one'; } else { curRoom = id; rMode = 'one'; } render(); window.scrollTo(0, 0); return; }
+  const cm = t.closest('[data-cmode]'); if (cm) { clubMode = cm.dataset.cmode; render(); return; }
+  const cd = t.closest('[data-cday]'); if (cd) { clubDay = +cd.dataset.cday; render(); return; }
+  const cc = t.closest('[data-ccls]'); if (cc) { clubCls = cc.dataset.ccls; render(); return; }
+  const kd = t.closest('[data-kdel]'); if (kd) { if (isAdmin) { const [i, gid] = kd.dataset.kdel.split('|'), g = S.clubs.groups.find(x => x.id === gid);
+    if (g) { g.kids = g.kids.filter(x => x !== +i); commit(); toast('Оқушы ' + clubLabel(g) + ' үйірмесінен шығарылды', true); } } return; }
+  const gp = t.closest('[data-gpdf]'); if (gp) { clubPdf(gp.dataset.gpdf); return; }
+  const ge = t.closest('[data-gedit]'); if (ge) { if (isAdmin) editGroup(ge.dataset.gedit); return; }
+  const gsh = t.closest('[data-gshow]'); if (gsh) { showGroup(gsh.dataset.gshow); return; }
+  const cl = t.closest('[data-club]'); if (cl) { const [a, b, c] = cl.dataset.club.split('|'); showClubSlot(a, b, c); return; }
+  const a = t.closest('[data-act]'); if (a) { if (isAdmin) action(a.dataset.act, a.dataset); return; }
+  const p = t.closest('[data-pdf]'); if (p) { const [kind, mode] = p.dataset.pdf.split('|'); pdfAction(kind, mode); return; }
+  const k = t.closest('[data-k]'); if (k && isAdmin) openEdit(k.dataset.k);
+});
+main.addEventListener('change', e => {
+  const t = e.target;
+  if (t.id === 'tSel') { curTeacher = t.value; render(); return; }
+  if (t.id === 'rSel') { curRoom = t.value; render(); return; }
+  if (t.id === 'subsOld') { subsOld = t.checked; render(); return; }
+  if (!isAdmin) return;
+  if (t.dataset.subpick) { const [aid, key] = [t.dataset.subpick.slice(0, t.dataset.subpick.indexOf('|')), t.dataset.subpick.slice(t.dataset.subpick.indexOf('|') + 1)];
+    const a = S.subs.list.find(x => x.id === aid); if (a) { (a.pick ??= {})[key] = t.value; commit(); } return; }
+  if (t.dataset.web) { webEnsure(); S.web.url = t.value.trim(); save(); $('#wlinks').innerHTML = webLinks(); return; }
+  if (t.dataset.kcls) { const k = S.clubs.kids[+t.dataset.kcls]; k.cls = t.value; k.cid = S.classes.some(x => x.id === 'c' + t.value) ? 'c' + t.value : ''; commit(); toast('✓ ' + k.name + ' — ' + t.value + ' сыныбына ауыстырылды', true); return; }
+  if (t.dataset.kadd) { const g = S.clubs.groups.find(x => x.id === t.value); if (g && !g.kids.includes(+t.dataset.kadd)) { g.kids.push(+t.dataset.kadd); commit(); toast('✓ ' + clubLabel(g) + ' үйірмесіне жазылды', true); } return; }
+  if (t.dataset.cmap) { S.clubs.map[t.dataset.cmap] = +t.value; save(); return; }
+  if (t.dataset.fixed) { subj(t.dataset.fixed).fixed = t.checked; save(); return; }
+  if (t.dataset.af) { S.af[t.dataset.af] = t.type === 'checkbox' ? t.checked : t.type === 'number' ? +t.value : t.value; save(); return; }
+  if (t.dataset.plmax) { planOf(curClass).max = +t.value; save(); return; }
+  if (t.dataset.pl) { const [rid, f] = t.dataset.pl.split('|'), r = planOf(curClass).rows.find(x => x.id === rid);
+    if (r) { r[f] = f === 'h' ? +t.value : t.value; if (f === 's') r.items.forEach(it => { if (it.t && !teacher(it.t)?.subjects.includes(r.s)) it.t = ''; }); }
+    save(); render(); return; }
+  if (t.dataset.pli) { const [rid, i, f] = t.dataset.pli.split('|'), r = planOf(curClass).rows.find(x => x.id === rid);
+    if (r && r.items[i]) r.items[i][f] = t.value.trim(); save(); if (f === 't') render(); return; }
+  if (t.dataset.tsubadd) { if (t.value) { teacher(t.dataset.tsubadd).subjects.push(t.value); commit(); } return; }
+  if (t.dataset.opt) { S.opt[t.dataset.opt] = t.checked; commit(false); return; }
+  if (t.dataset.f || t.dataset.time || t.dataset.school) { setField(t); commit(false); }
+});
+main.addEventListener('input', e => {
+  const t = e.target;
+  if (t.id === 'clubQ') {
+    clubQ = t.value.trim();
+    if (clubMode === 'class' && clubQ.length >= 2) {   // сынып режимінде іздесе — іздеу нәтижесіне өту
+      clubMode = 'groups'; render(); const q = $('#clubQ'); q.focus(); q.setSelectionRange(q.value.length, q.value.length); return;
+    }
+    $('#clubRes').innerHTML = clubResults(); return;
+  }
+  if (!isAdmin) return;
+  if (t.dataset.f || t.dataset.time || t.dataset.school) { setField(t); save(); renderHeader(); if (t.dataset.school === 'siteUrl' && $('#plinks')) $('#plinks').innerHTML = parentLinks(); }
+});
+function setField(el) {
+  const val = el.hasAttribute('data-num') ? +el.value : el.value;
+  if (el.dataset.school) S[el.dataset.school] = val;
+  else if (el.dataset.time) { const [i, j] = el.dataset.time.split('|'); S.times[i][j] = val; }
+  else {
+    const [coll, id, field] = el.dataset.f.split('|'); const o = S[coll].find(x => x.id === id); if (o) o[field] = val;
+    // мұғалімнің аты өзгерсе — ол жүргізетін үйірмелердегі аты да өзгереді
+    if (coll === 'teachers' && field === 'name') (S.clubs?.groups || []).forEach(g => { if (g.tid === id) g.teacher = val; });
+  }
+}
+
+function action(act, ds) {
+  const id = ds.id;
+  const dropL = fn => { for (const k in S.sched) { S.sched[k] = S.sched[k].filter(x => !fn(k, x)); if (!S.sched[k].length) delete S.sched[k]; } };
+  switch (act) {
+    case 'addTime': { const last = S.times[S.times.length - 1] || ['08:00', '08:40']; S.times.push([last[1], last[1]]); commit(); break; }
+    case 'delTime': { const L = S.times.length - 1; S.times.pop(); dropL(k => +k.split('|')[2] >= L); commit(); break; }
+    case 'addClass': { const nid = uid(); S.classes.push({ id: nid, name: 'Жаңа', grade: 1, room: '', lang: 'kz' }); S.plan[nid] = { max: S.times.length, rows: [] }; commit(); break; }
+    case 'delClass': ask(`«${esc(cls(id).name)}» сыныбын және оның кестесін жою керек пе?`, () => {
+      S.classes = S.classes.filter(c => c.id !== id); S.teachers.forEach(t => { if (t.cls === id) t.cls = ''; }); dropL(k => k.startsWith(id + '|')); delete S.plan[id]; commit(); }); break;
+    case 'addSubj': S.subjects.push({ id: uid(), name: 'Жаңа пән', color: '#' + (0x1000000 + Math.floor(Math.random() * 0xffffff)).toString(16).slice(1) }); commit(); break;
+    case 'delSubj': ask(`«${esc(subj(id).name)}» пәнін жою керек пе? Кестедегі осы пәннің барлық сабақтары өшіріледі.`, () => {
+      S.subjects = S.subjects.filter(s => s.id !== id); S.teachers.forEach(t => t.subjects = t.subjects.filter(s => s !== id)); dropL((k, x) => x.s === id);
+      for (const c in S.plan) S.plan[c].rows = S.plan[c].rows.filter(r => r.s !== id); commit(); }); break;
+    case 'addTeacher': S.teachers.push({ id: uid(), name: 'Жаңа мұғалім', subjects: [], cls: '', room: '' }); commit(); break;
+    case 'delTeacher': removeTeacher(id); break;
+    case 'manual': manual = !manual; brush = null; render(); break;
+    case 'clearClass': ask(`${esc(cls(curClass).name)} сыныбының барлық сабақтары (бекітілгендерден басқа) өшіріледі. Кейін «✋ Қолмен құру» арқылы қайта қоясыз. Жалғастырамыз ба?`, () => {
+      for (const k in S.sched) if (k.startsWith(curClass + '|')) { S.sched[k] = S.sched[k].filter(x => subj(x.s)?.fixed); if (!S.sched[k].length) delete S.sched[k]; }
+      commit(); }); break;
+    case 'tsubDel': { const t = teacher(id); t.subjects = t.subjects.filter(s => s !== ds.s); commit(); break; }
+    case 'plAdd': planOf(curClass).rows.push({ id: uid(), s: '', h: 1, items: [{ t: '', r: cls(curClass).room || '', g: '' }] }); save(); render(); break;
+    case 'plDel': { const P = planOf(curClass); P.rows = P.rows.filter(r => r.id !== id); save(); render(); break; }
+    case 'plAddItem': { const r = planOf(curClass).rows.find(x => x.id === id);
+      r.items.forEach((it, i) => { if (!it.g) it.g = (i + 1) + ' группа'; }); r.items.push({ t: '', r: '', g: (r.items.length + 1) + ' группа' }); save(); render(); break; }
+    case 'plDelItem': { const r = planOf(curClass).rows.find(x => x.id === id); r.items.splice(+ds.i, 1); if (r.items.length === 1) r.items[0].g = ''; save(); render(); break; }
+    case 'plRebuild': ask(`${esc(cls(curClass).name)} сыныбының жоспары қазіргі кестедегі сабақтар бойынша қайта жасалады. Жалғастырамыз ба?`, () => { S.plan[curClass] = buildPlan(curClass); save(); render(); }); break;
+    case 'plCopy': {
+      const to = $('#plCopyTo').value; if (!to) { toast('Алдымен қай сыныпқа көшіретініңізді таңдаңыз'); break; }
+      const from = cls(curClass), tc = cls(to), hrF = homeroom(from.id), hrT = homeroom(to);
+      ask(`${esc(from.name)} жоспары ${esc(tc.name)} сыныбына көшіріледі (сынып жетекшісі мен сынып кабинеті ауыстырылады). Жалғастырамыз ба?`, () => {
+        const P = clone(planOf(from.id)); P.rows.forEach(r => { r.id = uid(); r.items.forEach(it => {
+          if (hrF && hrT && it.t === hrF.id) it.t = hrT.id; if (from.room && nr(it.r) === nr(from.room)) it.r = tc.room || ''; }); });
+        S.plan[to] = P; curClass = to; save(); render(); toast('✓ Жоспар көшірілді', true); });
+      break;
+    }
+    case 'autofill': runAutofill(); break;
+    case 'clubMapApply': S.clubs.groups.forEach(g => { if (!g.ov && S.clubs.map[g.ol] !== undefined) g.p = S.clubs.map[g.ol]; }); commit(); toast('✓ Үйірме сабақтарының уақыты жаңартылды', true); break;
+    case 'clubRefresh': refreshClubs(); break;
+    case 'kidNew': newKid(); break;
+    case 'linksShow': loadLinks(false); break;
+    case 'webZip': webZip(); break;
+    case 'subAdd': { const tid = $('#sbT').value, from = $('#sbF').value, days = Math.max(1, +$('#sbN').value || 1);
+      if (!tid || !from) { toast(T('Мұғалім мен басталатын күнді таңдаңыз', 'Выберите учителя и дату начала')); break; }
+      S.subs.list.push({ id: uid(), tid, from, days, note: $('#sbNote').value.trim(), pick: {} }); commit(); toast(T('✓ Ауыстыру қосылды — бос мұғалімдер қойылды', '✓ Замена добавлена — свободные учителя назначены'), true); break; }
+    case 'subDel': ask(T('Бұл ауыстыруды жою керек пе?', 'Удалить эту замену?'), () => { S.subs.list = S.subs.list.filter(a => a.id !== id); commit(); }); break;
+    case 'subCur': S.subs.curators = $('#sbCur').value.split('\n').map(s => s.replace(/\s+/g, ' ').trim()).filter(Boolean); commit(); toast(T('✓ Кураторлар сақталды', '✓ Кураторы сохранены'), true); break;
+    case 'webRenew': ask(T('Барлық ескі сілтеме жабылып, жаңалары жасалады. Жаңа сілтемелерді бәріне қайта жіберу керек. Жалғастырамыз ба?', 'Все старые ссылки закроются, будут созданы новые. Новые ссылки нужно будет разослать заново. Продолжить?'), () => { webEnsure(true); save(); render(); toast(T('✓ Жаңа сілтемелер жасалды', '✓ Новые ссылки созданы'), true); }); break;
+    case 'linksRenew': ask('Барлық ескі сілтеме (мұғалімдердікі де, ата-аналардікі де) жабылып, жаңалары жасалады. Жаңа сілтемелерді бәріне қайта жіберуге тура келеді. Жалғастырамыз ба?', () => loadLinks(true)); break;
+    case 'pwChange': changePw(); break;
+    case 'clear': ask('Барлық сабақтарды кестеден өшіру керек пе?', () => { S.sched = {}; commit(); }); break;
+    case 'reset': if (!INITIAL) { toast('Бұл батырма тек компьютердегі нұсқада жұмыс істейді'); break; } ask('Барлық өзгерістер өшіріліп, мектептің бастапқы кестесі (PDF) мен үйірмелер қайта жүктеледі. Жалғастырамыз ба?', () => { S = clone(INITIAL); ensure(); prevConf = new Set(); tab = 'all'; commit(); }); break;
+    case 'export': download(new Blob([JSON.stringify(S, null, 1)], { type: 'application/json' }), 'sabak-kestesi.json'); break;
+    case 'import': $('#fileIn').click(); break;
+  }
+}
+$('#fileIn').onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  f.text().then(txt => {
+    try { const x = JSON.parse(txt); if (!x.classes || !x.sched) throw 0; S = x; ensure(); prevConf = new Set(); commit(); toast('✓ Деректер жүктелді', true); }
+    catch (err) { toast('Файл қате: сабақ кестесінің JSON файлы емес'); }
+    e.target.value = '';
+  });
+};
+
+/* Сүйреп орнын ауыстыру (бір сынып ішінде, тек админ) */
+main.addEventListener('dragstart', e => { const c = e.target.closest('.cell[draggable]'); if (!c || !isAdmin) return; dragK = c.dataset.k; e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', dragK); });
+main.addEventListener('dragover', e => { const c = e.target.closest('.cell[data-k]'); if (c && dragK) { e.preventDefault(); document.querySelectorAll('.cell.over').forEach(x => x !== c && x.classList.remove('over')); c.classList.add('over'); } });
+main.addEventListener('dragleave', e => { const c = e.target.closest('.cell[data-k]'); if (c && !c.contains(e.relatedTarget)) c.classList.remove('over'); });
+main.addEventListener('dragend', () => { dragK = null; document.querySelectorAll('.cell.over').forEach(x => x.classList.remove('over')); });
+main.addEventListener('drop', e => {
+  const c = e.target.closest('.cell[data-k]'); if (!c || !dragK) return; e.preventDefault();
+  const k = c.dataset.k, from = dragK; dragK = null;
+  if (k === from) { render(); return; }
+  if (k.split('|')[0] !== from.split('|')[0]) { render(); toast('Сабақты тек бір сыныптың ішінде жылжытуға болады'); return; }
+  const a = S.sched[from], b = S.sched[k];
+  if (b) S.sched[from] = b; else delete S.sched[from];
+  if (a) S.sched[k] = a; else delete S.sched[k];
+  commit();
+});
+
+/* ---------- Іске қосу ---------- */
+function start(p) {
+  ensure();
+  computeConflicts();
+  prevConf = new Set(Object.keys(C.les));
+  if (['all', 'class', 'teacher', 'room', 'clubs', 'subs', 'plan', 'settings'].includes(location.hash.slice(1))) tab = location.hash.slice(1);
+  applyParams(p || {});
+  $('#loadScr').hidden = true;
+  render();
+  if (PARENT) return;
+  // сессия ішінде админ болып қалу
+  let pw = ''; try { pw = sessionStorage.getItem('sabak-adm') || ''; } catch (e) {}
+  if (pw) verifyPw(pw).then(ok => { if (ok) { isAdmin = true; adminPw = pw; render(); } }).catch(() => {});
+}
+function startParent(cname) {
+  PARENT = true; document.body.classList.add('parent');
+  const c = S.classes.find(x => x.name === cname) || S.classes[0];
+  PCLASS = c.id; curClass = c.id; clubMode = 'class'; clubCls = c.name; tab = 'class';
+  start({});
+  UI = PICK || clsLang(c.id); render();
+}
+/* Google-дағы файлда бастапқы кесте жоқ (файл кішірек болуы үшін) — деректер тек серверден келеді */
+function noData(msg) {
+  $('#main').setAttribute('data-ok', '1'); $('#loadScr').hidden = true;
+  $('#main').innerHTML = `<div class="card" style="max-width:720px;margin:30px auto"><h2>Кесте деректері серверден алынбады</h2><p>${esc(msg || 'Серверде сақталған кесте табылмады.')}</p><p class="hint">Бетті Ctrl+F5 арқылы жаңартып көріңіз. Қайталанса — компьютердегі сайттан «Баптаулар → ⬇ Экспорт (JSON)» жасап, файлды маған жіберіңіз.</p></div>`;
+}
+/* Код.gs ескі болып қалса — бос беттің орнына не істеу керегін көрсету */
+function showSetupError() {
+  $('#main').setAttribute('data-ok', '1');
+  document.querySelector('nav').hidden = true; document.querySelector('.hbtns').hidden = true;
+  $('#schoolName').textContent = 'Baiterek School of Science and Technology'; $('#schoolSub').textContent = SUBTITLE;
+  $('#foot').textContent = 'Сайт: ' + APP_VERSION;
+  $('#main').innerHTML = `<div class="card" style="max-width:720px;margin:30px auto"><h2>⚙️ Сайт серверде толық орнатылмаған</h2>
+    <p>Сайттың жаңа нұсқасы жүктелді, бірақ script.google.com ішіндегі <b>Код.gs</b> файлы әлі ескі.</p>
+    <ol><li>script.google.com → жоба → сол жақтағы <b>Код.gs</b> → ішін басып <b>Ctrl+A</b> → <b>Delete</b>.</li>
+      <li>Компьютердегі «Сайтқа орнату (Google)» қалтасындағы <b>Code.gs</b> файлын Блокнотпен ашып → <b>Ctrl+A</b> → <b>Ctrl+C</b> → script.google.com ішіне <b>Ctrl+V</b> → <b>Ctrl+S</b>.</li>
+      <li><b>Развернуть</b> → <b>Управление развертываниями</b> → ✏️ → Версия: <b>«Новая версия»</b> → <b>Развернуть</b>.</li>
+      <li>Осы бетті <b>Ctrl+F5</b> арқылы жаңартыңыз.</li></ol>
+    <p class="hint">Кесте деректері сақтаулы — ештеңе жоғалған жоқ.</p></div>`;
+}
+if (STATIC) {
+  document.body.classList.add('static'); $('#loadScr').hidden = false;
+  readParams(p => {
+    const tok = String(p.k || p.t || '').replace(/[^0-9a-z]/gi, '');
+    if (!tok) return showDenied();
+    // деректер Google-дан кілт бойынша тікелей алынады (GitHub Pages-те деректер файлдары жоқ); Netlify-дағы ескі нұсқа — <кілт>.json
+    const get = u => fetch(u, { cache: 'no-store' }).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
+    get(DATA_API + '?api=1&' + (p.k ? 'k=' : 't=') + tok).then(j => { if (!j || !j.ok) throw new Error(j && j.error); return j.data; })
+      .catch(() => get(tok + '.json')).catch(() => get('d/' + tok + '.json'))
+      .then(x => { S = x; if (p.k) startParent(S.classes[0].name); else start(p); })
+      .catch(() => showDenied());
+  });
+} else if (BUILD === 'broken') showSetupError();
+else if (SERVER) {
+  $('#loadScr').hidden = false;
+  readParams(p => {
+    if (BUILD === 'denied') return showDenied();
+    if (BUILD === 'parent') {   // ата-ана: сервер тек осы сыныптың деректерін береді
+      google.script.run
+        .withSuccessHandler(txt => { S = JSON.parse(txt); startParent(S.classes[0].name); })
+        .withFailureHandler(e => showDenied(e && e.message))
+        .getParentData(p.k);
+      return;
+    }
+    STAFF = p.s || '';
+    google.script.run
+      .withSuccessHandler(txt => { try { S = txt ? JSON.parse(txt) : clone(INITIAL); } catch (e) { S = clone(INITIAL); } if (!S) return noData(); start(p); })
+      .withFailureHandler(e => { S = clone(INITIAL); if (!S) return noData(e && e.message); start(p); toast('Серверден деректер алынбады: ' + (e && e.message || e)); })
+      .getData(STAFF);
+  });
+} else {
+  S = loadLocal() || clone(INITIAL);
+  readParams(start);
+}
+</script>
+</body>
+</html>
