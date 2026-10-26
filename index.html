@@ -343,7 +343,7 @@ const CAT = { lang: ['Тілдер', '#2E7D32'], art: ['Шығармашылық
 const CAT_RU = { lang: 'Языки', art: 'Творчество', sci: 'Наука и логика', sport: 'Спорт' };
 const CLUB_COLOR = '#6A3D9A';
 const SUBTITLE = 'Сабақ кестесі / Расписание уроков 1–4 сынып / класс';
-const APP_VERSION = '22-нұсқа · 26.10.2026';
+const APP_VERSION = '23-нұсқа · 26.10.2026';
 const KEY = 'sabak-kestesi-baiterek-v2', HKEY = 'sabak-admin-hash';
 const SERVER = !!(window.google && google.script && google.script.run);
 const $ = s => document.querySelector(s);
@@ -1292,12 +1292,41 @@ function subPlan() {
   }));
   return { rows, ctx };
 }
+/* Ауыстыру PDF-і: бір ауырған мұғалім (id) немесе барлығы ('*'); бір бетке 15 жол */
+function subsPdf(which) {
+  const today = ymd(new Date()), all = subPlan().rows.filter(r => subsOld || r.date >= today);
+  const list = [...S.subs.list].sort((a, b) => a.from.localeCompare(b.from)).filter(a => which === '*' || a.id === which);
+  const pages = [];
+  list.forEach(a => {
+    const rs = all.filter(r => r.a === a), t = teacher(a.tid), ds = absDates(a); if (!rs.length) return;
+    for (let i = 0; i < rs.length; i += 15) pages.push({ a, t, ds, rs: rs.slice(i, i + 15) });
+  });
+  const th = 'background:#1e3a8a;color:#fff;padding:6px;border:1px solid #1e3a8a;font-size:13px;text-align:left';
+  const td = 'padding:5px 7px;border:1px solid #cbd5e1;font-size:13px';
+  const page = p => () => {
+    const el = document.createElement('div');
+    el.style.cssText = 'width:1123px;height:794px;padding:26px;background:#fff;font-family:\'Segoe UI\',Arial,sans-serif;color:#111827;box-sizing:border-box;display:flex;flex-direction:column';
+    el.innerHTML = pdfHead(T('Ауыстыру (замена)', 'Замена') + ': ' + (p.t ? p.t.name : '?'),
+      [dmy(p.ds[0].date) + ' – ' + dmy(p.ds[p.ds.length - 1].date), p.ds.length + ' ' + T('оқу күні', 'уч. дн.'), p.a.note].filter(Boolean)) +
+      `<table style="width:100%;border-collapse:collapse;margin-top:12px"><tr><th style="${th}">${T('Күні', 'День')}</th><th style="${th}">${T('Сабақ', 'Урок')}</th><th style="${th}">${T('Сынып', 'Класс')}</th>
+        <th style="${th}">${T('Пән', 'Предмет')}</th><th style="${th}">${T('Кімнің орнына', 'Вместо кого')}</th><th style="${th}">${T('Кім ауыстырады', 'Кто заменяет')}</th><th style="${th}">${T('Кабинет', 'Кабинет')}</th></tr>
+      ${p.rs.map(r => `<tr${r.pick ? '' : ' style="background:#fee2e2"'}><td style="${td}"><b>${dmy(r.date)}</b> ${DAYS_ALL[r.d]}</td><td style="${td}">${r.l + 1}${T('-сабақ', '-й урок')} · ${timeStr(r.l)}</td>
+        <td style="${td}">${r.club ? '—' : esc(cls(r.cid).name)}</td><td style="${td}">${r.club ? '🎨 ' + esc(clubLabel(r.club)) : esc(sName(subj(r.x.s), clsLang(r.cid))) + (r.x.g ? ' · ' + esc(r.x.g) : '')}</td>
+        <td style="${td}">${esc(p.t ? short(p.t.name) : '?')}</td><td style="${td}"><b>${esc(subName(r.pick) || T('ешкім жоқ', 'нет замены'))}</b></td>
+        <td style="${td}">${esc(r.club ? r.club.room || '' : r.x.r || '')}</td></tr>`).join('')}</table><div style="flex:1"></div>` + pdfFoot();
+    return el;
+  };
+  const name = which === '*' ? T('Ауыстырулар', 'Замены') : T('Ауыстыру', 'Замена') + ' — ' + (list[0] && teacher(list[0].tid) ? teacher(list[0].tid).name : '');
+  if (!pages.length) { toast(T('PDF-ке шығаратын ауыстыру жоқ', 'Нет замен для PDF')); return; }
+  makePdf(pages.map(p => ({ name: p.t ? p.t.name : '?', el: page(p) })), 'one', name, T('ауыстыру', 'замена'));
+}
 function viewSubs() {
   const SB = S.subs, today = ymd(new Date()), { rows, ctx } = subPlan();
   const shown = rows.filter(r => subsOld || r.date >= today);
   const absList = [...SB.list].sort((a, b) => b.from.localeCompare(a.from)).filter(a => subsOld || absDates(a).some(x => x.date >= today));
   let h = `<div class="bar"><h2>${T('🔁 Ауыстыру (замена)', '🔁 Замена')}</h2>
-    <label class="chk hint" style="flex-direction:row;gap:6px"><input type="checkbox" id="subsOld"${subsOld ? ' checked' : ''}> ${T('Өткен күндерді де көрсету', 'Показывать прошедшие дни')}</label></div>`;
+    <label class="chk hint" style="flex-direction:row;gap:6px"><input type="checkbox" id="subsOld"${subsOld ? ' checked' : ''}> ${T('Өткен күндерді де көрсету', 'Показывать прошедшие дни')}</label>
+    ${SB.list.length ? `<span class="dl"><button class="btn sm primary" data-subpdf="*">⬇ PDF: ${T('барлық ауыстырулар', 'все замены')}</button></span>` : ''}</div>`;
   if (isAdmin) h += `<div class="card" style="margin-bottom:12px"><b>🤒 ${T('Мұғалім ауырып қалса (больничный)', 'Учитель заболел (больничный)')}</b>
     <div class="bar" style="margin-top:8px;align-items:flex-end">
       <label class="hint" style="display:flex;flex-direction:column">${T('Мұғалім', 'Учитель')}<select id="sbT" style="min-width:260px"><option value="">— ${T('таңдаңыз', 'выберите')} —</option>${sortedTeachers().map(t => `<option value="${t.id}">${esc(t.name)}</option>`).join('')}</select></label>
@@ -1323,7 +1352,8 @@ function viewSubs() {
     const ds = absDates(a), rs = shown.filter(r => r.a === a), t = teacher(a.tid);
     return `<div class="kcard" style="max-width:1200px"><div class="kh"><b>🤒 ${esc(t ? t.name : '?')}</b>
       <span>${dmy(ds[0].date)} – ${dmy(ds[ds.length - 1].date)} · ${ds.length} ${T('оқу күні', 'уч. дн.')}${a.note ? ' · ' + esc(a.note) : ''}</span>
-      ${isAdmin ? `<button class="btn sm" style="margin-left:auto" data-act="subDel" data-id="${a.id}">✕ ${T('Жою', 'Удалить')}</button>` : ''}</div>
+      <span style="margin-left:auto;display:flex;gap:6px"><button class="btn sm" data-subpdf="${a.id}">⬇ PDF</button>
+      ${isAdmin ? `<button class="btn sm" data-act="subDel" data-id="${a.id}">✕ ${T('Жою', 'Удалить')}</button>` : ''}</span></div>
       ${rs.length ? `<table><tr><th>${T('Күні', 'День')}</th><th>${T('Сабақ', 'Урок')}</th><th>${T('Сынып', 'Класс')}</th><th>${T('Пән', 'Предмет')}</th><th>${T('Кімнің орнына', 'Вместо кого')}</th><th>${T('Кім ауыстырады', 'Кто заменяет')}</th><th>${T('Кабинет', 'Кабинет')}</th></tr>
       ${rs.map(r => `<tr class="${r.pick ? '' : 'bad'}"><td><b>${dmy(r.date)}</b> ${DAYS_ALL[r.d]}</td><td>${r.l + 1}${T('-сабақ', '-й урок')} · ${timeStr(r.l)}</td>
         <td>${r.club ? '—' : esc(cls(r.cid).name)}</td><td>${r.club ? '🎨 ' + esc(clubLabel(r.club)) : esc(sName(subj(r.x.s), clsLang(r.cid))) + (r.x.g ? ' · ' + esc(r.x.g) : '')}</td>
@@ -2178,6 +2208,7 @@ main.addEventListener('click', e => {
   const ge = t.closest('[data-gedit]'); if (ge) { if (isAdmin) editGroup(ge.dataset.gedit); return; }
   const gsh = t.closest('[data-gshow]'); if (gsh) { showGroup(gsh.dataset.gshow); return; }
   const cl = t.closest('[data-club]'); if (cl) { const [a, b, c] = cl.dataset.club.split('|'); showClubSlot(a, b, c); return; }
+  const sbp = t.closest('[data-subpdf]'); if (sbp) { subsPdf(sbp.dataset.subpdf); return; }
   const a = t.closest('[data-act]'); if (a) { if (isAdmin) action(a.dataset.act, a.dataset); return; }
   const p = t.closest('[data-pdf]'); if (p) { const [kind, mode] = p.dataset.pdf.split('|'); pdfAction(kind, mode); return; }
   const k = t.closest('[data-k]'); if (k && isAdmin) openEdit(k.dataset.k);
