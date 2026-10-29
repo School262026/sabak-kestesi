@@ -314,8 +314,8 @@ const INITIAL = RAW_OK ? readJ('dInit') : rawFull('dInit') || null;
 const CLUBS_RAW = ((RAW_OK ? readJ('dClubs') : rawFull('dClubs')) || {}).payload || null;
 /* Мектептің түзетулеріндегі оқушылар аттары — тек толық (мұғалімдер) бетінде болады */
 const FIXDATA = RAW_OK ? readJ('dFix') : rawFull('dFix') || null;
-/* Мұғалімдер мен ата-аналар сайты (GitHub Pages) және оның деректері (Google Apps Script, ?api=1) */
-const SITE_URL = 'https://school262026.github.io/sabak-kestesi';
+/* Мұғалімдер мен ата-аналар сайты (Cloudflare Pages, GitHub-тағы sabak-kestesi репозиторийінен) және оның деректері (Google Apps Script, ?api=1) */
+const SITE_URL = 'https://sabak-kestesi.pages.dev';
 const DATA_API = 'https://script.google.com/macros/s/AKfycbwG2IocU_CguLiGm4iAQ9GDCtT5fLSE2E7CCybIsRp9R14eZPDGbpAk9wHdZBLfUs0r6A/exec';
 const CLUB_API = 'https://script.google.com/macros/s/AKfycbxgc-KkefkOMECXI9UNxrTUOoki_KlbFs2JErxzAcRhwjSqMiL4VDX46Mj6fbulk00/exec';
 const DEFAULT_PW_HASH = '';
@@ -348,7 +348,7 @@ const CAT = { lang: ['Тілдер', '#2E7D32'], art: ['Шығармашылық
 const CAT_RU = { lang: 'Языки', art: 'Творчество', sci: 'Наука и логика', sport: 'Спорт' };
 const CLUB_COLOR = '#6A3D9A';
 const SUBTITLE = 'Сабақ кестесі / Расписание уроков 1–4 сынып / класс';
-const APP_VERSION = '27-нұсқа · 27.10.2026';
+const APP_VERSION = '28-нұсқа · 29.10.2026';
 const KEY = 'sabak-kestesi-baiterek-v2', HKEY = 'sabak-admin-hash';
 const SERVER = !!(window.google && google.script && google.script.run);
 const $ = s => document.querySelector(s);
@@ -680,7 +680,7 @@ function ensure() {
   S.af ??= { perDay: 2, scope: 'class' };
   S.extra ??= [];
   S.subs ??= { curators: [], list: [] };
-  if (S.web && (!S.web.url || /netlify\.app/.test(S.web.url))) S.web.url = SITE_URL;   // сайт Netlify-дан GitHub Pages-ке көшті
+  if (S.web && (!S.web.url || /netlify\.app|github\.io/.test(S.web.url))) S.web.url = SITE_URL;   // сайт Netlify → GitHub Pages → Cloudflare Pages-ке көшті
   S.subtitle ??= SUBTITLE;
   // екі тіл: сыныптың тілі және пәннің орысша атауы (бір рет)
   if (!S.langV) {
@@ -1714,8 +1714,8 @@ function viewSettings() {
     </table></div><button class="btn sm" style="margin-top:8px" data-act="addTeacher">+ Мұғалім қосу</button></section>
 
   <section class="card wide"><h2>🌐 ${T('Мұғалімдер мен ата-аналарға арналған сайт', 'Сайт для учителей и родителей')}</h2>
-    <p class="hint">${T('Сайт GitHub Pages-те тұр: бірден ашылады, тегін және лимиті жоқ. Деректерді Google-дан кілт бойынша тікелей алады — кестені осы жерде өзгертсеңіз, сайт бірден жаңарады, ештеңе жүктеудің қажеті жоқ. Орыс сыныптарының ата-аналары кестені орысша көреді.',
-      'Сайт размещён на GitHub Pages: открывается сразу, бесплатно и без лимитов. Данные берутся из Google по ключу — изменения расписания сразу видны на сайте, ничего загружать не нужно. Родители русских классов видят расписание на русском.')}</p>
+    <p class="hint">${T('Сайт Cloudflare Pages-те тұр: бірден ашылады, тегін және лимиті жоқ. Деректерді Google-дан кілт бойынша тікелей алады — кестені осы жерде өзгертсеңіз, сайт бірден жаңарады, ештеңе жүктеудің қажеті жоқ. Орыс сыныптарының ата-аналары кестені орысша көреді.',
+      'Сайт размещён на Cloudflare Pages: открывается сразу, бесплатно и без лимитов. Данные берутся из Google по ключу — изменения расписания сразу видны на сайте, ничего загружать не нужно. Родители русских классов видят расписание на русском.')}</p>
     <label>${T('Сайттың мекенжайы', 'Адрес сайта')}<input data-web="url" value="${esc(S.web?.url || '')}" placeholder="${SITE_URL}"></label>
     <div class="mbtns"><button class="btn danger" data-act="webRenew">♻ ${T('Сілтемелерді жаңарту (ескілері жабылады)', 'Обновить ссылки (старые закроются)')}</button></div>
     <div style="margin-top:8px" id="wlinks">${webLinks()}</div></section>
