@@ -178,6 +178,10 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:18px}
 #pdfHost{position:fixed;left:-20000px;top:0}
 .pane-off{content-visibility:hidden;height:0;overflow:hidden}
 .subs-noprint{display:none;text-align:center;font-size:18px;padding:40px}
+.pwbox{position:relative;display:flex;align-items:center}
+.pwbox input{flex:1;width:100%;padding-right:40px}
+.eye{position:absolute;right:4px;top:50%;transform:translateY(-50%);border:0;background:none;cursor:pointer;font-size:17px;line-height:1;padding:4px 6px;border-radius:6px}
+.eye:hover{background:#eef2f7}
 @media (max-width:600px){header h1{font-size:18px}.grid2{grid-template-columns:1fr}main{padding:10px}.cards{grid-template-columns:1fr}.gb ol{columns:1}}
 @media print{
   @page{size:landscape;margin:7mm}
@@ -348,7 +352,7 @@ const CAT = { lang: ['Тілдер', '#2E7D32'], art: ['Шығармашылық
 const CAT_RU = { lang: 'Языки', art: 'Творчество', sci: 'Наука и логика', sport: 'Спорт' };
 const CLUB_COLOR = '#6A3D9A';
 const SUBTITLE = 'Сабақ кестесі / Расписание уроков 1–4 сынып / класс';
-const APP_VERSION = '28-нұсқа · 29.10.2026';
+const APP_VERSION = '29-нұсқа · 01.11.2026';
 const KEY = 'sabak-kestesi-baiterek-v2', HKEY = 'sabak-admin-hash';
 const SERVER = !!(window.google && google.script && google.script.run);
 const $ = s => document.querySelector(s);
@@ -2234,6 +2238,20 @@ function trDom(root) {
 /* Беттің кез келген жаңа бөлігі (бөлім, терезе, тізім) орысша режимде бірден аударылады */
 new MutationObserver(ms => { if (UI === 'ru') ms.forEach(m => m.addedNodes.forEach(trDom)); })
   .observe(document.body, { childList: true, subtree: true });
+
+/* Құпиясөз жолдарына 👁 көзше: басқанда жазылғаны көрінеді, қайта басқанда жасырылады */
+function addEyes(root) {
+  if (!root || root.nodeType !== 1) return;
+  [...(root.matches('input[type=password]') ? [root] : []), ...root.querySelectorAll('input[type=password]')].forEach(inp => {
+    if (inp.dataset.eye) return; inp.dataset.eye = '1';
+    const box = document.createElement('span'); box.className = 'pwbox'; inp.parentNode.insertBefore(box, inp); box.appendChild(inp);
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'eye'; b.textContent = '👁'; b.title = T('Құпиясөзді көрсету', 'Показать пароль');
+    b.onclick = () => { const show = inp.type === 'password'; inp.type = show ? 'text' : 'password'; b.textContent = show ? '🙈' : '👁';
+      b.title = show ? T('Құпиясөзді жасыру', 'Скрыть пароль') : T('Құпиясөзді көрсету', 'Показать пароль'); inp.focus(); };
+    box.appendChild(b);
+  });
+}
+new MutationObserver(ms => ms.forEach(m => m.addedNodes.forEach(addEyes))).observe(document.body, { childList: true, subtree: true });
 
 /* ---------- Оқиғалар ---------- */
 // батырма бірден белгіленеді, кесте келесі сәтте салынады — басу баяу сезілмейді
