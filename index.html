@@ -25,7 +25,6 @@ nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-
 nav button{border:0;background:none;font:inherit;font-weight:600;color:var(--muted);padding:12px 14px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
 nav button.on{color:var(--accent);border-bottom-color:var(--accent)}
 body:not(.admin) .admonly{display:none!important}
-body.static #loginBtn{display:none!important}
 body.parent nav button:not([data-tab="class"]):not([data-tab="clubs"]),body.parent #loginBtn,body.parent .pall{display:none!important}
 .plink{display:flex;gap:6px;align-items:center;margin:3px 0}
 .plink input{flex:1;font-size:12.5px;color:#334155;background:#f8fafc}
@@ -352,8 +351,18 @@ const CAT = { lang: ['Тілдер', '#2E7D32'], art: ['Шығармашылық
 const CAT_RU = { lang: 'Языки', art: 'Творчество', sci: 'Наука и логика', sport: 'Спорт' };
 const CLUB_COLOR = '#6A3D9A';
 const SUBTITLE = 'Сабақ кестесі / Расписание уроков 1–4 сынып / класс';
-const APP_VERSION = '29-нұсқа · 01.11.2026';
+const APP_VERSION = '30-нұсқа · 01.11.2026';
 const KEY = 'sabak-kestesi-baiterek-v2', HKEY = 'sabak-admin-hash';
+/* pages.dev сайтында әкімші де жұмыс істейді: google.script.run орнына сол функцияларды Google-ға POST арқылы шақырамыз
+   (браузердегі Google аккаунттары кедергі жасамайды — сұраныс аккаунтсыз жіберіледі) */
+if (STATIC && !window.google) {
+  const call = (fn, args) => fetch(DATA_API, { method: 'POST', body: JSON.stringify({ fn, args }) })
+    .then(r => r.json()).then(j => { if (!j.ok) throw new Error(j.error || 'error'); return j.result; });
+  const runner = (ok, fail) => new Proxy({}, { get: (_, name) => name === 'withSuccessHandler' ? f => runner(f, fail)
+    : name === 'withFailureHandler' ? f => runner(ok, f)
+    : (...a) => { call(name, a).then(r => ok && ok(r), e => fail ? fail(e) : console.error(e)); } });
+  window.google = { script: { run: runner() } };
+}
 const SERVER = !!(window.google && google.script && google.script.run);
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -2470,7 +2479,7 @@ if (STATIC) {
     const get = u => fetch(u, { cache: 'no-store' }).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
     get(DATA_API + '?api=1&' + (p.k ? 'k=' : 't=') + tok).then(j => { if (!j || !j.ok) throw new Error(j && j.error); return j.data; })
       .catch(() => get(tok + '.json')).catch(() => get('d/' + tok + '.json'))
-      .then(x => { S = x; if (p.k) startParent(S.classes[0].name); else start(p); })
+      .then(x => { S = x; if (p.k) startParent(S.classes[0].name); else { STAFF = tok; start(p); } })
       .catch(() => showDenied());
   });
 } else if (BUILD === 'broken') showSetupError();
