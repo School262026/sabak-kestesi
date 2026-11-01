@@ -351,7 +351,7 @@ const CAT = { lang: ['Тілдер', '#2E7D32'], art: ['Шығармашылық
 const CAT_RU = { lang: 'Языки', art: 'Творчество', sci: 'Наука и логика', sport: 'Спорт' };
 const CLUB_COLOR = '#6A3D9A';
 const SUBTITLE = 'Сабақ кестесі / Расписание уроков 1–4 сынып / класс';
-const APP_VERSION = '30-нұсқа · 01.11.2026';
+const APP_VERSION = '31-нұсқа · 01.11.2026';
 const KEY = 'sabak-kestesi-baiterek-v2', HKEY = 'sabak-admin-hash';
 /* pages.dev сайтында әкімші де жұмыс істейді: google.script.run орнына сол функцияларды Google-ға POST арқылы шақырамыз
    (браузердегі Google аккаунттары кедергі жасамайды — сұраныс аккаунтсыз жіберіледі) */
@@ -1984,9 +1984,51 @@ function refreshClubs() {
 function showConflicts() {
   if (!C.list.length) { toast('✓ Кестеде қайшылық жоқ: мұғалімдер, кабинеттер, сыныптар және үйірмелер сәйкес келмейді', true); return; }
   alarm();
+  const rooms = C.list.some(x => /^Кабинет бір уақытта/.test(x.msg));
   openModal(`<h3>⚠ Қайшылықтар (${C.list.length})</h3><ul class="clist">${C.list.map(x =>
     `<li><b>${DAYS_ALL[x.d]}${x.l >= 0 ? ', ' + (x.l + 1) + '-сабақ (' + timeStr(x.l) + ')' : ''}</b><br>${esc(x.msg)}</li>`).join('')}</ul>
-    <div class="mbtns"><span style="flex:1"></span><button class="btn primary" data-close>Жабу</button></div>`);
+    <div class="mbtns">${rooms && isAdmin ? '<button class="btn" id="fixRooms">🛠 Кабинет қайшылықтарын түзету</button>' : ''}<span style="flex:1"></span><button class="btn primary" data-close>Жабу</button></div>`);
+  const b = $('#fixRooms'); if (b) b.onclick = previewRoomFix;
+}
+/* Кабинет қайшылығы: бір кабинетте бір уақытта әр түрлі мұғалімдердің сабағы. Кабинетті жиі пайдаланатын мұғалімнің сабағы орнында қалады,
+   қалғандары сол уақытта бос тұрған кабинетке ауыстырылады: алдымен мұғалімнің өз кабинеттері, сосын сыныптың кабинеті, сосын нөмірі жақын кабинет */
+function fixRoomConflicts() {
+  const sh = shared(), log = [], all = roomList().map(r => r[0]);
+  const uses = {}; for (const k in S.sched) S.sched[k].forEach(x => { if (x.s && x.t && nr(x.r)) { const m = (uses[x.t] ??= {}); m[nr(x.r)] = (m[nr(x.r)] || 0) + 1; } });
+  const slot = (d, l) => {
+    const u = new Map(), put = (r, e) => { if (!r) return; if (!u.has(r)) u.set(r, []); u.get(r).push(e); };
+    for (const k in S.sched) { const [c, dd, ll] = k.split('|'); if (+dd !== d || +ll !== l || !cls(c)) continue; S.sched[k].forEach(x => { if (x.s) put(nr(x.r), { x, c, t: x.t }); }); }
+    (S.extra || []).forEach(x => { if (x.d === d && x.p === l) put(nr(x.r), { ext: x, t: x.t }); });
+    (S.clubs?.groups || []).forEach(g => { if (g.days.includes(d) && g.p === l) put(nr(g.room), { club: g, t: g.tid }); });
+    return u;
+  };
+  for (let d = 0; d < nDays(); d++) for (let l = 0; l < S.times.length; l++) {
+    const u = slot(d, l);
+    for (const [room, es] of [...u]) {
+      if (sh.has(room) || new Set(es.map(e => e.t)).size < 2) continue;
+      const score = e => (e.c && nr(cls(e.c).room) === room ? 1000 : 0) + (e.club || e.ext ? 500 : 0) + (uses[e.t]?.[room] || 0);
+      const keep = [...es].sort((a, b) => score(b) - score(a))[0];
+      es.filter(e => e.t !== keep.t && e.x).forEach(e => {
+        const free = r => r && !sh.has(r) && !u.has(r);
+        const own = Object.entries(uses[e.t] || {}).sort((a, b) => b[1] - a[1]).map(x => x[0]);
+        const to = own.find(free) || [nr(cls(e.c).room)].find(free) || all.filter(r => /^\d{3}$/.test(r) && free(r)).sort((a, b) => Math.abs(a - room) - Math.abs(b - room))[0];
+        if (!to) return;
+        log.push(`${DAYS_ALL[d]}, ${l + 1}-сабақ: ${cls(e.c).name} — ${sName(subj(e.x.s), clsLang(e.c))}${e.x.g ? ' (' + e.x.g + ')' : ''}, ${teacher(e.t) ? short(teacher(e.t).name) : ''}: каб. ${e.x.r} → ${roomName(to)}`);
+        e.x.r = roomName(to); u.get(room).splice(u.get(room).indexOf(e), 1); u.set(to, [e]);
+      });
+    }
+  }
+  return log;
+}
+function previewRoomFix() {
+  // көшірмесінде түзетеміз — «Сақтау» басылмаса, кестеге ештеңе тимейді
+  const real = S, work = clone(S); S = work; const log = fixRoomConflicts(); S = real;
+  if (!log.length) { toast('Ауыстыратын бос кабинет табылмады'); return; }
+  openModal(`<h3>🛠 Кабинеттерді ауыстыру (${log.length})</h3><p class="hint">Мына сабақтар сол уақытта бос тұрған кабинетке ауыстырылады. Тексеріп, «Сақтау» басыңыз.</p>
+    <ul class="ul">${log.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+    <div class="mbtns"><span style="flex:1"></span><button class="btn" id="rfNo">Болдырмау</button><button class="btn primary" id="rfOk">Сақтау</button></div>`);
+  $('#rfOk').onclick = () => { S = work; closeModal(); commit(); toast('✓ Кабинеттер ауыстырылды. Қайшылық: ' + C.list.length, true); };
+  $('#rfNo').onclick = closeModal;
 }
 
 /* ---------- PDF жүктеу ---------- */
