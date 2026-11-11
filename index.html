@@ -220,7 +220,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:18px}
   <button data-tab="teacher">👩‍🏫 Мұғалім кестесі</button>
   <button data-tab="room">🚪 Кабинет кестесі</button>
   <button data-tab="clubs">🎨 Үйірмелер</button>
-  <button data-tab="subs">🔁 Ауыстыру</button>
+  <button data-tab="subs" class="admonly">🔁 Ауыстыру</button>
   <button data-tab="plan" class="admonly">📚 Оқу жоспары</button>
   <button data-tab="settings" class="admonly">⚙️ Баптаулар</button>
 </div></nav>
@@ -1777,7 +1777,7 @@ function viewSettings() {
 }
 
 function render() {
-  if ((tab === 'plan' || tab === 'settings') && !isAdmin) tab = 'all';
+  if ((tab === 'plan' || tab === 'settings' || tab === 'subs') && !isAdmin) tab = 'all';
   if (PARENT && tab !== 'class' && tab !== 'clubs') tab = 'class';
   renderHeader();
   const main = $('#main'), sc = window.scrollY, cur = shownPane(), tw = cur && cur.querySelector('.tw'), tsx = tw ? tw.scrollLeft : 0, tsy = tw ? tw.scrollTop : 0;
