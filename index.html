@@ -1823,6 +1823,14 @@ function verifyPw(pw) {
   return SERVER ? new Promise((res, rej) => google.script.run.withSuccessHandler(res).withFailureHandler(rej).checkPassword(pw))
     : sha256(pw).then(h => h === localHash());
 }
+// Замена дерегі тек әкімші құпиясөзін енгізгенден кейін алынады
+function loadSubs() {
+  if (!S.subsHidden || !adminPw || !SERVER) return;
+  google.script.run
+    .withSuccessHandler(txt => { try { S.subs = JSON.parse(txt); delete S.subsHidden; } catch (e) { return; } render(); })
+    .withFailureHandler(() => toast('Ауыстыру дерегі жүктелмеді. Бетті жаңартыңыз.'))
+    .getSubs(adminPw);
+}
 function openLogin() {
   openModal(`<h3>🔒 Админ ретінде кіру</h3>
     <form id="lgForm"><label>Құпиясөз<input type="password" id="lgPw" autocomplete="current-password" autofocus></label>
@@ -1836,7 +1844,7 @@ function openLogin() {
     try {
       if (await verifyPw(pw)) {
         isAdmin = true; adminPw = pw; try { sessionStorage.setItem('sabak-adm', pw); } catch (e) {}
-        closeModal(); computeConflicts(); prevConf = new Set(Object.keys(C.les)); render(); toast('✓ Админ режимі қосылды. Енді кестені өзгертуге болады.', true);
+        loadSubs(); closeModal(); computeConflicts(); prevConf = new Set(Object.keys(C.les)); render(); toast('✓ Админ режимі қосылды. Енді кестені өзгертуге болады.', true);
       } else { $('#lgW').textContent = 'Құпиясөз қате.'; $('#lgOk').disabled = false; }
     } catch (err) { $('#lgW').textContent = 'Тексеру мүмкін болмады: ' + (err && err.message || err); $('#lgOk').disabled = false; }
   };
@@ -2482,7 +2490,7 @@ function start(p) {
   if (PARENT) return;
   // сессия ішінде админ болып қалу
   let pw = ''; try { pw = sessionStorage.getItem('sabak-adm') || ''; } catch (e) {}
-  if (pw) verifyPw(pw).then(ok => { if (ok) { isAdmin = true; adminPw = pw; render(); } }).catch(() => {});
+  if (pw) verifyPw(pw).then(ok => { if (ok) { isAdmin = true; adminPw = pw; loadSubs(); render(); } }).catch(() => {});
 }
 function startParent(cname) {
   PARENT = true; document.body.classList.add('parent');
