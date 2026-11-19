@@ -718,6 +718,7 @@ function save() {
   } else { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
 }
 function pushServer() {
+  if (S.extra && S.extra.length) { S.opt ??= {}; S.opt.shor = shorFromExtra(); }
   google.script.run
     .withSuccessHandler(() => { pending = false; setSaveState('☁ Сақталды ' + new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })); })
     .withFailureHandler(e => { setSaveState('⚠ Сақталмады'); toast('Серверге сақталмады: ' + (e && e.message || e)); })
@@ -1089,7 +1090,27 @@ function classPage(c, cl) {
   keys.forEach(k => { const seen = new Set(); cellL(k).forEach(x => { if (!seen.has(x.s)) { seen.add(x.s); fact[x.s] = (fact[x.s] || 0) + 1; } }); });
   const pills = S.subjects.filter(s => fact[s.id]).sort((a, b) => fact[b.id] - fact[a.id])
     .map(s => `<span class="pill" style="${colStyle(s.color)}">${esc(sName(s))}: <b>${fact[s.id]}</b></span>`).join('');
-  return h + `<div class="info"><span class="pill"><b>${T('Аптасына сабақ саны (пән бойынша)', 'Количество уроков в неделю (по предметам)')}:</b></span>${pills}</div>` + legend(new Set(Object.keys(fact)), true, UI);
+  return h + shorBlock(c) + `<div class="info"><span class="pill"><b>${T('Аптасына сабақ саны (пән бойынша)', 'Количество уроков в неделю (по предметам)')}:</b></span>${pills}</div>` + legend(new Set(Object.keys(fact)), true, UI);
+}
+/* ---------- ШОР: бірнеше сыныпқа ортақ топтар (S.extra, белгісі «ШОР …»); ата-анаға S.opt.shor арқылы келеді ---------- */
+function shorFromExtra() {
+  return (S.extra || []).filter(x => /^ШОР\s/.test(x.label || '')).map(x => ({ d: x.d, p: x.p, s: x.s, label: x.label, r: x.r || '', tn: teacher(x.t)?.name || '' }));
+}
+const shorList = () => (S.extra || []).some(x => /^ШОР\s/.test(x.label || '')) ? shorFromExtra() : (S.opt?.shor || []);
+function shorFor(label, cname) {
+  const m = String(cname).match(/^(\d+)\s*(.*)$/); if (!m) return false;
+  const g = +m[1], let_ = m[2].toUpperCase(), t = label.replace(/^ШОР\s*/, '').replace(/\s/g, '');
+  const rg = t.match(/^(\d+)[–-](\d+)/); if (rg) return g >= +rg[1] && g <= +rg[2];
+  const one = t.match(/^(\d+)([A-ZА-Я]+)?/i); if (!one || +one[1] !== g) return false;
+  return !one[2] || one[2].toUpperCase().includes(let_);
+}
+function shorBlock(c) {
+  const D = nDays(), list = shorList().filter(x => x.d < D && shorFor(x.label, c.name)).sort((a, b) => a.d - b.d || a.p - b.p);
+  if (!list.length) return '';
+  const room = r => r ? ' · ' + T('каб.', 'каб.') + ' ' + esc(String(r).replace(/^каб\.?\s*/i, '')) : '';
+  return `<div class="card" style="margin:10px 0"><b>🎯 ${T('ШОР сабақтары', 'Занятия ШОР')}</b> <span class="hint">${T('(бірнеше сыныпқа ортақ топ, тек тізімдегі оқушылар қатысады)', '(общая группа нескольких классов, ходят только ученики из списка)')}</span>
+    <table class="tt" style="margin-top:6px;width:auto"><tbody>${list.map(x => `<tr><td style="text-align:left;white-space:nowrap"><b>${DAYS_ALL[x.d]}</b>, ${x.p + 1}-${T('сабақ', 'урок')} <small>${timeStr(x.p)}</small></td>
+      <td style="text-align:left"><b>${esc(subj(x.s) ? sName(subj(x.s)) : '')}</b> — ${esc(x.tn)}${room(x.r)} <span class="hint">(${esc(x.label)})</span></td></tr>`).join('')}</tbody></table></div>`;
 }
 
 /* ---------- Қолмен құру: жоспардан пәнді таңдап, ұяшықты басу ---------- */
