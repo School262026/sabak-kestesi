@@ -65,6 +65,9 @@ body.admin .cell{cursor:pointer}
 .help ol{margin:4px 0;padding-left:22px}
 .help li{margin:2px 0}
 .lw{display:flex;gap:2px;height:100%;min-height:60px}
+.lw.sh{flex-wrap:wrap}
+.lw.sh .shorb{flex:0 0 100%}
+.shorb{margin-top:0;background:#fef3c7;color:#92400e;border:1px dashed #d97706;border-radius:6px;padding:1px 5px;font-size:10.5px;font-weight:600;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:help}
 .les{--c:#cbd5e1;flex:1;min-width:0;background:var(--c);color:var(--tc,#111827);border-radius:7px;padding:4px 6px;overflow:hidden}
 body.admin .cell:hover .les{filter:brightness(.95)}
 .les .sn{font-weight:700;font-size:12.5px;line-height:1.2}
@@ -875,10 +878,10 @@ function clubBlock(cid, d, l) {
     <div class="sn">${bad ? '⚠ ' : ''}🎨 ${T('Үйірмелер', 'Кружки')}</div><div class="tn">${gs.length} ${T('топ', 'гр.')} · ${n} ${T('оқушы', 'уч.')}</div><div class="rn">${T('басып көріңіз', 'нажмите')}</div></div>`);
 }
 function cellHTML(k, hint = '') {
-  const arr = cellL(k), [cid, d, l] = k.split('|'), cb = clubBlock(cid, d, l);
-  if (!arr.length && !cb) return `<td class="cell empty${hint}" data-k="${k}"${hint === ' busy' ? ' title="Мұғалім немесе кабинет бұл уақытта бос емес"' : ''}>${isAdmin ? '+' : ''}</td>`;
-  return `<td class="cell${hint}" data-k="${k}"${isAdmin && arr.length ? ' draggable="true"' : ''}><div class="lw">${
-    S.sched[k] ? S.sched[k].map((x, i) => x.s ? lesHTML(x, k + '#' + i, arr.length > 1) : '').join('') : ''}${cb}</div></td>`;
+  const arr = cellL(k), [cid, d, l] = k.split('|'), cb = clubBlock(cid, d, l), sb = shorBadge(cid, d, l);
+  if (!arr.length && !cb) return `<td class="cell empty${hint}" data-k="${k}"${hint === ' busy' ? ' title="Мұғалім немесе кабинет бұл уақытта бос емес"' : ''}>${isAdmin ? '+' : ''}${sb}</td>`;
+  return `<td class="cell${hint}" data-k="${k}"${isAdmin && arr.length ? ' draggable="true"' : ''}><div class="lw${sb ? ' sh' : ''}">${
+    S.sched[k] ? S.sched[k].map((x, i) => x.s ? lesHTML(x, k + '#' + i, arr.length > 1) : '').join('') : ''}${cb}${sb}</div></td>`;
 }
 function legend(ids, withClub, lang) {
   const list = ids ? S.subjects.filter(s => ids.has(s.id)) : S.subjects;
@@ -1103,6 +1106,18 @@ function shorFor(label, cname) {
   const rg = t.match(/^(\d+)[–-](\d+)/); if (rg) return g >= +rg[1] && g <= +rg[2];
   const one = t.match(/^(\d+)([A-ZА-Я]+)?/i); if (!one || +one[1] !== g) return false;
   return !one[2] || one[2].toUpperCase().includes(let_);
+}
+let shorIdx = null, shorIdxV = '', shorIdxS = null;
+function shorBadge(cid, d, l) {
+  const ver = dataVer + '|' + (S.extra || []).length + '|' + (S.opt?.shor || []).length + '|' + S.classes.length;
+  if (shorIdxV !== ver || shorIdxS !== S || !shorIdx) {
+    shorIdx = {}; shorIdxV = ver; shorIdxS = S; const list = shorList();
+    if (list.length) S.classes.forEach(c => list.forEach(x => { if (shorFor(x.label, c.name)) (shorIdx[c.id + '|' + x.d + '|' + x.p] ??= []).push(x); }));
+  }
+  const a = shorIdx[cid + '|' + d + '|' + l]; if (!a) return '';
+  const nm = x => subj(x.s) ? sName(subj(x.s)) : '';
+  const tip = a.map(x => `${nm(x)} — ${x.tn}${x.r ? ', каб. ' + x.r : ''} (${x.label})`).join('\n');
+  return `<div class="shorb" title="${esc(T('ШОР (тек тізімдегі оқушылар)', 'ШОР (только ученики из списка)') + ':\n' + tip)}">🎯 ШОР: ${esc(a.map(nm).join(', '))}</div>`;
 }
 function shorBlock(c) {
   const D = nDays(), list = shorList().filter(x => x.d < D && shorFor(x.label, c.name)).sort((a, b) => a.d - b.d || a.p - b.p);
